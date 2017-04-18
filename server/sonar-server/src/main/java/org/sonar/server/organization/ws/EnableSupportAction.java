@@ -20,6 +20,9 @@
 package org.sonar.server.organization.ws;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import org.sonar.api.rule.RuleKey;
+import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -29,10 +32,12 @@ import org.sonar.db.DbSession;
 import org.sonar.db.permission.GroupPermissionDto;
 import org.sonar.db.permission.OrganizationPermission;
 import org.sonar.db.permission.template.PermissionTemplateGroupDto;
+import org.sonar.db.rule.RuleDefinitionDto;
 import org.sonar.db.user.GroupDto;
 import org.sonar.db.user.UserGroupDto;
 import org.sonar.server.organization.DefaultOrganizationProvider;
 import org.sonar.server.organization.OrganizationFlags;
+import org.sonar.server.rule.index.RuleIndexer;
 import org.sonar.server.user.UserSession;
 import org.sonar.server.usergroups.DefaultGroupCreator;
 import org.sonar.server.usergroups.DefaultGroupFinder;
@@ -48,15 +53,17 @@ public class EnableSupportAction implements OrganizationsWsAction {
   private final OrganizationFlags organizationFlags;
   private final DefaultGroupCreator defaultGroupCreator;
   private final DefaultGroupFinder defaultGroupFinder;
+  private final RuleIndexer ruleIndexer;
 
   public EnableSupportAction(UserSession userSession, DbClient dbClient, DefaultOrganizationProvider defaultOrganizationProvider,
-    OrganizationFlags organizationFlags, DefaultGroupCreator defaultGroupCreator, DefaultGroupFinder defaultGroupFinder) {
+    OrganizationFlags organizationFlags, DefaultGroupCreator defaultGroupCreator, DefaultGroupFinder defaultGroupFinder, RuleIndexer ruleIndexer) {
     this.userSession = userSession;
     this.dbClient = dbClient;
     this.defaultOrganizationProvider = defaultOrganizationProvider;
     this.organizationFlags = organizationFlags;
     this.defaultGroupCreator = defaultGroupCreator;
     this.defaultGroupFinder = defaultGroupFinder;
+    this.ruleIndexer = ruleIndexer;
   }
 
   @Override
@@ -74,14 +81,20 @@ public class EnableSupportAction implements OrganizationsWsAction {
 
   @Override
   public void handle(Request request, Response response) throws Exception {
+    verifySystemAdministrator();
+    
+    List<RuleKey> disabledTemplateAndCustomRuleKeys = null;
     try (DbSession dbSession = dbClient.openSession(false)) {
-      verifySystemAdministrator();
       if (isSupportDisabled(dbSession)) {
         flagCurrentUserAsRoot(dbSession);
         createDefaultMembersGroup(dbSession);
+        disabledTemplateAndCustomRuleKeys = disableTemplateRulesAndCustomRules(dbSession);
         enableFeature(dbSession);
         dbSession.commit();
       }
+    }
+    if (disabledTemplateAndCustomRuleKeys != null) {
+      ruleIndexer.indexRuleDefinitions(disabledTemplateAndCustomRuleKeys);
     }
     response.noContent();
   }
@@ -129,6 +142,17 @@ public class EnableSupportAction implements OrganizationsWsAction {
       sonarUsersGroup.getId());
     sonarUsersPermissionTemplates.forEach(permissionTemplateGroup -> dbClient.permissionTemplateDao().insertGroupPermission(dbSession,
       permissionTemplateGroup.getTemplateId(), membersGroup.getId(), permissionTemplateGroup.getPermission()));
+  }
+
+  public List<RuleKey> disableTemplateRulesAndCustomRules(DbSession dbSession) {
+    List<RuleDefinitionDto> rules = dbClient.ruleDao().selectAllDefinitions(dbSession).stream()
+      .filter(r -> r.isTemplate() || r.isCustomRule())
+      .collect(Collectors.toList());
+    rules.forEach(r -> {
+      r.setStatus(RuleStatus.REMOVED);
+      dbClient.ruleDao().update(dbSession, r);
+    });
+    return rules.stream().map(RuleDefinitionDto::getKey).collect(Collectors.toList());
   }
 
   private void enableFeature(DbSession dbSession) {
