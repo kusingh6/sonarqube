@@ -37,7 +37,7 @@ public class WebhooksWsTest {
     WebhooksWs underTest = new WebhooksWs(action);
 
     Context context = new Context();
-    underTest.define(context);
+    underTest.define();
 
     Controller controller = context.controller("api/webhooks");
     assertThat(controller).isNotNull();

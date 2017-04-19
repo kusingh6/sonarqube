@@ -19,7 +19,6 @@
  */
 package org.sonar.server.ui.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,8 +31,8 @@ public class NavigationWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController navigation = context.createController("api/navigation")
+  public NewController define() {
+    NewController navigation = new NewController("api/navigation")
       .setDescription("Get information required to build navigation UI components")
       .setSince("5.2");
 
@@ -41,7 +40,7 @@ public class NavigationWs implements WebService {
       action.define(navigation);
     }
 
-    navigation.done();
+    return navigation;
   }
 
 }

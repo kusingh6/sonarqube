@@ -30,7 +30,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Response;
@@ -323,8 +322,8 @@ public class WebServiceEngineTest {
 
   static class SystemWs implements WebService {
     @Override
-    public void define(Context context) {
-      NewController newController = context.createController("api/system");
+    public NewController define() {
+      NewController newController = new NewController("api/system");
       createNewDefaultAction(newController, "health")
         .setHandler((request, response) -> {
           try {
@@ -389,7 +388,7 @@ public class WebServiceEngineTest {
           throw new IllegalStateException("fail!", new ClientAbortException());
         });
 
-      newController.done();
+      return newController;
     }
 
     private NewAction createNewDefaultAction(NewController controller, String key) {

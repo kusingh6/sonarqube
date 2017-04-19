@@ -19,7 +19,6 @@
  */
 package org.sonar.server.measure.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -27,12 +26,12 @@ import org.sonar.server.ws.RemovedWebServiceHandler;
 public class TimeMachineWs implements WebService {
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/timemachine")
+  public NewController define() {
+    NewController controller = new NewController("api/timemachine")
       .setDescription("Removed since 6.3, please use api/measures/search_history instead")
       .setSince("2.10");
     defineIndexAction(controller);
-    controller.done();
+    return controller;
   }
 
   private static void defineIndexAction(NewController controller) {

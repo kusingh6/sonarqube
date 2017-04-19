@@ -19,7 +19,6 @@
  */
 package org.sonar.server.plugins.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,8 +33,8 @@ public class PluginsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/plugins");
+  public NewController define() {
+    NewController controller = new NewController("api/plugins");
     controller.setDescription("Manage the plugins on the server, including installing, uninstalling, and upgrading.")
       .setSince("5.2");
 
@@ -43,6 +42,6 @@ public class PluginsWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

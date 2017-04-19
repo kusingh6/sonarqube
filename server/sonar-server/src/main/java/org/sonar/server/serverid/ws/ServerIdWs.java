@@ -19,7 +19,6 @@
  */
 package org.sonar.server.serverid.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,14 +31,14 @@ public class ServerIdWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/server_id")
+  public NewController define() {
+    NewController controller = new NewController("api/server_id")
       .setDescription("Get server id information and generate server id.")
       .setSince("6.1");
     for (ServerIdWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 
 }

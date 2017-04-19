@@ -19,7 +19,6 @@
  */
 package org.sonar.server.property.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,11 +33,11 @@ public class PropertiesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER_PROPERTIES)
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER_PROPERTIES)
       .setDescription("This web service is deprecated, please use api/settings instead.")
       .setSince("2.6");
     indexAction.define(controller);
-    controller.done();
+    return controller;
   }
 }

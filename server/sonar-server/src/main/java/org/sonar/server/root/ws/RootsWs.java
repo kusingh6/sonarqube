@@ -19,7 +19,6 @@
  */
 package org.sonar.server.root.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -31,8 +30,8 @@ public class RootsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/roots")
+  public NewController define() {
+    NewController controller = new NewController("api/roots")
         .setSince("6.2")
         .setDescription("Manage root users");
 
@@ -40,6 +39,6 @@ public class RootsWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

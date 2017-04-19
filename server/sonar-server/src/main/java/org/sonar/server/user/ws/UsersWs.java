@@ -19,7 +19,6 @@
  */
 package org.sonar.server.user.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,8 +31,8 @@ public class UsersWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/users")
+  public NewController define() {
+    NewController controller = new NewController("api/users")
       .setSince("3.6")
       .setDescription("Manage users.");
 
@@ -41,6 +40,6 @@ public class UsersWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

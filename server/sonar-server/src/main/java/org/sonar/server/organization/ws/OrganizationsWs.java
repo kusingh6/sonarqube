@@ -19,7 +19,6 @@
  */
 package org.sonar.server.organization.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -31,13 +30,13 @@ public class OrganizationsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/organizations")
+  public NewController define() {
+    NewController controller = new NewController("api/organizations")
       .setSince("6.2")
       .setDescription("Manage organizations.");
     for (OrganizationsWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 }

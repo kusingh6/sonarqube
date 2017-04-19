@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.internal.SimpleGetRequest;
@@ -156,14 +157,15 @@ public class QProfileReferenceTest {
   @Test
   public void define_ws_parameters() {
     WsTester wsTester = new WsTester();
-    NewController controller = wsTester.context().createController("api/qualityprofiles");
+    Context r = wsTester.context();
+    NewController controller = new NewController("api/qualityprofiles");
     NewAction newAction = controller.createAction("do").setHandler((request, response) -> {
     });
 
     Languages languages = new Languages(newLanguage("java"), newLanguage("js"));
     QProfileReference.defineParams(newAction, languages);
 
-    controller.done();
+    return controller;
     Action action = wsTester.controller("api/qualityprofiles").action("do");
     assertThat(action.param("language")).isNotNull();
     assertThat(action.param("language").possibleValues()).containsOnly("java", "js");

@@ -19,7 +19,6 @@
  */
 package org.sonar.server.issue.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,14 +33,14 @@ public class IssuesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER_ISSUES);
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER_ISSUES);
     controller.setDescription("Read and update issues.");
     controller.setSince("3.6");
     for (IssuesWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 
 }

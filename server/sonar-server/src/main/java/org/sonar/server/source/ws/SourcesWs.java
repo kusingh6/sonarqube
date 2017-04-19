@@ -19,7 +19,6 @@
  */
 package org.sonar.server.source.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,13 +31,13 @@ public class SourcesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/sources")
+  public NewController define() {
+    NewController controller = new NewController("api/sources")
       .setSince("4.2")
       .setDescription("Get details on source files. See also api/tests.");
     for (SourcesWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 }

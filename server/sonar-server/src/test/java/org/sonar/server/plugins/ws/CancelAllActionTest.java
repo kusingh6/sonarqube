@@ -23,6 +23,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
@@ -55,10 +56,11 @@ public class CancelAllActionTest {
   @Test
   public void action_cancel_all_is_defined() {
     WsTester wsTester = new WsTester();
-    NewController newController = wsTester.context().createController(DUMMY_CONTROLLER_KEY);
+    Context r = wsTester.context();
+    NewController newController = new NewController(DUMMY_CONTROLLER_KEY);
 
     underTest.define(newController);
-    newController.done();
+    return newController;
 
     Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);
     assertThat(controller.actions()).extracting("key").containsExactly("cancel_all");

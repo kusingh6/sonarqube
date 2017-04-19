@@ -19,7 +19,6 @@
  */
 package org.sonar.server.component.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,8 +33,8 @@ public class ComponentsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER_COMPONENTS)
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER_COMPONENTS)
       .setSince("4.2")
       .setDescription("Get information about a component (file, directory, project, ...) and its ancestors or descendants. " +
         "Update a project or module key.");
@@ -44,7 +43,7 @@ public class ComponentsWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 
 }

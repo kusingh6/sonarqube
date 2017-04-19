@@ -21,7 +21,6 @@ package org.sonar.server.project.ws;
 
 import java.util.Arrays;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -36,12 +35,12 @@ public class ProjectsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER)
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER)
       .setSince("2.10")
       .setDescription("Manage project existence.");
     Arrays.stream(actions).forEach(action -> action.define(controller));
-    controller.done();
+    return controller;
   }
 
 }

@@ -19,7 +19,6 @@
  */
 package org.sonar.server.usergroups.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,8 +31,8 @@ public class UserGroupsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/user_groups")
+  public NewController define() {
+    NewController controller = new NewController("api/user_groups")
       .setDescription("Manage user groups.")
       .setSince("5.2");
 
@@ -41,7 +40,7 @@ public class UserGroupsWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 
 }

@@ -11,29 +11,29 @@ import org.apache.commons.lang.StringUtils;
 import com.google.common.collect.Maps;
 
 public class NewController {
-  private final Context context;
   final String path;
   String description;
   String since;
   final Map<String, NewAction> actions = Maps.newHashMap();
 
-  NewController(Context context, String path) {
+  /**
+   * Create a new controller.
+   * <br>
+   * Structure of request URL is <code>http://&lt;server&gt;/&lt;controller path&gt;/&lt;action path&gt;?&lt;parameters&gt;</code>.
+   *
+   * @param path the controller path must not start or end with "/". It is recommended to start with "api/"
+   *             and to use lower-case format with underscores, for example "api/coding_rules". Usual actions
+   *             are "search", "list", "show", "create" and "delete".
+   *             the plural form is recommended - ex: api/projects
+   */
+  public NewController(String path) {
     if (StringUtils.isBlank(path)) {
       throw new IllegalArgumentException("WS controller path must not be empty");
     }
     if (StringUtils.startsWith(path, "/") || StringUtils.endsWith(path, "/")) {
       throw new IllegalArgumentException("WS controller path must not start or end with slash: " + path);
     }
-    this.context = context;
     this.path = path;
-  }
-
-  /**
-   * Important - this method must be called in order to apply changes and make the
-   * controller available in {@link org.sonar.api.server.ws.Context#controllers()}
-   */
-  public void done() {
-    context.register(this);
   }
 
   /**

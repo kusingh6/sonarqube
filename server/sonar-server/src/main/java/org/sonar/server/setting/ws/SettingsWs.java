@@ -19,7 +19,6 @@
  */
 package org.sonar.server.setting.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,13 +33,13 @@ public class SettingsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER_SETTINGS)
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER_SETTINGS)
       .setDescription("Manage settings.")
       .setSince("6.1");
     for (SettingsWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 }

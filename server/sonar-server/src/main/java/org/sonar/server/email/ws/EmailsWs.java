@@ -19,7 +19,6 @@
  */
 package org.sonar.server.email.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,13 +31,13 @@ public class EmailsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/emails")
+  public NewController define() {
+    NewController controller = new NewController("api/emails")
       .setDescription("Manage emails")
       .setSince("6.1");
     for (EmailsWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 }

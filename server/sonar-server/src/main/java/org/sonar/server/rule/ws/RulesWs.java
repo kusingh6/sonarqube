@@ -19,7 +19,6 @@
  */
 package org.sonar.server.rule.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,15 +31,14 @@ public class RulesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context
-      .createController("api/rules")
+  public NewController define() {
+    NewController controller = new NewController("api/rules")
       .setDescription("Get and update some details of automatic rules, and manage custom rules.");
 
     for (RulesWsAction action : actions) {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

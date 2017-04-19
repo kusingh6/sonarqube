@@ -19,7 +19,6 @@
  */
 package org.sonar.server.qualityprofile.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -37,14 +36,14 @@ public class QProfilesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(API_ENDPOINT)
+  public NewController define() {
+    NewController controller = new NewController(API_ENDPOINT)
       .setDescription("Manage quality profiles.")
       .setSince("4.4");
 
     stream(actions)
       .forEach(action -> action.define(controller));
 
-    controller.done();
+    return controller;
   }
 }

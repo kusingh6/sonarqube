@@ -19,7 +19,6 @@
  */
 package org.sonar.server.webhook.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,14 +33,14 @@ public class WebhooksWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(API_ENDPOINT);
+  public NewController define() {
+    NewController controller = new NewController(API_ENDPOINT);
     controller.setDescription("Webhooks allow to notify external services when a project analysis is done");
     controller.setSince("6.2");
     for (WebhooksWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 
 }

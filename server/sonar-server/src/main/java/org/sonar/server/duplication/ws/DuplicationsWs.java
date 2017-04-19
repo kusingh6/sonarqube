@@ -19,7 +19,6 @@
  */
 package org.sonar.server.duplication.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,11 +31,11 @@ public class DuplicationsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/duplications")
+  public NewController define() {
+    NewController controller = new NewController("api/duplications")
       .setSince("4.4")
       .setDescription("Get duplication information for a project.");
     showAction.define(controller);
-    controller.done();
+    return controller;
   }
 }

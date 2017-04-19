@@ -43,7 +43,7 @@ public class SystemWsTest {
     SystemWs ws = new SystemWs(action1, action2);
     Context context = new Context();
 
-    ws.define(context);
+    ws.define();
 
     assertThat(context.controllers()).hasSize(1);
     assertThat(context.controller("api/system").actions()).hasSize(2);

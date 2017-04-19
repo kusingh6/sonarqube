@@ -23,7 +23,6 @@ import com.google.common.io.Resources;
 import org.junit.Test;
 import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.Change;
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
@@ -89,9 +88,8 @@ public class WebServicesWsTest {
 
   private static class MetricWs implements WebService {
     @Override
-    public void define(Context context) {
-      NewController newController = context
-        .createController("api/metric")
+    public NewController define() {
+      NewController newController = new NewController("api/metric")
         .setDescription("Metrics")
         .setSince("3.2");
 
@@ -138,7 +136,7 @@ public class WebServicesWsTest {
         .setHandler((request, response) -> {
         });
 
-      newController.done();
+      return newController;
     }
   }
 }

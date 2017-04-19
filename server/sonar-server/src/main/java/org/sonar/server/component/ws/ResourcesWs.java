@@ -19,7 +19,6 @@
  */
 package org.sonar.server.component.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -27,12 +26,12 @@ import org.sonar.server.ws.RemovedWebServiceHandler;
 public class ResourcesWs implements WebService {
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/resources")
+  public NewController define() {
+    NewController controller = new NewController("api/resources")
       .setDescription("Removed since 6.3, please use api/components and api/measures instead")
       .setSince("2.10");
     defineIndexAction(controller);
-    controller.done();
+    return controller;
   }
 
   private static void defineIndexAction(NewController controller) {

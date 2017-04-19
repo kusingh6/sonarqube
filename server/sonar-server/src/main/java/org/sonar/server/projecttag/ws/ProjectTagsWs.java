@@ -22,7 +22,6 @@ package org.sonar.server.projecttag.ws;
 
 import java.util.List;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,13 +33,13 @@ public class ProjectTagsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/project_tags")
+  public NewController define() {
+    NewController controller = new NewController("api/project_tags")
       .setDescription("Manage project tags")
       .setSince("6.4");
 
     actions.forEach(a -> a.define(controller));
 
-    controller.done();
+    return controller;
   }
 }

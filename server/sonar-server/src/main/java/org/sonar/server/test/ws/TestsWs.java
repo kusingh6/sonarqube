@@ -19,7 +19,6 @@
  */
 package org.sonar.server.test.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,8 +31,8 @@ public class TestsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/tests")
+  public NewController define() {
+    NewController controller = new NewController("api/tests")
       .setSince("4.4")
       .setDescription("Get details on test files. See also api/sources. Deprecated since 5.6.");
 
@@ -41,7 +40,7 @@ public class TestsWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 
 }

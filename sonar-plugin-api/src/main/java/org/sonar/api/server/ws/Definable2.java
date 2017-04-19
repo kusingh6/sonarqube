@@ -17,34 +17,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonar.server.ws;
+package org.sonar.api.server.ws;
 
-import com.google.common.collect.Iterables;
+public interface Definable2<T> {
 
-import org.sonar.api.server.ws.Action;
-import org.sonar.api.server.ws.Context;
-import org.sonar.api.server.ws.NewController;
-
-public class WsActionTester {
-
-  public static final String CONTROLLER_KEY = "test";
-  private final Action action;
-
-  public WsActionTester(WsAction wsAction) {
-    Context context = new Context();
-    NewController newController = new NewController(CONTROLLER_KEY);
-    wsAction.define(newController);
-    return newController;
-    action = Iterables.get(context.controller(CONTROLLER_KEY).actions(), 0);
-  }
-
-  public Action getDef() {
-    return action;
-  }
-
-  public TestRequest newRequest() {
-    TestRequest request = new TestRequest();
-    request.setAction(action);
-    return request;
-  }
+  T define();
 }

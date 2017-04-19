@@ -19,7 +19,6 @@
  */
 package org.sonar.server.measure.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonarqube.ws.client.measure.MeasuresWsParameters;
@@ -32,8 +31,8 @@ public class MeasuresWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(MeasuresWsParameters.CONTROLLER_MEASURES)
+  public NewController define() {
+    NewController controller = new NewController(MeasuresWsParameters.CONTROLLER_MEASURES)
       .setSince("5.4")
       .setDescription("Get components or children with specified measures.");
 
@@ -41,6 +40,6 @@ public class MeasuresWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

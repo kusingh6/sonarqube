@@ -19,7 +19,6 @@
  */
 package org.sonar.server.qualitygate.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
@@ -46,8 +45,8 @@ public class QualityGatesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER_QUALITY_GATES)
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER_QUALITY_GATES)
       .setSince("4.3")
       .setDescription("Manage quality gates, including conditions and project association.");
 
@@ -55,7 +54,7 @@ public class QualityGatesWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 
   static void addConditionParams(NewAction action) {

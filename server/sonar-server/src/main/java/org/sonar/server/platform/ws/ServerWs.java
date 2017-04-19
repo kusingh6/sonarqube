@@ -22,7 +22,6 @@ package org.sonar.server.platform.ws;
 import com.google.common.io.Resources;
 import org.apache.commons.io.IOUtils;
 import org.sonar.api.platform.Server;
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
@@ -41,8 +40,8 @@ public class ServerWs implements WebService, RequestHandler {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/server");
+  public NewController define() {
+    NewController controller = new NewController("api/server");
 
     controller.createAction("version")
       .setDescription("Version of SonarQube in plain text")
@@ -50,7 +49,7 @@ public class ServerWs implements WebService, RequestHandler {
       .setResponseExample(Resources.getResource(this.getClass(), "example-server-version.txt"))
       .setHandler(this);
 
-    controller.done();
+    return controller;
   }
 
   @Override

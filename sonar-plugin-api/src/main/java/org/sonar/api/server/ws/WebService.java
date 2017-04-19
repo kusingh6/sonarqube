@@ -65,12 +65,12 @@ import org.sonar.api.server.ServerSide;
  */
 @ServerSide
 @ExtensionPoint
-public interface WebService extends Definable<Context> {
+public interface WebService extends Definable2<NewController> {
 
   /**
    * Executed once at server startup.
    */
   @Override
-  void define(Context context);
+  NewController define();
 
 }

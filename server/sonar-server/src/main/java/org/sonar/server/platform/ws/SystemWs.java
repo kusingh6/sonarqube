@@ -19,7 +19,6 @@
  */
 package org.sonar.server.platform.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,15 +31,15 @@ public class SystemWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/system")
+  public NewController define() {
+    NewController controller = new NewController("api/system")
       .setDescription("Get system details, and perform some management actions, such as restarting, and initiating a database migration (as part of a system upgrade).");
 
     for (SystemWsAction action : actions) {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 
 }

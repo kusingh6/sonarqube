@@ -36,7 +36,7 @@ public class CeWsTest {
 
     CeWs ws = new CeWs(wsAction);
     Context context = mock(Context.class, Mockito.RETURNS_DEEP_STUBS);
-    ws.define(context);
+    ws.define();
 
     assertThat(context.controller("api/ce")).isNotNull();
   }

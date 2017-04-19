@@ -21,7 +21,6 @@ package org.sonar.server.updatecenter.ws;
 
 import java.util.Arrays;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,11 +33,11 @@ public class UpdateCenterWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/updatecenter")
+  public NewController define() {
+    NewController controller = new NewController("api/updatecenter")
       .setDescription("Get list of installed plugins")
       .setSince("2.10");
     Arrays.stream(actions).forEach(action -> action.define(controller));
-    controller.done();
+    return controller;
   }
 }

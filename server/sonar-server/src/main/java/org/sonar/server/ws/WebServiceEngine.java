@@ -32,6 +32,7 @@ import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.LocalConnector;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.server.ws.WebService;
@@ -66,7 +67,7 @@ public class WebServiceEngine implements LocalConnector, Startable {
   public WebServiceEngine(WebService[] webServices) {
     context = new Context();
     for (WebService webService : webServices) {
-      webService.define(context);
+      context.register(webService.define());
     }
   }
 

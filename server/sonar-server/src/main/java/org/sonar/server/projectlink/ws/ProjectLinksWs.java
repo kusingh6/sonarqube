@@ -19,7 +19,6 @@
  */
 package org.sonar.server.projectlink.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,8 +31,8 @@ public class ProjectLinksWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/project_links")
+  public NewController define() {
+    NewController controller = new NewController("api/project_links")
       .setDescription("Manage projects links.")
       .setSince("6.1");
 
@@ -41,7 +40,7 @@ public class ProjectLinksWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 
 }

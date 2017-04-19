@@ -19,7 +19,6 @@
  */
 package org.sonar.server.language.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -35,14 +34,14 @@ public class LanguageWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController languages = context.createController("api/languages")
+  public NewController define() {
+    NewController languages = new NewController("api/languages")
       .setDescription("Get the list of programming languages supported in this instance.")
       .setSince("5.1");
 
     list.define(languages);
 
-    languages.done();
+    return languages;
   }
 
 }

@@ -21,7 +21,6 @@ package org.sonar.server.authentication.ws;
 
 import java.util.List;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -35,10 +34,10 @@ public class AuthenticationWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(AUTHENTICATION_CONTROLLER);
+  public NewController define() {
+    NewController controller = new NewController(AUTHENTICATION_CONTROLLER);
     controller.setDescription("Handle authentication.");
     actions.forEach(action -> action.define(controller));
-    controller.done();
+    return controller;
   }
 }

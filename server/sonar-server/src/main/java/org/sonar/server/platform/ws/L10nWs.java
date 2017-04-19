@@ -19,7 +19,6 @@
  */
 package org.sonar.server.platform.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,11 +31,11 @@ public class L10nWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController l10n = context.createController("api/l10n");
+  public NewController define() {
+    NewController l10n = new NewController("api/l10n");
     l10n.setDescription("Manage localization.")
       .setSince("4.4");
     indexAction.define(l10n);
-    l10n.done();
+    return l10n;
   }
 }

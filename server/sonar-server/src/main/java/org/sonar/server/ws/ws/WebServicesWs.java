@@ -21,7 +21,6 @@ package org.sonar.server.ws.ws;
 
 import java.util.List;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -39,17 +38,15 @@ public class WebServicesWs implements WebService {
   }
 
   @Override
-  public void define(final Context context) {
-    NewController controller = context
-      .createController("api/webservices")
+  public NewController define() {
+    NewController controller = new NewController("api/webservices")
       .setSince("4.2")
       .setDescription("Get information on the web api supported on this instance.");
 
     actions.forEach(action -> {
       action.define(controller);
-      action.setContext(context);
     });
 
-    controller.done();
+    return controller;
   }
 }

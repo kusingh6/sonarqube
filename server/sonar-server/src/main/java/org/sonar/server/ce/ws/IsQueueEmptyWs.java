@@ -20,7 +20,6 @@
 package org.sonar.server.ce.ws;
 
 import org.apache.commons.io.IOUtils;
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
@@ -44,12 +43,11 @@ public class IsQueueEmptyWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context
-      .createController(API_ENDPOINT)
+  public NewController define() {
+    NewController controller = new NewController(API_ENDPOINT)
       .setDescription("Get details about Compute Engine tasks.");
     action.define(controller);
-    controller.done();
+    return controller;
   }
 
   static class IsQueueEmptyAction implements RequestHandler {

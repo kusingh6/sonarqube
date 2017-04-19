@@ -19,7 +19,6 @@
  */
 package org.sonar.server.license.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,11 +33,11 @@ public class LicensesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER_SETTINGS)
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER_SETTINGS)
       .setDescription("Manage licenses")
       .setSince("6.1");
     listAction.define(controller);
-    controller.done();
+    return controller;
   }
 }

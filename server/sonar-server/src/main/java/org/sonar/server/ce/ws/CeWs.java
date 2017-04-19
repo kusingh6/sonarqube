@@ -19,7 +19,6 @@
  */
 package org.sonar.server.ce.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,13 +33,12 @@ public class CeWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context
-      .createController(ENDPOINT)
+  public NewController define() {
+    NewController controller = new NewController(ENDPOINT)
       .setDescription("Get information on Compute Engine tasks.");
     for (CeWsAction action : actions) {
       action.define(controller);
     }
-    controller.done();
+    return controller;
   }
 }

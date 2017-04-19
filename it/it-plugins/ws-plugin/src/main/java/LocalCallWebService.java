@@ -17,7 +17,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
@@ -39,12 +38,12 @@ public final class LocalCallWebService implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("local_ws_call");
+  public NewController define() {
+    NewController controller = new NewController("local_ws_call");
     controller.createAction("protobuf_data").setHandler(new ProtobufHandler());
     controller.createAction("json_data").setHandler(new JsonHandler());
     controller.createAction("require_permission").setHandler(new RequirePermissionHandler());
-    controller.done();
+    return controller;
   }
 
   private class ProtobufHandler implements RequestHandler {

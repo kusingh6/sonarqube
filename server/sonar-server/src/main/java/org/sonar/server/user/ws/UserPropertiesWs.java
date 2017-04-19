@@ -19,7 +19,6 @@
  */
 package org.sonar.server.user.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -27,12 +26,12 @@ import org.sonar.server.ws.RemovedWebServiceHandler;
 public class UserPropertiesWs implements WebService {
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/user_properties");
+  public NewController define() {
+    NewController controller = new NewController("api/user_properties");
     controller.setDescription("Removed since 6.3, please use api/favorites and api/notifications instead");
     controller.setSince("2.6");
     defineIndexAction(controller);
-    controller.done();
+    return controller;
   }
 
   private static void defineIndexAction(NewController controller) {

@@ -60,7 +60,7 @@ public class RequestTest {
   @Before
   public void before() {
     Context context = new Context();
-    new FakeWs().define(context);
+    new FakeWs().define();
 
     underTest.setAction(context.controller("my_controller").action("my_action"));
   }
@@ -606,8 +606,8 @@ public class RequestTest {
   private static class FakeWs implements WebService {
 
     @Override
-    public void define(Context context) {
-      NewController controller = context.createController("my_controller");
+    public NewController define() {
+      NewController controller = new NewController("my_controller");
       NewAction action = controller.createAction("my_action")
         .setDescription("Action Description")
         .setPost(true)
@@ -639,7 +639,7 @@ public class RequestTest {
       action.createParam("new_param").setDeprecatedKey("deprecated_param", "6.3");
       action.createParam("new_param_with_default_value").setDeprecatedKey("deprecated_new_param_with_default_value", "6.2").setDefaultValue("the_default_string");
 
-      controller.done();
+      return controller;
     }
   }
 

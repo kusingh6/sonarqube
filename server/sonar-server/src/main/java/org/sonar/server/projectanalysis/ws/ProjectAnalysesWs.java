@@ -19,7 +19,6 @@
  */
 package org.sonar.server.projectanalysis.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -32,8 +31,8 @@ public class ProjectAnalysesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/project_analyses")
+  public NewController define() {
+    NewController controller = new NewController("api/project_analyses")
       .setDescription("Manage project analyses.")
       .setSince("6.3");
 
@@ -41,6 +40,6 @@ public class ProjectAnalysesWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

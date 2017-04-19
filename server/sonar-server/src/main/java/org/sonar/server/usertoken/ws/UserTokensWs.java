@@ -19,7 +19,6 @@
  */
 package org.sonar.server.usertoken.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -33,8 +32,8 @@ public class UserTokensWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER)
+  public NewController define() {
+    NewController controller = new NewController(CONTROLLER)
       .setDescription("List, create, and delete a user's access tokens.")
       .setSince("5.3");
 
@@ -42,6 +41,6 @@ public class UserTokensWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

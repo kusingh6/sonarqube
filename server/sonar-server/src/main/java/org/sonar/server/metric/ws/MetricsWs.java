@@ -19,7 +19,6 @@
  */
 package org.sonar.server.metric.ws;
 
-import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
@@ -34,8 +33,8 @@ public class MetricsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(ENDPOINT);
+  public NewController define() {
+    NewController controller = new NewController(ENDPOINT);
     controller.setDescription("Get information on automatic metrics, and manage custom metrics. See also api/custom_measures.");
     controller.setSince("2.6");
 
@@ -43,6 +42,6 @@ public class MetricsWs implements WebService {
       action.define(controller);
     }
 
-    controller.done();
+    return controller;
   }
 }

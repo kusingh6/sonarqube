@@ -299,7 +299,7 @@ public class WsTester {
 
   public WsTester(WebService... webServices) {
     for (WebService webService : webServices) {
-      webService.define(context);
+      webService.define();
     }
   }
 
