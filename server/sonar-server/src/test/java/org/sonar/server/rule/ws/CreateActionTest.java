@@ -28,15 +28,20 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.utils.System2;
+import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
 import org.sonar.db.rule.RuleDefinitionDto;
 import org.sonar.db.rule.RuleDto;
 import org.sonar.server.es.EsTester;
+import org.sonar.server.exceptions.ForbiddenException;
+import org.sonar.server.exceptions.UnauthorizedException;
+import org.sonar.server.organization.DefaultOrganizationProvider;
 import org.sonar.server.organization.TestDefaultOrganizationProvider;
 import org.sonar.server.organization.TestOrganizationFlags;
 import org.sonar.server.rule.RuleCreator;
 import org.sonar.server.rule.index.RuleIndexDefinition;
 import org.sonar.server.rule.index.RuleIndexer;
+import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.text.MacroInterpreter;
 import org.sonar.server.ws.TestResponse;
 import org.sonar.server.ws.WsActionTester;
@@ -46,6 +51,7 @@ import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
+import static org.sonar.db.permission.OrganizationPermission.ADMINISTER_QUALITY_PROFILES;
 import static org.sonar.db.rule.RuleTesting.newCustomRule;
 import static org.sonar.db.rule.RuleTesting.newTemplateRule;
 import static org.sonar.server.util.TypeValidationsTesting.newFullTypeValidations;
@@ -59,20 +65,26 @@ public class CreateActionTest {
   public ExpectedException expectedException = ExpectedException.none();
 
   @Rule
+  public UserSessionRule userSession = UserSessionRule.standalone();
+
+  @Rule
   public DbTester db = DbTester.create(system2);
 
   @Rule
   public EsTester es = new EsTester(new RuleIndexDefinition(new MapSettings()));
 
   private TestOrganizationFlags organizationFlags = TestOrganizationFlags.standalone();
+  private DefaultOrganizationProvider defaultOrganizationProvider = TestDefaultOrganizationProvider.from(db);
 
   private WsActionTester wsTester = new WsActionTester(new CreateAction(db.getDbClient(),
     new RuleCreator(system2, new RuleIndexer(es.client(), db.getDbClient()), db.getDbClient(), newFullTypeValidations(),
       TestDefaultOrganizationProvider.from(db)),
-    new RuleMapper(new Languages(), createMacroInterpreter()), organizationFlags));
+    new RuleMapper(new Languages(), createMacroInterpreter()), organizationFlags,
+    new RuleWsSupport(mock(DbClient.class), userSession, defaultOrganizationProvider)));
 
   @Test
   public void create_custom_rule() {
+    logInAsQProfileAdministrator();
     organizationFlags.setEnabled(false);
     // Template rule
     RuleDto templateRule = newTemplateRule(RuleKey.of("java", "S001"), db.getDefaultOrganization());
@@ -117,6 +129,7 @@ public class CreateActionTest {
 
   @Test
   public void create_custom_rule_with_prevent_reactivation_param_to_true() {
+    logInAsQProfileAdministrator();
     organizationFlags.setEnabled(false);
     RuleDefinitionDto templateRule = newTemplateRule(RuleKey.of("java", "S001")).getDefinition();
     db.rules().insert(templateRule);
@@ -155,6 +168,7 @@ public class CreateActionTest {
 
   @Test
   public void fail_to_create_rule_when_organizations_are_enabled() throws Exception {
+    logInAsQProfileAdministrator();
     organizationFlags.setEnabled(true);
 
     expectedException.expect(IllegalStateException.class);
@@ -169,10 +183,32 @@ public class CreateActionTest {
       .execute();
   }
 
+  @Test
+  public void throw_ForbiddenException_if_not_profile_administrator() throws Exception {
+    userSession.logIn();
+
+    expectedException.expect(ForbiddenException.class);
+
+    wsTester.newRequest().execute();
+  }
+
+  @Test
+  public void throw_UnauthorizedException_if_not_logged_in() throws Exception {
+    expectedException.expect(UnauthorizedException.class);
+
+    wsTester.newRequest().execute();
+  }
+
   private static MacroInterpreter createMacroInterpreter() {
     MacroInterpreter macroInterpreter = mock(MacroInterpreter.class);
     doAnswer(returnsFirstArg()).when(macroInterpreter).interpret(anyString());
     return macroInterpreter;
+  }
+
+  private void logInAsQProfileAdministrator() {
+    userSession
+      .logIn()
+      .addPermission(ADMINISTER_QUALITY_PROFILES, defaultOrganizationProvider.get().getUuid());
   }
 
 }
