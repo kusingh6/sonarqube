@@ -46,12 +46,13 @@ import org.sonar.db.property.PropertyQuery;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.component.ComponentFinder.ParamNames;
 import org.sonar.server.user.UserSession;
+import org.sonar.server.ws.WsAction;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.sonar.core.util.Uuids.UUID_EXAMPLE_01;
 import static org.sonar.server.ws.KeyExamples.KEY_PROJECT_EXAMPLE_001;
 
-public class AppAction implements RequestHandler {
+public class AppAction implements RequestHandler, ComponentsWsAction {
 
   private static final String PARAM_COMPONENT_ID = "componentId";
   private static final String PARAM_COMPONENT = "component";
@@ -71,7 +72,8 @@ public class AppAction implements RequestHandler {
     this.componentFinder = componentFinder;
   }
 
-  void define(WebService.NewController controller) {
+  @Override
+  public void define(WebService.NewController controller) {
     WebService.NewAction action = controller.createAction("app")
       .setDescription("Coverage data required for rendering the component viewer.<br>" +
         "Requires the following permission: 'Browse'.")

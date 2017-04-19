@@ -25,11 +25,9 @@ import static org.sonarqube.ws.client.component.ComponentsWsParameters.CONTROLLE
 
 public class ComponentsWs implements WebService {
 
-  private final AppAction appAction;
   private final ComponentsWsAction[] actions;
 
-  public ComponentsWs(AppAction appAction, ComponentsWsAction... actions) {
-    this.appAction = appAction;
+  public ComponentsWs(ComponentsWsAction... actions) {
     this.actions = actions;
   }
 
@@ -43,7 +41,6 @@ public class ComponentsWs implements WebService {
     for (ComponentsWsAction action : actions) {
       action.define(controller);
     }
-    appAction.define(controller);
 
     controller.done();
   }
