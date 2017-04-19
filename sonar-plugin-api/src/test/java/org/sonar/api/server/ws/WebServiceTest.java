@@ -28,8 +28,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.rule.RuleStatus;
-import org.sonar.api.server.ws.WebService.NewAction;
-import org.sonar.api.server.ws.WebService.NewController;
 import org.sonar.api.utils.log.LogTester;
 import org.sonar.api.utils.log.LoggerLevel;
 
@@ -45,7 +43,7 @@ public class WebServiceTest {
   @Rule
   public LogTester logTester = new LogTester();
 
-  WebService.Context context = new WebService.Context();
+  Context context = new Context();
 
   @Test
   public void no_web_services_by_default() {
@@ -59,14 +57,14 @@ public class WebServiceTest {
 
     metricWs.define(context);
 
-    WebService.Controller controller = context.controller("api/metric");
+    Controller controller = context.controller("api/metric");
     assertThat(controller).isNotNull();
     assertThat(controller.path()).isEqualTo("api/metric");
     assertThat(controller.description()).isEqualTo("Metrics");
     assertThat(controller.since()).isEqualTo("3.2");
     assertThat(controller.actions()).hasSize(2);
     assertThat(controller.isInternal()).isFalse();
-    WebService.Action showAction = controller.action("show");
+    Action showAction = controller.action("show");
     assertThat(showAction).isNotNull();
     assertThat(showAction.key()).isEqualTo("show");
     assertThat(showAction.description()).isEqualTo("Show metric");
@@ -81,7 +79,7 @@ public class WebServiceTest {
     assertThat(showAction.isPost()).isFalse();
     assertThat(showAction.isInternal()).isFalse();
     assertThat(showAction.path()).isEqualTo("api/metric/show");
-    WebService.Action createAction = controller.action("create");
+    Action createAction = controller.action("create");
     assertThat(createAction).isNotNull();
     assertThat(createAction.key()).isEqualTo("create");
     assertThat(createAction.toString()).isEqualTo("api/metric/create");
@@ -205,16 +203,16 @@ public class WebServiceTest {
       newController.done();
     }).define(context);
 
-    WebService.Action action = context.controller("api/rule").action("create");
+    Action action = context.controller("api/rule").action("create");
     assertThat(action.params()).hasSize(8);
 
-    WebService.Param keyParam = action.param("key");
+    Param keyParam = action.param("key");
     assertThat(keyParam.key()).isEqualTo("key");
     assertThat(keyParam.description()).isEqualTo("Key of the new rule");
     assertThat(keyParam.isInternal()).isFalse();
     assertThat(keyParam.toString()).isEqualTo("key");
 
-    WebService.Param severityParam = action.param("severity");
+    Param severityParam = action.param("severity");
     assertThat(severityParam.key()).isEqualTo("severity");
     assertThat(severityParam.description()).isNull();
     assertThat(severityParam.deprecatedSince()).isEqualTo("5.3");
@@ -224,7 +222,7 @@ public class WebServiceTest {
     assertThat(severityParam.defaultValue()).isEqualTo("MAJOR");
     assertThat(severityParam.possibleValues()).containsOnly("INFO", "MAJOR", "BLOCKER");
 
-    WebService.Param internalParam = action.param("internal");
+    Param internalParam = action.param("internal");
     assertThat(internalParam.isInternal()).isTrue();
 
     // predefined fields
@@ -254,7 +252,7 @@ public class WebServiceTest {
       newController.done();
     }).define(context);
 
-    WebService.Action action = context.controller("api/rule").action("create");
+    Action action = context.controller("api/rule").action("create");
     assertThat(action.param("status").defaultValue()).isEqualTo("BETA");
     assertThat(action.param("status").possibleValues()).containsOnly("BETA", "READY");
     assertThat(action.param("status").exampleValue()).isEqualTo("BETA");
@@ -277,7 +275,7 @@ public class WebServiceTest {
       newController.done();
     }).define(context);
 
-    WebService.Action action = context.controller("api/rule").action("create");
+    Action action = context.controller("api/rule").action("create");
     assertThat(action.param("status").defaultValue()).isNull();
     assertThat(action.param("status").possibleValues()).isNull();
     assertThat(action.param("status").exampleValue()).isNull();
@@ -294,7 +292,7 @@ public class WebServiceTest {
       newController.done();
     }).define(context);
 
-    WebService.Action action = context.controller("api/rule").action("create");
+    Action action = context.controller("api/rule").action("create");
     // no possible values -> return null but not empty
     assertThat(action.param("status").possibleValues()).isNull();
   }
@@ -341,7 +339,7 @@ public class WebServiceTest {
   public void response_example() {
     MetricWs metricWs = new MetricWs();
     metricWs.define(context);
-    WebService.Action action = context.controller("api/metric").action("create");
+    Action action = context.controller("api/metric").action("create");
 
     assertThat(action.responseExampleFormat()).isEqualTo("txt");
     assertThat(action.responseExample()).isNotNull();
@@ -361,7 +359,7 @@ public class WebServiceTest {
     };
     ws.define(context);
 
-    WebService.Action action = context.controller("foo").action("bar");
+    Action action = context.controller("foo").action("bar");
     try {
       action.responseExampleAsString();
       fail();

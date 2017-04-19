@@ -20,12 +20,13 @@
 package org.sonar.server.usergroups.ws;
 
 import java.util.List;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService.NewAction;
-import org.sonar.api.server.ws.WebService.NewController;
-import org.sonar.api.server.ws.WebService.Param;
-import org.sonar.api.server.ws.WebService.SelectionMode;
+import org.sonar.api.server.ws.SelectionMode;
 import org.sonar.api.utils.Paging;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;

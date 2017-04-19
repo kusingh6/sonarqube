@@ -23,9 +23,10 @@ import com.google.common.collect.ImmutableList;
 import java.util.Comparator;
 import java.util.Map;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -65,12 +66,12 @@ public class BulkUpdateKeyAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     doDefine(context);
   }
 
-  public WebService.NewAction doDefine(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_BULK_UPDATE_KEY)
+  public NewAction doDefine(NewController context) {
+    NewAction action = context.createAction(ACTION_BULK_UPDATE_KEY)
       .setDescription("Bulk update a project or module key and all its sub-components keys. " +
         "The bulk update allows to replace a part of the current key by another string on the current project and all its sub-modules.<br>" +
         "It's possible to simulate the bulk update by setting the parameter '%s' at true. No key is updated with a dry run.<br>" +

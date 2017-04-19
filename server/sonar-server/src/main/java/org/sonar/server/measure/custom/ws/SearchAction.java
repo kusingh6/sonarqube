@@ -29,9 +29,12 @@ import java.util.Optional;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -69,8 +72,8 @@ public class SearchAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION)
       .setDescription("List custom measures. The project id or project key must be provided.<br />" +
         "Requires 'Administer System' permission or 'Administer' permission on the project.")
       .setSince("5.2")
@@ -92,10 +95,10 @@ public class SearchAction implements CustomMeasuresWsAction {
   public void handle(Request request, Response response) throws Exception {
     String projectUuid = request.param(PARAM_PROJECT_ID);
     String projectKey = request.param(PARAM_PROJECT_KEY);
-    List<String> fieldsToReturn = request.paramAsStrings(WebService.Param.FIELDS);
+    List<String> fieldsToReturn = request.paramAsStrings(Param.FIELDS);
     SearchOptions searchOptions = new SearchOptions()
-      .setPage(request.mandatoryParamAsInt(WebService.Param.PAGE),
-        request.mandatoryParamAsInt(WebService.Param.PAGE_SIZE));
+      .setPage(request.mandatoryParamAsInt(Param.PAGE),
+        request.mandatoryParamAsInt(Param.PAGE_SIZE));
 
     try (DbSession dbSession = dbClient.openSession(false)) {
       ComponentDto component = componentFinder.getByUuidOrKey(dbSession, projectUuid, projectKey, PROJECT_ID_AND_KEY);

@@ -22,9 +22,11 @@ package org.sonar.server.batch;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.scanner.protocol.input.FileData;
 import org.sonar.scanner.protocol.input.ProjectRepositories;
 import org.sonarqube.ws.WsBatch.WsProjectResponse;
@@ -47,8 +49,8 @@ public class ProjectAction implements BatchWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("project")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("project")
       .setDescription("Return project repository")
       .setResponseExample(getClass().getResource("project-example.json"))
       .setSince("4.5")

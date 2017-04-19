@@ -21,9 +21,11 @@ package org.sonar.server.projectlink.ws;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -56,8 +58,8 @@ public class SearchAction implements ProjectLinksWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_SEARCH)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_SEARCH)
       .setDescription("List links of a project.<br>" +
         "The '%s' or '%s' must be provided.<br>" +
         "Requires one of the following permissions:" +

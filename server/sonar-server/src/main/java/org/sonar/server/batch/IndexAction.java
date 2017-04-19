@@ -21,9 +21,9 @@ package org.sonar.server.batch;
 
 import java.io.IOException;
 import org.apache.commons.io.IOUtils;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 
 import static com.google.common.base.Preconditions.checkState;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -37,7 +37,7 @@ public class IndexAction implements BatchWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     context.createAction("index")
       .setInternal(true)
       .setSince("4.4")

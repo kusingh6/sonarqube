@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
@@ -64,7 +64,7 @@ public class UpdateActionTest {
 
   @Test
   public void verify_define() {
-    WebService.Action action = wsTester.getDef();
+    Action action = wsTester.getDef();
     assertThat(action.key()).isEqualTo("update");
     assertThat(action.isPost()).isTrue();
     assertThat(action.description()).isEqualTo("Update an organization.<br/>" +

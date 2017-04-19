@@ -19,9 +19,10 @@
  */
 package org.sonar.server.qualitygate.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.qualitygate.QualityGates;
 import org.sonarqube.ws.client.qualitygate.QualityGatesWsParameters;
 
@@ -34,8 +35,8 @@ public class DestroyAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("destroy")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("destroy")
       .setDescription("Delete a Quality Gate. Require Administer Quality Gates permission")
       .setSince("4.3")
       .setPost(true)

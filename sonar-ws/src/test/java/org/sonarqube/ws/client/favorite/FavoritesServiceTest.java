@@ -21,7 +21,7 @@ package org.sonarqube.ws.client.favorite;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Param;
 import org.sonarqube.ws.client.ServiceTester;
 import org.sonarqube.ws.client.WsConnector;
 

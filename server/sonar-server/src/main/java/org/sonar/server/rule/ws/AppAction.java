@@ -21,9 +21,10 @@ package org.sonar.server.rule.ws;
 
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -49,8 +50,8 @@ public class AppAction implements RulesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("app")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("app")
       .setDescription("Get data required for rendering the page 'Coding Rules'.")
       .setResponseExample(getClass().getResource("app-example.json"))
       .setSince("4.5")

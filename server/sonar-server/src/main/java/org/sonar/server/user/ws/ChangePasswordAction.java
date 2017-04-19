@@ -19,9 +19,10 @@
  */
 package org.sonar.server.user.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.user.UserDto;
@@ -49,8 +50,8 @@ public class ChangePasswordAction implements UsersWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("change_password")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("change_password")
       .setDescription("Update a user's password. Authenticated users can change their own password, " +
         "provided that the account is not linked to an external authentication system. " +
         "Administer System permission is required to change another user's password.")

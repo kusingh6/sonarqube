@@ -61,8 +61,8 @@ public interface LocalConnector {
   interface LocalRequest {
     /**
      * URL path, which is the concatenation of controller path and action key, for example "api/issues/search"
-     * @see org.sonar.api.server.ws.WebService.Controller#path
-     * @see org.sonar.api.server.ws.WebService.Action#key
+     * @see org.sonar.api.server.ws.Controller#path
+     * @see org.sonar.api.server.ws.Action#key
      */
     String getPath();
 

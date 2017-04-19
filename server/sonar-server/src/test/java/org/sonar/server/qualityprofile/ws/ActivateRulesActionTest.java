@@ -23,7 +23,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
@@ -69,10 +70,10 @@ public class ActivateRulesActionTest {
 
   @Test
   public void define_bulk_activate_rule_action() {
-    WebService.Action definition = wsActionTester.getDef();
+    Action definition = wsActionTester.getDef();
     assertThat(definition).isNotNull();
     assertThat(definition.isPost()).isTrue();
-    assertThat(definition.params()).extracting(WebService.Param::key).containsExactlyInAnyOrder(
+    assertThat(definition.params()).extracting(Param::key).containsExactlyInAnyOrder(
       "types",
       "template_key",
       "languages",

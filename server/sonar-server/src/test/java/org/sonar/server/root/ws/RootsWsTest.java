@@ -20,9 +20,10 @@
 package org.sonar.server.root.ws;
 
 import org.junit.Test;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.WsTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,14 +35,14 @@ public class RootsWsTest {
   @Test
   public void verify_definition() {
     assertThat(wsTester.context().controllers()).hasSize(1);
-    WebService.Controller controller = wsTester.context().controller("api/roots");
+    Controller controller = wsTester.context().controller("api/roots");
     assertThat(controller.description()).isEqualTo("Manage root users");
     assertThat(controller.since()).isEqualTo("6.2");
   }
 
   private static class DummyRootsWsAction implements RootsWsAction {
     @Override
-    public void define(WebService.NewController context) {
+    public void define(NewController context) {
       context.createAction("ooo").setHandler(this);
     }
 

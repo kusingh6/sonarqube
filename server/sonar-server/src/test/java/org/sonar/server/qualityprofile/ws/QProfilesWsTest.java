@@ -27,7 +27,8 @@ import org.sonar.api.profiles.ProfileImporter;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.api.utils.ValidationMessages;
 import org.sonar.db.DbClient;
 import org.sonar.server.language.LanguageTesting;
@@ -43,7 +44,7 @@ public class QProfilesWsTest {
   @Rule
   public UserSessionRule userSessionRule = UserSessionRule.standalone();
 
-  private WebService.Controller controller;
+  private Controller controller;
   private String xoo1Key = "xoo1";
   private String xoo2Key = "xoo2";
   private DefaultOrganizationProvider defaultOrganizationProvider = TestDefaultOrganizationProvider.fromUuid("ORG1");
@@ -99,7 +100,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_search() {
-    WebService.Action search = controller.action("search");
+    Action search = controller.action("search");
     assertThat(search).isNotNull();
     assertThat(search.isPost()).isFalse();
     assertThat(search.params()).hasSize(5);
@@ -111,7 +112,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_set_default_action() {
-    WebService.Action setDefault = controller.action("set_default");
+    Action setDefault = controller.action("set_default");
     assertThat(setDefault).isNotNull();
     assertThat(setDefault.isPost()).isTrue();
     assertThat(setDefault.params()).hasSize(4);
@@ -120,7 +121,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_projects_action() {
-    WebService.Action projects = controller.action("projects");
+    Action projects = controller.action("projects");
     assertThat(projects).isNotNull();
     assertThat(projects.isPost()).isFalse();
     assertThat(projects.params()).hasSize(5);
@@ -129,7 +130,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_create_action() {
-    WebService.Action create = controller.action("create");
+    Action create = controller.action("create");
     assertThat(create).isNotNull();
     assertThat(create.isPost()).isTrue();
     assertThat(create.params()).hasSize(5);
@@ -148,7 +149,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_importers_action() {
-    WebService.Action importers = controller.action("importers");
+    Action importers = controller.action("importers");
     assertThat(importers).isNotNull();
     assertThat(importers.isPost()).isFalse();
     assertThat(importers.params()).isEmpty();
@@ -157,7 +158,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_changelog_action() {
-    WebService.Action changelog = controller.action("changelog");
+    Action changelog = controller.action("changelog");
     assertThat(changelog).isNotNull();
     assertThat(changelog.isPost()).isFalse();
     assertThat(changelog.params().size()).isPositive();
@@ -168,7 +169,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_compare_action() {
-    WebService.Action compare = controller.action("compare");
+    Action compare = controller.action("compare");
     assertThat(compare).isNotNull();
     assertThat(compare.isPost()).isFalse();
     assertThat(compare.isInternal()).isTrue();
@@ -179,7 +180,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_delete_action() {
-    WebService.Action delete = controller.action("delete");
+    Action delete = controller.action("delete");
     assertThat(delete).isNotNull();
     assertThat(delete.isPost()).isTrue();
     assertThat(delete.params()).hasSize(4).extracting("key").containsOnly(
@@ -188,7 +189,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_exporters_action() {
-    WebService.Action exporters = controller.action("exporters");
+    Action exporters = controller.action("exporters");
     assertThat(exporters).isNotNull();
     assertThat(exporters.isPost()).isFalse();
     assertThat(exporters.params()).isEmpty();
@@ -197,7 +198,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_inheritance_action() {
-    WebService.Action inheritance = controller.action("inheritance");
+    Action inheritance = controller.action("inheritance");
     assertThat(inheritance).isNotNull();
     assertThat(inheritance.isPost()).isFalse();
     assertThat(inheritance.params()).hasSize(4).extracting("key").containsExactlyInAnyOrder(
@@ -207,7 +208,7 @@ public class QProfilesWsTest {
 
   @Test
   public void define_rename_action() {
-    WebService.Action rename = controller.action("rename");
+    Action rename = controller.action("rename");
     assertThat(rename).isNotNull();
     assertThat(rename.isPost()).isTrue();
     assertThat(rename.params()).hasSize(2).extracting("key").containsOnly(

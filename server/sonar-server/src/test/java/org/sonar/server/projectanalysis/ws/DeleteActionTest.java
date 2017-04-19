@@ -22,7 +22,7 @@ package org.sonar.server.projectanalysis.ws;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -71,7 +71,7 @@ public class DeleteActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("delete");
     assertThat(definition.isPost()).isTrue();

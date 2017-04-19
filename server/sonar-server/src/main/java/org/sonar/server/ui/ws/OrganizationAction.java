@@ -21,9 +21,11 @@ package org.sonar.server.ui.ws;
 
 import java.util.List;
 import java.util.function.Consumer;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.page.Page;
 import org.sonar.db.DbClient;
@@ -55,8 +57,8 @@ public class OrganizationAction implements NavigationWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction projectNavigation = context.createAction(ACTION_NAME)
+  public void define(NewController context) {
+    NewAction projectNavigation = context.createAction(ACTION_NAME)
       .setDescription("Get information concerning organization navigation for the current user")
       .setHandler(this)
       .setInternal(true)

@@ -24,7 +24,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
@@ -63,7 +63,7 @@ public class AppActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action definition = tester.getDef();
+    Action definition = tester.getDef();
 
     assertThat(definition.isInternal()).isTrue();
     assertThat(definition.key()).isEqualTo("app");

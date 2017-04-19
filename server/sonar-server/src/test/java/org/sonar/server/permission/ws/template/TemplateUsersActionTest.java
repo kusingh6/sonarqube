@@ -21,7 +21,7 @@ package org.sonar.server.permission.ws.template;
 
 import javax.annotation.Nullable;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Param;
 import org.sonar.core.permission.GlobalPermissions;
 import org.sonar.db.permission.template.PermissionTemplateDto;
 import org.sonar.db.permission.template.PermissionTemplateUserDto;
@@ -115,7 +115,7 @@ public class TemplateUsersActionTest extends BasePermissionWsTest<TemplateUsersA
 
     WsPermissions.UsersWsResponse response = newRequest(null, null)
       .setParam(PARAM_TEMPLATE_NAME, template.getName())
-      .setParam(WebService.Param.TEXT_QUERY, "ame-1")
+      .setParam(Param.TEXT_QUERY, "ame-1")
       .executeProtobuf(WsPermissions.UsersWsResponse.class);
 
     assertThat(response.getUsersList()).extracting("login").containsOnly("login-1");
@@ -162,9 +162,9 @@ public class TemplateUsersActionTest extends BasePermissionWsTest<TemplateUsersA
     loginAsAdmin(db.getDefaultOrganization());
     WsPermissions.UsersWsResponse response = newRequest(USER, null)
       .setParam(PARAM_TEMPLATE_NAME, template.getName())
-      .setParam(WebService.Param.SELECTED, "all")
-      .setParam(WebService.Param.PAGE, "2")
-      .setParam(WebService.Param.PAGE_SIZE, "1")
+      .setParam(Param.SELECTED, "all")
+      .setParam(Param.PAGE, "2")
+      .setParam(Param.PAGE_SIZE, "1")
       .executeProtobuf(WsPermissions.UsersWsResponse.class);
 
     assertThat(response.getUsersList()).extracting("login").containsOnly("login-2");

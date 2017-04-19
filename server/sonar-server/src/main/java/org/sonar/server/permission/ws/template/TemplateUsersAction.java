@@ -24,10 +24,12 @@ import com.google.common.collect.Ordering;
 import com.google.common.collect.TreeMultimap;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -68,8 +70,8 @@ public class TemplateUsersAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context
+  public void define(NewController context) {
+    NewAction action = context
       .createAction("template_users")
       .setSince("5.2")
       .setDescription("Lists the users with their permission as individual users rather than through group affiliation on the chosen template. <br />" +

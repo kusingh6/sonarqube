@@ -24,7 +24,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.ArgumentCaptor;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbSession;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
@@ -65,7 +66,7 @@ public class RestoreBuiltInActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action action = tester.getDef();
+    Action action = tester.getDef();
 
     assertThat(action.key()).isEqualTo("restore_built_in");
     assertThat(action.isPost()).isTrue();
@@ -73,11 +74,11 @@ public class RestoreBuiltInActionTest {
 
     // parameters
     assertThat(action.params()).hasSize(2);
-    WebService.Param languageParam = action.param("language");
+    Param languageParam = action.param("language");
     assertThat(languageParam.isRequired()).isTrue();
     assertThat(languageParam.since()).isNull();//introduced at the same time than the web service
 
-    WebService.Param organizationParam = action.param("organization");
+    Param organizationParam = action.param("organization");
     assertThat(organizationParam.isRequired()).isFalse();
     assertThat(organizationParam.since()).isEqualTo("6.4");
   }

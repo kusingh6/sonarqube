@@ -20,10 +20,10 @@
 package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.resources.Languages;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -56,7 +56,7 @@ public class RemoveProjectAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction action = controller.createAction(ACTION_REMOVE_PROJECT)
       .setSince("5.2")
       .setDescription("Remove a project's association with a quality profile.")

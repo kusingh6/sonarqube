@@ -24,12 +24,12 @@ import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.text.JsonWriter;
 
 import javax.annotation.Nullable;
@@ -63,7 +63,7 @@ public class ListAction implements RequestHandler {
     json.endArray().endObject().close();
   }
 
-  void define(WebService.NewController controller) {
+  void define(NewController controller) {
     NewAction action = controller.createAction("list")
       .setDescription("List supported programming languages")
       .setSince("5.1")

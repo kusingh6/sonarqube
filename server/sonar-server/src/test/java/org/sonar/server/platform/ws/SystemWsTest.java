@@ -21,7 +21,7 @@ package org.sonar.server.platform.ws;
 
 import org.junit.Test;
 import org.sonar.api.config.Settings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Context;
 import org.sonar.server.app.ProcessCommandWrapper;
 import org.sonar.server.app.RestartFlagHolder;
 import org.sonar.server.platform.Platform;
@@ -41,7 +41,7 @@ public class SystemWsTest {
     RestartAction action1 = new RestartAction(mock(UserSession.class), mock(Settings.class), mock(Platform.class), mock(ProcessCommandWrapper.class), mock(RestartFlagHolder.class));
     InfoAction action2 = new InfoAction(new AnonymousMockUserSession(), ceHttpClient);
     SystemWs ws = new SystemWs(action1, action2);
-    WebService.Context context = new WebService.Context();
+    Context context = new Context();
 
     ws.define(context);
 

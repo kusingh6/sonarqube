@@ -20,8 +20,8 @@
 package org.sonar.server.permission.ws;
 
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService.Param;
-import org.sonar.api.server.ws.WebService.SelectionMode;
+import org.sonar.api.server.ws.Param;
+import org.sonar.api.server.ws.SelectionMode;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.component.ComponentDto;
 import org.sonar.db.user.UserDto;

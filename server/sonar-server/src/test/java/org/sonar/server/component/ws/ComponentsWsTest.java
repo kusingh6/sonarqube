@@ -26,7 +26,8 @@ import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.resources.ResourceTypes;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.component.index.ComponentIndex;
@@ -43,7 +44,7 @@ public class ComponentsWsTest {
   @Rule
   public UserSessionRule userSessionRule = UserSessionRule.standalone();
 
-  private WebService.Controller controller;
+  private Controller controller;
 
   @Before
   public void setUp() {
@@ -67,7 +68,7 @@ public class ComponentsWsTest {
 
   @Test
   public void define_suggestions_action() {
-    WebService.Action action = controller.action("suggestions");
+    Action action = controller.action("suggestions");
     assertThat(action).isNotNull();
     assertThat(action.isInternal()).isTrue();
     assertThat(action.isPost()).isFalse();
@@ -78,7 +79,7 @@ public class ComponentsWsTest {
 
   @Test
   public void define_app_action() {
-    WebService.Action action = controller.action("app");
+    Action action = controller.action("app");
     assertThat(action).isNotNull();
     assertThat(action.isInternal()).isTrue();
     assertThat(action.isPost()).isFalse();

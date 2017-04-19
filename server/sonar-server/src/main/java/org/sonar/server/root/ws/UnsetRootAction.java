@@ -19,9 +19,10 @@
  */
 package org.sonar.server.root.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.user.UserDto;
@@ -44,8 +45,8 @@ public class UnsetRootAction implements RootsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("unset_root")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("unset_root")
       .setInternal(true)
       .setPost(true)
       .setDescription("Make the specified user not root.<br/>" +

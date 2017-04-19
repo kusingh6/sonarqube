@@ -22,9 +22,11 @@ package org.sonar.server.qualitygate.ws;
 import com.google.common.io.Resources;
 import java.util.Collection;
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.qualitygate.QualityGateConditionDto;
 import org.sonar.db.qualitygate.QualityGateDto;
@@ -41,8 +43,8 @@ public class ShowAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("show")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("show")
       .setDescription("Display the details of a quality gate")
       .setSince("4.3")
       .setResponseExample(Resources.getResource(this.getClass(), "example-show.json"))

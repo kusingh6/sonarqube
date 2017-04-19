@@ -25,10 +25,12 @@ import com.google.common.collect.TreeMultimap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -70,8 +72,8 @@ public class UsersAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("users")
+  public void define(NewController context) {
+    NewAction action = context.createAction("users")
       .setSince("5.2")
       .setDescription("Lists the users with their permissions as individual users rather than through group affiliation.<br>" +
         "This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br> " +

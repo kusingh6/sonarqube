@@ -20,7 +20,7 @@
 package org.sonar.server.updatecenter.ws;
 
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.core.platform.PluginInfo;
 import org.sonar.server.plugins.ServerPluginRepository;
 import org.sonar.server.ws.WsActionTester;
@@ -90,7 +90,7 @@ public class InstalledPluginsActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action action = ws.getDef();
+    Action action = ws.getDef();
     assertThat(action).isNotNull();
     assertThat(action.isInternal()).isTrue();
     assertThat(action.isPost()).isFalse();

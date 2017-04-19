@@ -24,9 +24,9 @@ import com.google.common.collect.Lists;
 import javax.annotation.Nonnull;
 import org.sonar.api.server.authentication.Display;
 import org.sonar.api.server.authentication.IdentityProvider;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.authentication.IdentityProviderRepository;
 import org.sonarqube.ws.WsUsers;
 import org.sonarqube.ws.WsUsers.IdentityProvidersWsResponse;
@@ -41,7 +41,7 @@ public class IdentityProvidersAction implements UsersWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     context.createAction("identity_providers")
       .setDescription("List the external identity providers")
       .setResponseExample(getClass().getResource("identity_providers-example.json"))

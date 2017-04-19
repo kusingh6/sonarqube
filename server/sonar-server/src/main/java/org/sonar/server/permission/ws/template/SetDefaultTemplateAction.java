@@ -22,9 +22,10 @@ package org.sonar.server.permission.ws.template;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.ResourceTypes;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.organization.DefaultTemplates;
@@ -72,8 +73,8 @@ public class SetDefaultTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("set_default_template")
+  public void define(NewController context) {
+    NewAction action = context.createAction("set_default_template")
       .setDescription("Set a permission template as default.<br />" +
         "Requires the following permission: 'Administer System'.")
       .setPost(true)

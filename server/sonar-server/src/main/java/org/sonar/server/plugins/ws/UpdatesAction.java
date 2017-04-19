@@ -27,9 +27,10 @@ import com.google.common.io.Resources;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.Nonnull;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.server.plugins.UpdateCenterMatrixFactory;
 import org.sonar.server.plugins.ws.PluginUpdateAggregator.PluginUpdateAggregate;
@@ -67,7 +68,7 @@ public class UpdatesAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("updates")
       .setDescription("Lists plugins installed on the SonarQube instance for which at least one newer version is available, sorted by plugin name." +
         "<br/>" +

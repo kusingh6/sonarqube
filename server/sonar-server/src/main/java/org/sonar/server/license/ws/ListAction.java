@@ -31,9 +31,9 @@ import javax.annotation.Nullable;
 import org.sonar.api.config.License;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -68,7 +68,7 @@ public class ListAction implements WsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     context.createAction(ACTION_LIST)
       .setDescription("List licenses settings.<br>" +
         "Requires 'Administer System' permission")

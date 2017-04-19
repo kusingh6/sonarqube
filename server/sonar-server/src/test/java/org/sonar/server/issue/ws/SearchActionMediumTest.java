@@ -28,7 +28,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.issue.Issue;
 import org.sonar.api.rule.RuleStatus;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.web.UserRole;
 import org.sonar.core.util.stream.MoreCollectors;
@@ -365,7 +365,7 @@ public class SearchActionMediumTest {
     userSessionRule.logIn("john");
     WsTester.Result result = wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam("resolved", "false")
-      .setParam(WebService.Param.FACETS, "statuses,severities,resolutions,projectUuids,rules,fileUuids,assignees,languages,actionPlans,types")
+      .setParam(Param.FACETS, "statuses,severities,resolutions,projectUuids,rules,fileUuids,assignees,languages,actionPlans,types")
       .execute();
     result.assertJson(this.getClass(), "display_facets.json");
   }
@@ -390,7 +390,7 @@ public class SearchActionMediumTest {
     userSessionRule.logIn("john");
     WsTester.Result result = wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam("resolved", "false")
-      .setParam(WebService.Param.FACETS, "statuses,severities,resolutions,projectUuids,rules,fileUuids,assignees,languages,actionPlans")
+      .setParam(Param.FACETS, "statuses,severities,resolutions,projectUuids,rules,fileUuids,assignees,languages,actionPlans")
       .setParam("facetMode", FACET_MODE_EFFORT)
       .execute();
     result.assertJson(this.getClass(), "display_facets_effort.json");
@@ -418,7 +418,7 @@ public class SearchActionMediumTest {
       .setParam("resolved", "false")
       .setParam("severities", "MAJOR,MINOR")
       .setParam("languages", "xoo,polop,palap")
-      .setParam(WebService.Param.FACETS, "statuses,severities,resolutions,projectUuids,rules,fileUuids,assignees,assigned_to_me,languages,actionPlans")
+      .setParam(Param.FACETS, "statuses,severities,resolutions,projectUuids,rules,fileUuids,assignees,assigned_to_me,languages,actionPlans")
       .execute();
     result.assertJson(this.getClass(), "display_zero_facets.json");
   }
@@ -430,7 +430,7 @@ public class SearchActionMediumTest {
 
     // should not fail
     wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
-      .setParam(WebService.Param.FACETS, "assigned_to_me")
+      .setParam(Param.FACETS, "assigned_to_me")
       .execute()
       .assertJson(this.getClass(), "assignedToMe_facet_must_escape_login_of_authenticated_user.json");
 
@@ -476,7 +476,7 @@ public class SearchActionMediumTest {
     wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam("resolved", "false")
       .setParam("assignees", "__me__")
-      .setParam(WebService.Param.FACETS, "assignees,assigned_to_me")
+      .setParam(Param.FACETS, "assignees,assigned_to_me")
       .execute()
       .assertJson(this.getClass(), "filter_by_assigned_to_me.json");
   }
@@ -552,7 +552,7 @@ public class SearchActionMediumTest {
     wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam("resolved", "false")
       .setParam("assignees", "alice")
-      .setParam(WebService.Param.FACETS, "assignees,assigned_to_me")
+      .setParam(Param.FACETS, "assignees,assigned_to_me")
       .execute()
       .assertJson(this.getClass(), "assigned_to_me_facet_sticky.json");
   }
@@ -598,8 +598,8 @@ public class SearchActionMediumTest {
     r.indexOnStartup(r.getIndexTypes());
 
     WsTester.TestRequest request = wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH);
-    request.setParam(WebService.Param.PAGE, "2");
-    request.setParam(WebService.Param.PAGE_SIZE, "9");
+    request.setParam(Param.PAGE, "2");
+    request.setParam(Param.PAGE_SIZE, "9");
 
     WsTester.Result result = request.execute();
     result.assertJson(this.getClass(), "paging.json");
@@ -620,8 +620,8 @@ public class SearchActionMediumTest {
     r.indexOnStartup(r.getIndexTypes());
 
     WsTester.TestRequest request = wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH);
-    request.setParam(WebService.Param.PAGE, "1");
-    request.setParam(WebService.Param.PAGE_SIZE, "-1");
+    request.setParam(Param.PAGE, "1");
+    request.setParam(Param.PAGE_SIZE, "-1");
 
     WsTester.Result result = request.execute();
     result.assertJson(this.getClass(), "paging_with_page_size_to_minus_one.json");
@@ -677,7 +677,7 @@ public class SearchActionMediumTest {
     userSessionRule.logIn("john");
     WsTester.Result result = wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam("resolved", "false")
-      .setParam(WebService.Param.FACETS, "severities")
+      .setParam(Param.FACETS, "severities")
       .setParam("facetMode", DEPRECATED_FACET_MODE_DEBT)
       .execute();
     result.assertJson(this.getClass(), "display_deprecated_debt_fields.json");

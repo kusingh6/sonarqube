@@ -19,9 +19,10 @@
  */
 package org.sonar.server.permission.ws.template;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -67,8 +68,8 @@ public class RemoveProjectCreatorFromTemplateAction implements PermissionsWsActi
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("remove_project_creator_from_template")
+  public void define(NewController context) {
+    NewAction action = context.createAction("remove_project_creator_from_template")
       .setDescription("Remove a project creator from a permission template.<br>" +
         "Requires the following permission: 'Administer System'.")
       .setSince("6.0")

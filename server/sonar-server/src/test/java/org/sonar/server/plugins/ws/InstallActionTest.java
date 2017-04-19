@@ -25,7 +25,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.server.exceptions.ForbiddenException;
 import org.sonar.server.plugins.PluginDownloader;
 import org.sonar.server.plugins.UpdateCenterMatrixFactory;
@@ -94,21 +97,21 @@ public class InstallActionTest {
     logInAsSystemAdministrator();
 
     WsTester wsTester = new WsTester();
-    WebService.NewController newController = wsTester.context().createController(DUMMY_CONTROLLER_KEY);
+    NewController newController = wsTester.context().createController(DUMMY_CONTROLLER_KEY);
 
     underTest.define(newController);
     newController.done();
 
-    WebService.Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);
+    Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);
     assertThat(controller.actions()).extracting("key").containsExactly(ACTION_KEY);
 
-    WebService.Action action = controller.actions().iterator().next();
+    Action action = controller.actions().iterator().next();
     assertThat(action.isPost()).isTrue();
     assertThat(action.description()).isNotEmpty();
     assertThat(action.responseExample()).isNull();
 
     assertThat(action.params()).hasSize(1);
-    WebService.Param keyParam = action.param(KEY_PARAM);
+    Param keyParam = action.param(KEY_PARAM);
     assertThat(keyParam).isNotNull();
     assertThat(keyParam.isRequired()).isTrue();
     assertThat(keyParam.description()).isNotNull();

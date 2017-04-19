@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
 import org.sonar.db.component.ComponentDto;
@@ -104,7 +104,7 @@ public class RemoveActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("remove");
     assertThat(definition.isPost()).isTrue();

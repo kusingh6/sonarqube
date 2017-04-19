@@ -28,7 +28,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.sonar.api.server.ws.WebService;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.web.ServletFilter;
 import org.sonar.db.user.UserDto;
 import org.sonar.server.authentication.CredentialsAuthenticator;
@@ -69,8 +71,8 @@ public class LoginAction extends ServletFilter implements AuthenticationWsAction
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction(LOGIN_ACTION)
+  public void define(NewController controller) {
+    NewAction action = controller.createAction(LOGIN_ACTION)
       .setDescription("Authenticate a user.")
       .setSince("6.0")
       .setPost(true)

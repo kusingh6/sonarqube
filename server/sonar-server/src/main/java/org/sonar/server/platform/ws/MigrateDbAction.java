@@ -21,9 +21,10 @@ package org.sonar.server.platform.ws;
 
 import com.google.common.io.Resources;
 import java.util.Optional;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.Database;
 import org.sonar.server.platform.db.migration.version.DatabaseVersion;
@@ -57,7 +58,7 @@ public class MigrateDbAction implements SystemWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("migrate_db")
       .setDescription("Migrate the database to match the current version of SonarQube." +
         "<br/>" +

@@ -26,8 +26,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.sonar.api.server.ws.WebService.Action;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.server.issue.IssueService;
 import org.sonar.server.ws.WsTester;
 

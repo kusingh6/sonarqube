@@ -19,9 +19,10 @@
  */
 package org.sonar.server.serverid.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.db.DbClient;
@@ -54,8 +55,8 @@ public class GenerateAction implements ServerIdWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("generate")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("generate")
       .setDescription("Generate a server id.<br/>" +
         "Requires 'System Administer' permissions")
       .setSince("6.1")

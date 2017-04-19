@@ -28,6 +28,9 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 import org.picocontainer.Startable;
 import org.sonar.api.server.ServerSide;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.LocalConnector;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -58,10 +61,10 @@ public class WebServiceEngine implements LocalConnector, Startable {
 
   private static final Logger LOGGER = Loggers.get(WebServiceEngine.class);
 
-  private final WebService.Context context;
+  private final Context context;
 
   public WebServiceEngine(WebService[] webServices) {
-    context = new WebService.Context();
+    context = new Context();
     for (WebService webService : webServices) {
       webService.define(context);
     }
@@ -78,7 +81,7 @@ public class WebServiceEngine implements LocalConnector, Startable {
     // nothing
   }
 
-  List<WebService.Controller> controllers() {
+  List<Controller> controllers() {
     return context.controllers();
   }
 
@@ -92,7 +95,7 @@ public class WebServiceEngine implements LocalConnector, Startable {
   public void execute(Request request, Response response) {
     try {
       ActionExtractor actionExtractor = new ActionExtractor(request.getPath());
-      WebService.Action action = getAction(actionExtractor);
+      Action action = getAction(actionExtractor);
       checkFound(action, "Unknown url : %s", request.getPath());
       if (request instanceof ValidatingRequest) {
         ((ValidatingRequest) request).setAction(action);
@@ -122,10 +125,10 @@ public class WebServiceEngine implements LocalConnector, Startable {
   }
 
   @CheckForNull
-  private WebService.Action getAction(ActionExtractor actionExtractor) {
+  private Action getAction(ActionExtractor actionExtractor) {
     String controllerPath = actionExtractor.getController();
     String actionKey = actionExtractor.getAction();
-    WebService.Controller controller = context.controller(controllerPath);
+    Controller controller = context.controller(controllerPath);
     return controller == null ? null : controller.action(actionKey);
   }
 

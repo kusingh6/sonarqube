@@ -20,7 +20,7 @@
 package org.sonar.server.user.ws;
 
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.server.ws.WsTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,7 +31,7 @@ public class UserPropertiesWsTest {
 
   @Test
   public void define_ws() {
-    WebService.Controller controller = tester.controller("api/user_properties");
+    Controller controller = tester.controller("api/user_properties");
     assertThat(controller).isNotNull();
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.actions()).hasSize(1);

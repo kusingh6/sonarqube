@@ -32,8 +32,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.core.util.Uuids;
 import org.sonar.db.DbClient;
@@ -124,7 +124,7 @@ public class SearchProjectsActionTest {
 
   @Test
   public void verify_definition() {
-    WebService.Action def = ws.getDef();
+    Action def = ws.getDef();
 
     assertThat(def.key()).isEqualTo("search_projects");
     assertThat(def.since()).isEqualTo("6.2");

@@ -21,9 +21,10 @@ package org.sonar.server.platform.ws;
 
 import java.util.Map;
 import java.util.Optional;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.ce.http.CeHttpClient;
 import org.sonar.process.systeminfo.protobuf.ProtobufSystemInfo;
@@ -46,7 +47,7 @@ public class InfoAction implements SystemWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("info")
       .setDescription("Get detailed information about system configuration.<br/>" +
         "Requires 'Administer' permissions.<br/>" +

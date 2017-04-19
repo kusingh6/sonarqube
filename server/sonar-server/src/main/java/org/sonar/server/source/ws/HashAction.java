@@ -26,9 +26,11 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -51,8 +53,8 @@ public class HashAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("hash")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("hash")
       .setDescription("Show line line hashes for a given file. Require See Source Code permission on file's project<br/>")
       .setSince("5.0")
       .setInternal(true)

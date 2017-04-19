@@ -19,7 +19,6 @@
  */
 package org.sonarqube.ws.client.favorite;
 
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonarqube.ws.Favorites.SearchResponse;
 import org.sonarqube.ws.client.BaseService;
 import org.sonarqube.ws.client.GetRequest;
@@ -31,6 +30,8 @@ import static org.sonarqube.ws.client.favorite.FavoritesWsParameters.ACTION_REMO
 import static org.sonarqube.ws.client.favorite.FavoritesWsParameters.ACTION_SEARCH;
 import static org.sonarqube.ws.client.favorite.FavoritesWsParameters.CONTROLLER_FAVORITES;
 import static org.sonarqube.ws.client.favorite.FavoritesWsParameters.PARAM_COMPONENT;
+
+import org.sonar.api.server.ws.Param;
 
 public class FavoritesService extends BaseService {
   public FavoritesService(WsConnector wsConnector) {

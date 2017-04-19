@@ -25,7 +25,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbSession;
 import org.sonar.db.DbTester;
@@ -180,7 +181,7 @@ public class CreateActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     Assertions.assertThat(definition.key()).isEqualTo("create");
     Assertions.assertThat(definition.since()).isEqualTo("4.0");
@@ -189,7 +190,7 @@ public class CreateActionTest {
 
     Assertions.assertThat(definition.params()).hasSize(4);
 
-    WebService.Param organization = definition.param(PARAM_ORGANIZATION);
+    Param organization = definition.param(PARAM_ORGANIZATION);
     Assertions.assertThat(organization.description()).isEqualTo("The key of the organization");
     Assertions.assertThat(organization.isInternal()).isTrue();
     Assertions.assertThat(organization.isRequired()).isFalse();

@@ -24,8 +24,8 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
@@ -64,7 +64,7 @@ public class ProvisionedActionTest {
 
   @Test
   public void verify_definition() {
-    WebService.Action action = underTest.getDef();
+    Action action = underTest.getDef();
 
     assertThat(action.description()).isEqualTo("Get the list of provisioned projects.<br /> " +
       "Require 'Create Projects' permission.");

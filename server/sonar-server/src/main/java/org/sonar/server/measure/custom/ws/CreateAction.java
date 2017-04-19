@@ -20,9 +20,10 @@
 package org.sonar.server.measure.custom.ws;
 
 import org.sonar.api.resources.Scopes;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.System2;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;
@@ -68,8 +69,8 @@ public class CreateAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION)
       .setDescription("Create a custom measure.<br /> " +
         "The project id or the project key must be provided (only project and module custom measures can be created). The metric id or the metric key must be provided.<br/>" +
         "Requires 'Administer System' permission or 'Administer' permission on the project.")

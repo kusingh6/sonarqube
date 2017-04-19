@@ -33,8 +33,8 @@ import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
 import org.sonar.api.config.PropertyFieldDefinition;
 import org.sonar.api.resources.Qualifiers;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -808,7 +808,7 @@ public class SetActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("set");
     assertThat(definition.isPost()).isTrue();

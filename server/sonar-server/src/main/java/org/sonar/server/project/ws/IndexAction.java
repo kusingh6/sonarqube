@@ -27,9 +27,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -62,8 +63,8 @@ public class IndexAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_INDEX)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_INDEX)
       .setDescription("This web service is deprecated, please use api/components/search instead")
       .setSince("2.10")
       .setDeprecatedSince("6.3")
@@ -158,7 +159,7 @@ public class IndexAction implements ProjectsWsAction {
       .endObject();
   }
 
-  private static void addRemovedParameter(String key, WebService.NewAction action) {
+  private static void addRemovedParameter(String key, NewAction action) {
     action.createParam(key)
       .setDescription("Since 6.3, this parameter has no effect")
       .setDeprecatedSince("6.3");

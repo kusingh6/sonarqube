@@ -21,7 +21,8 @@ package org.sonar.server.measure.custom.ws;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
@@ -48,7 +49,7 @@ public class CustomMeasuresWsTest {
 
   @Test
   public void define_ws() {
-    WebService.Controller controller = ws.controller("api/custom_measures");
+    Controller controller = ws.controller("api/custom_measures");
     assertThat(controller).isNotNull();
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.actions()).hasSize(3);
@@ -56,19 +57,19 @@ public class CustomMeasuresWsTest {
 
   @Test
   public void delete_action_properties() {
-    WebService.Action deleteAction = ws.controller(ENDPOINT).action("delete");
+    Action deleteAction = ws.controller(ENDPOINT).action("delete");
     assertThat(deleteAction.isPost()).isTrue();
   }
 
   @Test
   public void create_action_properties() {
-    WebService.Action action = ws.controller(ENDPOINT).action("create");
+    Action action = ws.controller(ENDPOINT).action("create");
     assertThat(action.isPost()).isTrue();
   }
 
   @Test
   public void create_update_properties() {
-    WebService.Action action = ws.controller(ENDPOINT).action("update");
+    Action action = ws.controller(ENDPOINT).action("update");
     assertThat(action.isPost()).isTrue();
   }
 }

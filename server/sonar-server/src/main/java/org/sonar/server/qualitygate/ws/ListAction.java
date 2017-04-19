@@ -20,9 +20,10 @@
 package org.sonar.server.qualitygate.ws;
 
 import com.google.common.io.Resources;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.qualitygate.QualityGateDto;
 import org.sonar.server.qualitygate.QualityGates;
@@ -36,7 +37,7 @@ public class ListAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("list")
       .setDescription("Get a list of quality gates")
       .setSince("4.3")

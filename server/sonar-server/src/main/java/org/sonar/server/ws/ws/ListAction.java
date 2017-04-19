@@ -23,21 +23,27 @@ import com.google.common.collect.Ordering;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.core.util.stream.MoreCollectors;
 
 import static com.google.common.base.Preconditions.checkState;
 
 public class ListAction implements WebServicesWsAction {
-  private WebService.Context context;
+  private Context context;
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context
+  public void define(NewController context) {
+    NewAction action = context
       .createAction("list")
       .setSince("4.2")
       .setDescription("List web services")
@@ -61,8 +67,8 @@ public class ListAction implements WebServicesWsAction {
     writer.name("webServices").beginArray();
 
     // sort controllers by path
-    Ordering<WebService.Controller> ordering = Ordering.natural().onResultOf(WebService.Controller::path);
-    for (WebService.Controller controller : ordering.sortedCopy(context.controllers())) {
+    Ordering<Controller> ordering = Ordering.natural().onResultOf(Controller::path);
+    for (Controller controller : ordering.sortedCopy(context.controllers())) {
       writeController(writer, controller, includeInternals);
     }
     writer.endArray();
@@ -71,20 +77,20 @@ public class ListAction implements WebServicesWsAction {
   }
 
   @Override
-  public void setContext(WebService.Context context) {
+  public void setContext(Context context) {
     this.context = context;
   }
 
-  private static void writeController(JsonWriter writer, WebService.Controller controller, boolean includeInternals) {
+  private static void writeController(JsonWriter writer, Controller controller, boolean includeInternals) {
     if (includeInternals || !controller.isInternal()) {
       writer.beginObject();
       writer.prop("path", controller.path());
       writer.prop("since", controller.since());
       writer.prop("description", controller.description());
       // sort actions by key
-      Ordering<WebService.Action> ordering = Ordering.natural().onResultOf(WebService.Action::key);
+      Ordering<Action> ordering = Ordering.natural().onResultOf(Action::key);
       writer.name("actions").beginArray();
-      for (WebService.Action action : ordering.sortedCopy(controller.actions())) {
+      for (Action action : ordering.sortedCopy(controller.actions())) {
         writeAction(writer, action, includeInternals);
       }
       writer.endArray();
@@ -92,7 +98,7 @@ public class ListAction implements WebServicesWsAction {
     }
   }
 
-  private static void writeAction(JsonWriter writer, WebService.Action action, boolean includeInternals) {
+  private static void writeAction(JsonWriter writer, Action action, boolean includeInternals) {
     if (includeInternals || !action.isInternal()) {
       writer.beginObject();
       writer.prop("key", action.key());
@@ -108,20 +114,20 @@ public class ListAction implements WebServicesWsAction {
     }
   }
 
-  private static void writeParameters(JsonWriter writer, WebService.Action action, boolean includeInternals) {
-    List<WebService.Param> params = action.params().stream().filter(p -> includeInternals || !p.isInternal()).collect(MoreCollectors.toList());
+  private static void writeParameters(JsonWriter writer, Action action, boolean includeInternals) {
+    List<Param> params = action.params().stream().filter(p -> includeInternals || !p.isInternal()).collect(MoreCollectors.toList());
     if (!params.isEmpty()) {
       // sort parameters by key
-      Ordering<WebService.Param> ordering = Ordering.natural().onResultOf(WebService.Param::key);
+      Ordering<Param> ordering = Ordering.natural().onResultOf(Param::key);
       writer.name("params").beginArray();
-      for (WebService.Param param : ordering.sortedCopy(params)) {
+      for (Param param : ordering.sortedCopy(params)) {
         writeParam(writer, param);
       }
       writer.endArray();
     }
   }
 
-  private static void writeParam(JsonWriter writer, WebService.Param param) {
+  private static void writeParam(JsonWriter writer, Param param) {
     writer.beginObject();
     writer.prop("key", param.key());
     writer.prop("description", param.description());
@@ -140,7 +146,7 @@ public class ListAction implements WebServicesWsAction {
     writer.endObject();
   }
 
-  private static void writeChangelog(JsonWriter writer, WebService.Action action) {
+  private static void writeChangelog(JsonWriter writer, Action action) {
     writer.name("changelog").beginArray();
     action.changelog().stream()
       .sorted(Comparator.comparing(Change::getVersion).reversed())

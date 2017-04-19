@@ -22,7 +22,7 @@ package org.sonar.server.rule.ws;
 import org.junit.Rule;
 import org.junit.Test;
 import org.sonar.api.rule.RuleKey;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbTester;
 import org.sonar.db.rule.RuleTesting;
@@ -42,7 +42,7 @@ public class ListActionTest {
 
   @Test
   public void define() throws Exception {
-    WebService.Action def = tester.getDef();
+    Action def = tester.getDef();
     assertThat(def.params()).isEmpty();
   }
 

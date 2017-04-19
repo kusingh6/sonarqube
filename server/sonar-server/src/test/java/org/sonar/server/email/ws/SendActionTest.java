@@ -24,7 +24,7 @@ import org.apache.commons.mail.EmailException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.server.exceptions.BadRequestException;
 import org.sonar.server.exceptions.ForbiddenException;
 import org.sonar.server.notification.email.EmailNotificationChannel;
@@ -117,7 +117,7 @@ public class SendActionTest {
 
   @Test
   public void test_ws_definition() {
-    WebService.Action action = ws.getDef();
+    Action action = ws.getDef();
     assertThat(action).isNotNull();
     assertThat(action.isInternal()).isTrue();
     assertThat(action.isPost()).isTrue();

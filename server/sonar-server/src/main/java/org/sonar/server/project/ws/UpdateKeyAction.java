@@ -21,9 +21,10 @@
 package org.sonar.server.project.ws;
 
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.component.ComponentDto;
@@ -50,12 +51,12 @@ public class UpdateKeyAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     doDefine(context);
   }
 
-  public WebService.NewAction doDefine(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_UPDATE_KEY)
+  public NewAction doDefine(NewController context) {
+    NewAction action = context.createAction(ACTION_UPDATE_KEY)
       .setDescription("Update a project or module key and all its sub-components keys.<br>" +
         "Either '%s' or '%s' must be provided, not both.<br> " +
         "Requires one of the following permissions: " +

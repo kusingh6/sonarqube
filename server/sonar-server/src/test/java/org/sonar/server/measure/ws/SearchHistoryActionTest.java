@@ -27,8 +27,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.measures.Metric.ValueType;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
 import org.sonar.core.util.stream.MoreCollectors;
@@ -281,7 +281,7 @@ public class SearchHistoryActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("search_history");
     assertThat(definition.responseExampleAsString()).isNotEmpty();

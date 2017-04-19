@@ -27,7 +27,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.ArgumentCaptor;
 import org.sonar.api.config.MapSettings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.core.util.UuidFactory;
 import org.sonar.db.DbClient;
@@ -91,7 +91,7 @@ public class DeleteActionTest {
 
   @Test
   public void verify_define() {
-    WebService.Action action = wsTester.getDef();
+    Action action = wsTester.getDef();
     assertThat(action.key()).isEqualTo("delete");
     assertThat(action.isPost()).isTrue();
     assertThat(action.description()).isEqualTo("Delete an organization.<br/>" +

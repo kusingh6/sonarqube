@@ -19,8 +19,8 @@
  */
 package org.sonar.server.permission.ws;
 
-import org.sonar.api.server.ws.WebService.NewAction;
-import org.sonar.api.server.ws.WebService.NewParam;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewParam;
 import org.sonar.core.permission.GlobalPermissions;
 import org.sonar.core.permission.ProjectPermissions;
 import org.sonar.core.util.Uuids;

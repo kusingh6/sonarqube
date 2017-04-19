@@ -28,7 +28,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.rule.RuleStatus;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -276,7 +276,7 @@ public class SearchActionComponentsMediumTest {
 
     wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam(IssuesWsParameters.PARAM_PROJECT_UUIDS, project1.uuid())
-      .setParam(WebService.Param.FACETS, "projectUuids")
+      .setParam(Param.FACETS, "projectUuids")
       .execute()
       .assertJson(this.getClass(), "display_sticky_project_facet.json");
   }
@@ -353,7 +353,7 @@ public class SearchActionComponentsMediumTest {
     wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam(IssuesWsParameters.PARAM_COMPONENT_UUIDS, project.uuid())
       .setParam(IssuesWsParameters.PARAM_FILE_UUIDS, file1.uuid() + "," + file3.uuid())
-      .setParam(WebService.Param.FACETS, "fileUuids")
+      .setParam(Param.FACETS, "fileUuids")
       .execute()
       .assertJson(this.getClass(), "display_file_facet.json");
   }
@@ -459,7 +459,7 @@ public class SearchActionComponentsMediumTest {
     wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam(IssuesWsParameters.PARAM_COMPONENT_UUIDS, module.uuid())
       .setParam(IssuesWsParameters.PARAM_MODULE_UUIDS, subModule1.uuid() + "," + subModule3.uuid())
-      .setParam(WebService.Param.FACETS, "moduleUuids")
+      .setParam(Param.FACETS, "moduleUuids")
       .execute()
       .assertJson(this.getClass(), "display_module_facet.json");
   }
@@ -478,7 +478,7 @@ public class SearchActionComponentsMediumTest {
     userSessionRule.logIn("john");
     WsTester.Result result = wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam("resolved", "false")
-      .setParam(WebService.Param.FACETS, "directories")
+      .setParam(Param.FACETS, "directories")
       .execute();
     result.assertJson(this.getClass(), "display_directory_facet.json");
   }
@@ -580,7 +580,7 @@ public class SearchActionComponentsMediumTest {
 
     wsTester.newGetRequest(CONTROLLER_ISSUES, ACTION_SEARCH)
       .setParam(IssuesWsParameters.PARAM_AUTHORS, "leia")
-      .setParam(WebService.Param.FACETS, "authors")
+      .setParam(Param.FACETS, "authors")
       .execute()
       .assertJson(this.getClass(), "search_by_authors.json");
 

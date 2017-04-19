@@ -21,10 +21,11 @@ package org.sonar.server.project.ws;
 
 import java.util.List;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -64,8 +65,8 @@ public class SearchAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_SEARCH)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_SEARCH)
       .setSince("6.3")
       .setDescription("Search for projects or views.<br>" +
         "Requires 'System Administrator' permission")

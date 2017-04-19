@@ -28,9 +28,11 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.StringUtils;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.web.UserRole;
 import org.sonar.core.util.Uuids;
 import org.sonar.db.DbClient;
@@ -72,8 +74,8 @@ public class ListAction implements TestsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller
+  public void define(NewController controller) {
+    NewAction action = controller
       .createAction("list")
       .setDescription(String.format(
         "Get the list of tests either in a test file or that test a given line of source code.<br /> " +
@@ -134,8 +136,8 @@ public class ListAction implements TestsWsAction {
     String sourceFileKey = request.param(SOURCE_FILE_KEY);
     Integer sourceFileLineNumber = request.paramAsInt(SOURCE_FILE_LINE_NUMBER);
     SearchOptions searchOptions = new SearchOptions().setPage(
-      request.mandatoryParamAsInt(WebService.Param.PAGE),
-      request.mandatoryParamAsInt(WebService.Param.PAGE_SIZE));
+      request.mandatoryParamAsInt(Param.PAGE),
+      request.mandatoryParamAsInt(Param.PAGE_SIZE));
 
     SearchResult<TestDoc> tests;
     Map<String, ComponentDto> componentsByTestFileUuid;

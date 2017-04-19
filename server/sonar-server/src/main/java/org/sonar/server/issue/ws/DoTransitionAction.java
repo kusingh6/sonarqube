@@ -22,9 +22,10 @@ package org.sonar.server.issue.ws;
 import com.google.common.io.Resources;
 import java.util.Date;
 import org.sonar.api.issue.DefaultTransitions;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.core.issue.DefaultIssue;
 import org.sonar.core.issue.IssueChangeContext;
 import org.sonar.core.util.Uuids;
@@ -60,8 +61,8 @@ public class DoTransitionAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction(ACTION_DO_TRANSITION)
+  public void define(NewController controller) {
+    NewAction action = controller.createAction(ACTION_DO_TRANSITION)
       .setDescription("Do workflow transition on an issue. Requires authentication and Browse permission on project.<br/>" +
         "The transitions '" + DefaultTransitions.WONT_FIX + "' and '" + DefaultTransitions.FALSE_POSITIVE + "' require the permission 'Administer Issues'.")
       .setSince("3.6")

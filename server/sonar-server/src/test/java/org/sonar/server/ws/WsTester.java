@@ -35,6 +35,9 @@ import java.util.Map;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 import org.apache.commons.io.IOUtils;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.api.server.ws.internal.PartImpl;
@@ -292,7 +295,7 @@ public class WsTester {
     }
   }
 
-  private final WebService.Context context = new WebService.Context();
+  private final Context context = new Context();
 
   public WsTester(WebService... webServices) {
     for (WebService webService : webServices) {
@@ -300,18 +303,18 @@ public class WsTester {
     }
   }
 
-  public WebService.Context context() {
+  public Context context() {
     return context;
   }
 
   @CheckForNull
-  public WebService.Controller controller(String key) {
+  public Controller controller(String key) {
     return context.controller(key);
   }
 
   @CheckForNull
-  public WebService.Action action(String controllerKey, String actionKey) {
-    WebService.Controller controller = context.controller(controllerKey);
+  public Action action(String controllerKey, String actionKey) {
+    Controller controller = context.controller(controllerKey);
     if (controller != null) {
       return controller.action(actionKey);
     }
@@ -328,12 +331,12 @@ public class WsTester {
 
   private TestRequest newRequest(String controllerKey, String actionKey, String method) {
     TestRequest request = new TestRequest(method);
-    WebService.Controller controller = context.controller(controllerKey);
+    Controller controller = context.controller(controllerKey);
     if (controller == null) {
       throw new IllegalArgumentException(
         String.format("Controller '%s' is unknown, did you forget to call NewController.done()?", controllerKey));
     }
-    WebService.Action action = controller.action(actionKey);
+    Action action = controller.action(actionKey);
     if (action == null) {
       throw new IllegalArgumentException(
         String.format("Action '%s' not found on controller '%s'.", actionKey, controllerKey));

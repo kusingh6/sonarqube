@@ -23,7 +23,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -67,7 +67,7 @@ public class WebhookDeliveriesActionTest {
 
   @Test
   public void test_definition() {
-    assertThat(ws.getDef().params()).extracting(WebService.Param::key).containsOnly("componentKey", "ceTaskId");
+    assertThat(ws.getDef().params()).extracting(Param::key).containsOnly("componentKey", "ceTaskId");
     assertThat(ws.getDef().isPost()).isFalse();
     assertThat(ws.getDef().isInternal()).isFalse();
     assertThat(ws.getDef().responseExampleAsString()).isNotEmpty();

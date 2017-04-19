@@ -30,7 +30,7 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.api.config.Encryption;
 import org.sonar.api.config.MapSettings;
 import org.sonar.api.config.Settings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.server.exceptions.BadRequestException;
 import org.sonar.server.exceptions.ForbiddenException;
 import org.sonar.server.tester.UserSessionRule;
@@ -85,7 +85,7 @@ public class EncryptActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("encrypt");
     assertThat(definition.isPost()).isFalse();

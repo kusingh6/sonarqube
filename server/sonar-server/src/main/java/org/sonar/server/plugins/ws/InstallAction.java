@@ -23,9 +23,11 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.plugins.PluginDownloader;
 import org.sonar.server.plugins.UpdateCenterMatrixFactory;
 import org.sonar.server.user.UserSession;
@@ -54,8 +56,8 @@ public class InstallAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("install")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("install")
       .setPost(true)
       .setSince("5.2")
       .setDescription("Installs the latest version of a plugin specified by its key." +

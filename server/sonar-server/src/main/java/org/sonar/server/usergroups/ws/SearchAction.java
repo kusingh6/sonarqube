@@ -25,11 +25,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewController;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -71,7 +71,7 @@ public class SearchAction implements UserGroupsWsAction {
 
   @Override
   public void define(NewController context) {
-    WebService.NewAction action = context.createAction("search")
+    NewAction action = context.createAction("search")
       .setDescription("Search for user groups.<br>" +
         "Requires the following permission: 'Administer System'.")
       .setHandler(this)

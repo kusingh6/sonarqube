@@ -22,7 +22,8 @@ package org.sonar.server.usergroups.ws;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.user.UserSession;
@@ -37,7 +38,7 @@ public class UserGroupsWsTest {
   @Rule
   public UserSessionRule userSessionRule = UserSessionRule.standalone();
 
-  WebService.Controller controller;
+  Controller controller;
 
   @Before
   public void setUp() {
@@ -58,7 +59,7 @@ public class UserGroupsWsTest {
 
   @Test
   public void define_search_action() {
-    WebService.Action action = controller.action("search");
+    Action action = controller.action("search");
     assertThat(action).isNotNull();
     assertThat(action.responseExampleAsString()).isNotEmpty();
     assertThat(action.params()).hasSize(5);
@@ -66,7 +67,7 @@ public class UserGroupsWsTest {
 
   @Test
   public void define_create_action() {
-    WebService.Action action = controller.action("create");
+    Action action = controller.action("create");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isTrue();
     assertThat(action.responseExampleAsString()).isNotEmpty();

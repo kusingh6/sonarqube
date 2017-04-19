@@ -35,7 +35,7 @@ import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Qualifiers;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;

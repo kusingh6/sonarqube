@@ -29,11 +29,11 @@ import java.util.Set;
 import javax.annotation.Nullable;
 import org.sonar.api.profiles.ProfileExporter;
 import org.sonar.api.resources.Languages;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.server.ws.Response.Stream;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -69,7 +69,7 @@ public class ExportAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction action = controller.createAction("export")
       .setSince("5.2")
       .setDescription("Export a quality profile.")

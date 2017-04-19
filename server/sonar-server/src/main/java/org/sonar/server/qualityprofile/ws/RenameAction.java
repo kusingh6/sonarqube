@@ -22,10 +22,10 @@ package org.sonar.server.qualityprofile.ws;
 import com.google.common.annotations.VisibleForTesting;
 import java.util.Objects;
 import org.apache.commons.lang.StringUtils;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.core.util.Uuids;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -55,7 +55,7 @@ public class RenameAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction setDefault = controller.createAction("rename")
         .setSince("5.2")
         .setDescription("Rename a quality profile. Require Administer Quality Profiles permission.")

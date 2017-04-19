@@ -59,7 +59,7 @@ public class RequestTest {
 
   @Before
   public void before() {
-    WebService.Context context = new WebService.Context();
+    Context context = new Context();
     new FakeWs().define(context);
 
     underTest.setAction(context.controller("my_controller").action("my_action"));

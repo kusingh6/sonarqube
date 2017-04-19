@@ -23,9 +23,11 @@ import com.google.common.collect.Sets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -61,8 +63,8 @@ public class UpdateAction implements UsersWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction(ACTION_UPDATE)
+  public void define(NewController controller) {
+    NewAction action = controller.createAction(ACTION_UPDATE)
       .setDescription("Update a user. If a deactivated user account exists with the given login, it will be reactivated. " +
         "Requires Administer System permission. Since 5.2, a user's password can only be changed using the 'change_password' action.")
       .setSince("3.7")

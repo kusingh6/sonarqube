@@ -19,19 +19,23 @@
  */
 package org.sonar.server.ws.ws;
 
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkState;
 
 public class ResponseExampleAction implements WebServicesWsAction {
-  private WebService.Context context;
+  private Context context;
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller
+  public void define(NewController controller) {
+    NewAction action = controller
       .createAction("response_example")
       .setDescription("Display web service response example")
       .setResponseExample(getClass().getResource("response_example-example.json"))
@@ -54,11 +58,11 @@ public class ResponseExampleAction implements WebServicesWsAction {
     checkState(context != null, "Webservice global context must be loaded before calling the action");
 
     String controllerKey = request.mandatoryParam("controller");
-    WebService.Controller controller = context.controller(controllerKey);
+    Controller controller = context.controller(controllerKey);
     checkArgument(controller != null, "Controller does not exist: %s", controllerKey);
 
     String actionKey = request.mandatoryParam("action");
-    WebService.Action action = controller.action(actionKey);
+    Action action = controller.action(actionKey);
     checkArgument(action != null, "Action does not exist: %s", actionKey);
 
     if (action.responseExample() == null) {
@@ -76,7 +80,7 @@ public class ResponseExampleAction implements WebServicesWsAction {
   }
 
   @Override
-  public void setContext(WebService.Context context) {
+  public void setContext(Context context) {
     this.context = context;
   }
 

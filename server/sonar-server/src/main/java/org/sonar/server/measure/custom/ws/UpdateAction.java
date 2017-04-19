@@ -20,9 +20,11 @@
 package org.sonar.server.measure.custom.ws;
 
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.System2;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;
@@ -57,8 +59,8 @@ public class UpdateAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION)
       .setPost(true)
       .setDescription("Update a custom measure. Value and/or description must be provided<br />" +
         "Requires 'Administer System' permission or 'Administer' permission on the project.")

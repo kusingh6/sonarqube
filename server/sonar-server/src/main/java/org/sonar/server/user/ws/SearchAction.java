@@ -27,10 +27,12 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -57,8 +59,8 @@ public class SearchAction implements UsersWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("search")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("search")
       .setDescription("Get a list of active users. <br/>" +
         "Administer System permission is required to show the 'groups' field.<br/>" +
         "When accessed anonymously, only logins and names are returned.")

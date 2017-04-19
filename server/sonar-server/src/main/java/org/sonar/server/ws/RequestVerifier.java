@@ -19,8 +19,8 @@
  */
 package org.sonar.server.ws;
 
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.Request;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.exceptions.ServerException;
 
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
@@ -30,7 +30,7 @@ public class RequestVerifier {
     // static methods only
   }
 
-  public static void verifyRequest(WebService.Action action, Request request) {
+  public static void verifyRequest(Action action, Request request) {
     switch (request.method()) {
       case "GET":
         if (action.isPost()) {

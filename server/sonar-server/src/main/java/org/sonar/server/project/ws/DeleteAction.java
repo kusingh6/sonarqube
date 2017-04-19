@@ -19,9 +19,10 @@
  */
 package org.sonar.server.project.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -52,8 +53,8 @@ public class DeleteAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context
+  public void define(NewController context) {
+    NewAction action = context
       .createAction(ACTION)
       .setPost(true)
       .setDescription("Delete a project.<br> " +

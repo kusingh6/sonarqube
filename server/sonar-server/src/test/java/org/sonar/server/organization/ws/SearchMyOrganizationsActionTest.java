@@ -21,7 +21,7 @@ package org.sonar.server.organization.ws;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
@@ -52,7 +52,7 @@ public class SearchMyOrganizationsActionTest {
 
   @Test
   public void verify_definition() {
-    WebService.Action def = underTest.getDef();
+    Action def = underTest.getDef();
 
     assertThat(def.key()).isEqualTo("search_my_organizations");
     assertThat(def.isPost()).isFalse();

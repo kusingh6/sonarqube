@@ -22,8 +22,10 @@ package org.sonar.server.usergroups.ws;
 import java.util.Optional;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewParam;
 import org.sonar.api.server.ws.Request;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.user.UserGroupValidation;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -167,18 +169,18 @@ public class GroupWsSupport {
     return wsGroup;
   }
 
-  static void defineGroupWsParameters(WebService.NewAction action) {
+  static void defineGroupWsParameters(NewAction action) {
     defineGroupIdWsParameter(action);
     defineGroupNameWsParameter(action);
   }
 
-  private static void defineGroupIdWsParameter(WebService.NewAction action) {
+  private static void defineGroupIdWsParameter(NewAction action) {
     action.createParam(PARAM_GROUP_ID)
       .setDescription("Group id")
       .setExampleValue("42");
   }
 
-  private static void defineGroupNameWsParameter(WebService.NewAction action) {
+  private static void defineGroupNameWsParameter(NewAction action) {
     action.createParam(PARAM_ORGANIZATION_KEY)
       .setDescription("Key of organization")
       .setExampleValue("my-org")
@@ -189,7 +191,7 @@ public class GroupWsSupport {
       .setExampleValue("sonar-administrators");
   }
 
-  static WebService.NewParam defineLoginWsParameter(WebService.NewAction action) {
+  static NewParam defineLoginWsParameter(NewAction action) {
     return action.createParam(PARAM_LOGIN)
       .setDescription("User login")
       .setExampleValue("g.hopper");

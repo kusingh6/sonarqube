@@ -21,7 +21,8 @@ package org.sonar.server.platform.ws;
 
 import org.junit.Test;
 import org.sonar.api.platform.Server;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.server.ws.WsTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,10 +36,10 @@ public class ServerWsTest {
 
   @Test
   public void define_version_action() {
-    WebService.Controller controller = tester.controller("api/server");
+    Controller controller = tester.controller("api/server");
     assertThat(controller.actions()).hasSize(1);
 
-    WebService.Action versionAction = controller.action("version");
+    Action versionAction = controller.action("version");
     assertThat(versionAction.since()).isEqualTo("2.10");
     assertThat(versionAction.description()).isNotEmpty();
     assertThat(versionAction.isPost()).isFalse();
@@ -53,7 +54,7 @@ public class ServerWsTest {
 
   @Test
   public void test_example_of_version() throws Exception {
-    WebService.Action versionAction = tester.action("api/server", "version");
+    Action versionAction = tester.action("api/server", "version");
     assertThat(versionAction.responseExampleAsString()).isEqualTo("6.3.0.1234");
   }
 }

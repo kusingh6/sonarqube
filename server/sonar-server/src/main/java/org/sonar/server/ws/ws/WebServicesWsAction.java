@@ -19,11 +19,11 @@
  */
 package org.sonar.server.ws.ws;
 
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Context;
 import org.sonar.server.ws.WsAction;
 
 public interface WebServicesWsAction extends WsAction {
   // marker interface
 
-  void setContext(WebService.Context context);
+  void setContext(Context context);
 }

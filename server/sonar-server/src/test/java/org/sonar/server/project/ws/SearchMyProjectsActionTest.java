@@ -25,7 +25,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.measures.Metric.Level;
 import org.sonar.api.measures.Metric.ValueType;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;

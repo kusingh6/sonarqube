@@ -21,10 +21,10 @@ package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.core.util.Uuids;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -53,7 +53,7 @@ public class CopyAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction action = controller.createAction("copy")
         .setSince("5.2")
         .setDescription("Copy a quality profile. Require Administer Quality Profiles permission.")

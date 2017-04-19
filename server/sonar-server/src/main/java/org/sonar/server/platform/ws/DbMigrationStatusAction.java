@@ -21,9 +21,10 @@ package org.sonar.server.platform.ws;
 
 import com.google.common.io.Resources;
 import java.util.Optional;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.Database;
 import org.sonar.server.platform.db.migration.DatabaseMigrationState;
@@ -53,7 +54,7 @@ public class DbMigrationStatusAction implements SystemWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("db_migration_status")
       .setDescription("Display the database migration status of SonarQube." +
         "<br/>" +

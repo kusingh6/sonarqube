@@ -32,9 +32,9 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 import org.sonar.api.notifications.NotificationChannel;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.web.UserRole;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -77,7 +77,7 @@ public class ListAction implements NotificationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     context.createAction(ACTION_LIST)
       .setDescription("List notifications of the authenticated user.<br>" +
         "Requires authentication.")

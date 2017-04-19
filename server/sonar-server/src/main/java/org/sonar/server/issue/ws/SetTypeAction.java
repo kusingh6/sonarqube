@@ -22,9 +22,10 @@ package org.sonar.server.issue.ws;
 import com.google.common.io.Resources;
 import java.util.Date;
 import org.sonar.api.rules.RuleType;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.core.issue.DefaultIssue;
 import org.sonar.core.issue.IssueChangeContext;
 import org.sonar.core.util.Uuids;
@@ -60,8 +61,8 @@ public class SetTypeAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction(ACTION_SET_TYPE)
+  public void define(NewController controller) {
+    NewAction action = controller.createAction(ACTION_SET_TYPE)
       .setDescription("Change type of issue, for instance from 'code smell' to 'bug'.<br/>" +
         "Requires the following permissions:" +
         "<ul>" +

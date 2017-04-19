@@ -30,10 +30,11 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.CheckForNull;
 import org.sonar.api.resources.Qualifiers;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.web.UserRole;
 import org.sonar.ce.taskprocessor.CeTaskProcessor;
@@ -88,8 +89,8 @@ public class ActivityAction implements CeWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("activity")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("activity")
       .setDescription(format("Search for tasks.<br> " +
         "Requires the system administration permission, " +
         "or project administration permission if %s is set.<br/>" +

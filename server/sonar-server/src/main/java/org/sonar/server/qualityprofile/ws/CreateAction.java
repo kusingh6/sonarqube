@@ -22,10 +22,10 @@ package org.sonar.server.qualityprofile.ws;
 import java.io.InputStream;
 import org.sonar.api.profiles.ProfileImporter;
 import org.sonar.api.resources.Languages;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.organization.OrganizationDto;
@@ -79,7 +79,7 @@ public class CreateAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction create = controller.createAction(ACTION_CREATE)
       .setSince("5.2")
       .setDescription("Create a quality profile.<br/>" +

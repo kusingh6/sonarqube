@@ -19,9 +19,9 @@
  */
 package org.sonar.server.organization.ws;
 
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -40,7 +40,7 @@ public class SearchMyOrganizationsAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     context.createAction(ACTION)
       .setPost(false)
       .setDescription("List keys of the organizations for which the currently authenticated user has the System Administer permission for.")

@@ -28,7 +28,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.sonar.api.server.ws.WebService;
+
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.web.ServletFilter;
 import org.sonar.core.util.stream.MoreCollectors;
 
@@ -96,7 +97,7 @@ public class WebServiceFilter extends ServletFilter {
     // Nothing to do
   }
 
-  private static Function<WebService.Action, String> toPath() {
+  private static Function<Action, String> toPath() {
     return action -> "/" + action.path() + "/*";
   }
 

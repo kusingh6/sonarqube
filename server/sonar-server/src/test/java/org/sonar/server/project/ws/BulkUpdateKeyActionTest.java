@@ -26,7 +26,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -247,14 +248,14 @@ public class BulkUpdateKeyActionTest {
 
   @Test
   public void api_definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.isPost()).isTrue();
     assertThat(definition.since()).isEqualTo("6.1");
     assertThat(definition.key()).isEqualTo("bulk_update_key");
     assertThat(definition.params())
       .hasSize(5)
-      .extracting(WebService.Param::key)
+      .extracting(Param::key)
       .containsOnlyOnce("projectId", "project", "from", "to", "dryRun");
   }
 

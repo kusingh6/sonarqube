@@ -25,9 +25,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.core.platform.PluginInfo;
 import org.sonar.server.plugins.ServerPluginRepository;
@@ -61,8 +64,8 @@ public class InstalledAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("installed")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("installed")
       .setDescription("Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.<br/>" +
         "Require 'Administer System' permission.")
       .setSince("5.2")
@@ -87,7 +90,7 @@ public class InstalledAction implements PluginsWsAction {
     jsonWriter.setSerializeEmptys(false);
     jsonWriter.beginObject();
 
-    List<String> additionalFields = request.paramAsStrings(WebService.Param.FIELDS);
+    List<String> additionalFields = request.paramAsStrings(Param.FIELDS);
     writePluginInfoList(jsonWriter, pluginInfoList, additionalFields == null ? Collections.<String>emptyList() : additionalFields);
 
     jsonWriter.endObject();

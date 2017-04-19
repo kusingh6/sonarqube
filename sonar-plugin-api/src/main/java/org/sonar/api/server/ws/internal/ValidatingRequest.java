@@ -29,9 +29,10 @@ import java.util.Set;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.StringUtils;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.LocalConnector;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
-import org.sonar.api.server.ws.WebService;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -43,14 +44,14 @@ import static java.util.Collections.singletonList;
  */
 public abstract class ValidatingRequest extends Request {
 
-  private WebService.Action action;
+  private Action action;
   private LocalConnector localConnector;
 
-  public void setAction(WebService.Action action) {
+  public void setAction(Action action) {
     this.action = action;
   }
 
-  public WebService.Action action() {
+  public Action action() {
     return action;
   }
 
@@ -72,7 +73,7 @@ public abstract class ValidatingRequest extends Request {
 
   @Override
   public List<String> multiParam(String key) {
-    WebService.Param definition = action.param(key);
+    Param definition = action.param(key);
     List<String> values = readMultiParamOrDefaultValue(key, definition);
 
     values.forEach(value -> validate(value, definition));
@@ -94,7 +95,7 @@ public abstract class ValidatingRequest extends Request {
 
   @CheckForNull
   private String param(String key, boolean validateValue) {
-    WebService.Param definition = action.param(key);
+    Param definition = action.param(key);
     String value = readParamOrDefaultValue(key, definition);
     String trimmedValue = value == null ? value : CharMatcher.WHITESPACE.trimFrom(value);
     if (trimmedValue != null && validateValue) {
@@ -106,7 +107,7 @@ public abstract class ValidatingRequest extends Request {
   @CheckForNull
   @Override
   public List<String> paramAsStrings(String key) {
-    WebService.Param definition = action.param(key);
+    Param definition = action.param(key);
     String value = readParamOrDefaultValue(key, definition);
     if (value == null) {
       return null;
@@ -121,7 +122,7 @@ public abstract class ValidatingRequest extends Request {
   @CheckForNull
   @Override
   public <E extends Enum<E>> List<E> paramAsEnums(String key, Class<E> enumClass) {
-    WebService.Param definition = action.param(key);
+    Param definition = action.param(key);
     String value = readParamOrDefaultValue(key, definition);
     if (value == null) {
       return null;
@@ -136,7 +137,7 @@ public abstract class ValidatingRequest extends Request {
   }
 
   @CheckForNull
-  private String readParamOrDefaultValue(String key, @Nullable WebService.Param definition) {
+  private String readParamOrDefaultValue(String key, @Nullable Param definition) {
     checkArgument(definition != null, "BUG - parameter '%s' is undefined for action '%s'", key, action.key());
 
     String deprecatedKey = definition.deprecatedKey();
@@ -145,7 +146,7 @@ public abstract class ValidatingRequest extends Request {
     return value == null ? null : value;
   }
 
-  private List<String> readMultiParamOrDefaultValue(String key, @Nullable WebService.Param definition) {
+  private List<String> readMultiParamOrDefaultValue(String key, @Nullable Param definition) {
     checkArgument(definition != null, "BUG - parameter '%s' is undefined for action '%s'", key, action.key());
 
     List<String> keyValues = readMultiParam(key);
@@ -174,7 +175,7 @@ public abstract class ValidatingRequest extends Request {
   @CheckForNull
   protected abstract Part readPart(String key);
 
-  private static void validate(String value, WebService.Param definition) {
+  private static void validate(String value, Param definition) {
     Set<String> possibleValues = definition.possibleValues();
     if (possibleValues != null && !possibleValues.contains(value)) {
       throw new IllegalArgumentException(String.format(

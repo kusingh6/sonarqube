@@ -21,9 +21,10 @@ package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.server.ServerSide;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.core.util.Uuids;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -50,8 +51,8 @@ public class DeactivateRuleAction implements QProfileWsAction {
     this.wsSupport = wsSupport;
   }
 
-  public void define(WebService.NewController controller) {
-    WebService.NewAction deactivate = controller
+  public void define(NewController controller) {
+    NewAction deactivate = controller
       .createAction(ACTION_DEACTIVATE_RULE)
       .setDescription("Deactivate a rule on a Quality profile")
       .setHandler(this)

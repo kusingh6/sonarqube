@@ -23,7 +23,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
 import org.sonar.db.qualityprofile.QualityProfileDto;
@@ -59,7 +60,7 @@ public class BackupActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action definition = tester.getDef();
+    Action definition = tester.getDef();
 
     assertThat(definition.key()).isEqualTo("backup");
     assertThat(definition.responseExampleAsString()).isNotEmpty();
@@ -71,7 +72,7 @@ public class BackupActionTest {
     assertThat(definition.param("language")).isNotNull();
     assertThat(definition.param("profileKey")).isNotNull();
     assertThat(definition.param("profileName")).isNotNull();
-    WebService.Param orgParam = definition.param("organization");
+    Param orgParam = definition.param("organization");
     assertThat(orgParam).isNotNull();
     assertThat(orgParam.since()).isEqualTo("6.4");
   }

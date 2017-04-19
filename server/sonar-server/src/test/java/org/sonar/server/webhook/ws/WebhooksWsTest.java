@@ -20,7 +20,8 @@
 package org.sonar.server.webhook.ws;
 
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.user.UserSession;
@@ -35,10 +36,10 @@ public class WebhooksWsTest {
     WebhooksWsAction action = newFakeAction();
     WebhooksWs underTest = new WebhooksWs(action);
 
-    WebService.Context context = new WebService.Context();
+    Context context = new Context();
     underTest.define(context);
 
-    WebService.Controller controller = context.controller("api/webhooks");
+    Controller controller = context.controller("api/webhooks");
     assertThat(controller).isNotNull();
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.since()).isEqualTo("6.2");

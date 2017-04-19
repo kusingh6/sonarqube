@@ -21,9 +21,10 @@ package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.rule.Severity;
 import org.sonar.api.server.ServerSide;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.server.qualityprofile.BulkChangeResult;
@@ -55,8 +56,8 @@ public class ActivateRulesAction implements QProfileWsAction {
     this.wsSupport = wsSupport;
   }
 
-  public void define(WebService.NewController controller) {
-    WebService.NewAction activate = controller
+  public void define(NewController controller) {
+    NewAction activate = controller
       .createAction(ACTIVATE_RULES_ACTION)
       .setDescription("Bulk-activate rules on one or several Quality profiles")
       .setPost(true)

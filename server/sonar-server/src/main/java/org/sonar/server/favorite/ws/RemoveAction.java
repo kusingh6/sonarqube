@@ -20,9 +20,11 @@
 package org.sonar.server.favorite.ws;
 
 import java.util.function.Consumer;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.component.ComponentDto;
@@ -47,8 +49,8 @@ public class RemoveAction implements FavoritesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("remove")
+  public void define(NewController context) {
+    NewAction action = context.createAction("remove")
       .setDescription("Remove a component (project, directory, file etc.) as favorite for the authenticated user.<br>" +
         "Requires authentication.")
       .setSince("6.3")

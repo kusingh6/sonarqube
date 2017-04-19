@@ -21,9 +21,10 @@ package org.sonar.server.qualitygate.ws;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.metric.MetricDto;
@@ -51,7 +52,7 @@ public class AppAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("app")
       .setInternal(true)
       .setDescription("Get initialization items for the admin UI. For internal use")

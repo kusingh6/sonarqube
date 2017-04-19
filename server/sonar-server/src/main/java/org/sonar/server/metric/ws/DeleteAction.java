@@ -21,9 +21,11 @@ package org.sonar.server.metric.ws;
 
 import com.google.common.collect.Lists;
 import java.util.List;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.metric.MetricDto;
@@ -44,8 +46,8 @@ public class DeleteAction implements MetricsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("delete")
+  public void define(NewController context) {
+    NewAction action = context.createAction("delete")
       .setHandler(this)
       .setSince("5.2")
       .setPost(true)

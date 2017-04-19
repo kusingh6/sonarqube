@@ -22,7 +22,8 @@ package org.sonar.server.user.ws;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.organization.DefaultOrganizationProvider;
 import org.sonar.server.tester.UserSessionRule;
@@ -37,7 +38,7 @@ public class UsersWsTest {
   @Rule
   public UserSessionRule userSessionRule = UserSessionRule.standalone();
 
-  private WebService.Controller controller;
+  private Controller controller;
 
   @Before
   public void setUp() {
@@ -60,7 +61,7 @@ public class UsersWsTest {
 
   @Test
   public void define_search_action() {
-    WebService.Action action = controller.action("search");
+    Action action = controller.action("search");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isFalse();
     assertThat(action.responseExampleAsString()).isNotEmpty();
@@ -69,7 +70,7 @@ public class UsersWsTest {
 
   @Test
   public void define_create_action() {
-    WebService.Action action = controller.action("create");
+    Action action = controller.action("create");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isTrue();
     assertThat(action.params()).hasSize(7);
@@ -77,7 +78,7 @@ public class UsersWsTest {
 
   @Test
   public void define_update_action() {
-    WebService.Action action = controller.action("update");
+    Action action = controller.action("update");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isTrue();
     assertThat(action.params()).hasSize(5);
@@ -85,7 +86,7 @@ public class UsersWsTest {
 
   @Test
   public void define_change_password_action() {
-    WebService.Action action = controller.action("change_password");
+    Action action = controller.action("change_password");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isTrue();
     assertThat(action.params()).hasSize(3);
@@ -93,7 +94,7 @@ public class UsersWsTest {
 
   @Test
   public void define_current_action() {
-    WebService.Action action = controller.action("current");
+    Action action = controller.action("current");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isFalse();
     assertThat(action.isInternal()).isTrue();

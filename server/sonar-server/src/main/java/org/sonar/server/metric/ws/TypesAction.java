@@ -20,14 +20,14 @@
 package org.sonar.server.metric.ws;
 
 import org.sonar.api.measures.Metric;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 
 public class TypesAction implements MetricsWsAction {
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     context.createAction("types")
       .setDescription("List all available metric types.")
       .setResponseExample(getClass().getResource("example-types.json"))

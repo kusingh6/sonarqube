@@ -41,9 +41,11 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewParam;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -126,8 +128,8 @@ public class SearchAction implements RulesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction(ACTION)
+  public void define(NewController controller) {
+    NewAction action = controller.createAction(ACTION)
       .addPagingParams(100, MAX_LIMIT)
       .setHandler(this);
 
@@ -136,7 +138,7 @@ public class SearchAction implements RulesWsAction {
       .setPossibleValues(POSSIBLE_FACETS)
       .setExampleValue(format("%s,%s", POSSIBLE_FACETS[0], POSSIBLE_FACETS[1]));
 
-    WebService.NewParam paramFields = action.createParam(FIELDS)
+    NewParam paramFields = action.createParam(FIELDS)
       .setDescription("Comma-separated list of the fields to be returned in response. All the fields are returned by default, except actives." +
         "Since 5.5, following fields have been deprecated :" +
         "<ul>" +
@@ -180,7 +182,7 @@ public class SearchAction implements RulesWsAction {
     response.setPs(context.getLimit());
   }
 
-  private void doDefinition(WebService.NewAction action) {
+  private void doDefinition(NewAction action) {
     action.setDescription("Search for a collection of relevant rules matching a specified query.<br/>" +
       "Since 5.5, following fields in the response have been deprecated :" +
       "<ul>" +
@@ -199,7 +201,7 @@ public class SearchAction implements RulesWsAction {
     defineRuleSearchParameters(action);
   }
 
-  public static void defineRuleSearchParameters(WebService.NewAction action) {
+  public static void defineRuleSearchParameters(NewAction action) {
     action
       .createParam(TEXT_QUERY)
       .setDescription("UTF-8 search query")

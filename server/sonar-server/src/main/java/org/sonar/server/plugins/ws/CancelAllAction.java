@@ -19,9 +19,9 @@
  */
 package org.sonar.server.plugins.ws;
 
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.plugins.PluginDownloader;
 import org.sonar.server.plugins.ServerPluginRepository;
 import org.sonar.server.user.UserSession;
@@ -39,7 +39,7 @@ public class CancelAllAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("cancel_all")
       .setPost(true)
       .setSince("5.2")

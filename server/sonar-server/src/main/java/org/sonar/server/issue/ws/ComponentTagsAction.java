@@ -21,10 +21,11 @@ package org.sonar.server.issue.ws;
 
 import com.google.common.io.Resources;
 import java.util.Map;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.server.issue.IssueQuery;
 import org.sonar.server.issue.IssueQueryFactory;
@@ -51,7 +52,7 @@ public class ComponentTagsAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction action = controller.createAction(ACTION_COMPONENT_TAGS)
       .setHandler(this)
       .setSince("5.1")

@@ -22,8 +22,10 @@ package org.sonar.server.platform.ws;
 import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Test;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.server.plugins.UpdateCenterMatrixFactory;
 import org.sonar.server.plugins.ws.PluginWSCommons;
@@ -101,15 +103,15 @@ public class UpgradesActionTest {
   @Test
   public void action_updates_is_defined() {
     WsTester wsTester = new WsTester();
-    WebService.NewController newController = wsTester.context().createController(DUMMY_CONTROLLER_KEY);
+    NewController newController = wsTester.context().createController(DUMMY_CONTROLLER_KEY);
 
     underTest.define(newController);
     newController.done();
 
-    WebService.Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);
+    Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);
     assertThat(controller.actions()).extracting("key").containsExactly("upgrades");
 
-    WebService.Action action = controller.actions().iterator().next();
+    Action action = controller.actions().iterator().next();
     assertThat(action.isPost()).isFalse();
     assertThat(action.description()).isNotEmpty();
     assertThat(action.responseExample()).isNotNull();

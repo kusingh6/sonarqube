@@ -19,9 +19,10 @@
  */
 package org.sonar.server.qualitygate.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.db.qualitygate.QualityGateDto;
 import org.sonar.server.qualitygate.QualityGates;
@@ -36,8 +37,8 @@ public class RenameAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("rename")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("rename")
       .setDescription("Rename a Quality Gate. Require Administer Quality Gates permission")
       .setSince("4.3")
       .setPost(true)

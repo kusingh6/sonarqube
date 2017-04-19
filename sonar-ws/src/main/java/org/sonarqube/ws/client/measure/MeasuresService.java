@@ -19,7 +19,6 @@
  */
 package org.sonarqube.ws.client.measure;
 
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonarqube.ws.WsMeasures.ComponentTreeWsResponse;
 import org.sonarqube.ws.WsMeasures.ComponentWsResponse;
 import org.sonarqube.ws.WsMeasures.SearchHistoryResponse;
@@ -49,6 +48,8 @@ import static org.sonarqube.ws.client.measure.MeasuresWsParameters.PARAM_PROJECT
 import static org.sonarqube.ws.client.measure.MeasuresWsParameters.PARAM_QUALIFIERS;
 import static org.sonarqube.ws.client.measure.MeasuresWsParameters.PARAM_STRATEGY;
 import static org.sonarqube.ws.client.measure.MeasuresWsParameters.PARAM_TO;
+
+import org.sonar.api.server.ws.Param;
 
 public class MeasuresService extends BaseService {
   public MeasuresService(WsConnector wsConnector) {

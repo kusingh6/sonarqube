@@ -19,11 +19,11 @@
  */
 package org.sonar.server.authentication.ws;
 
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.NewController;
 
 @FunctionalInterface
 public interface AuthenticationWsAction {
   // marker interface
 
-  void define(WebService.NewController controller);
+  void define(NewController controller);
 }

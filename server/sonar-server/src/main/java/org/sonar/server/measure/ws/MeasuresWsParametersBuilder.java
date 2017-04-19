@@ -19,8 +19,8 @@
  */
 package org.sonar.server.measure.ws;
 
-import org.sonar.api.server.ws.WebService.NewAction;
-import org.sonar.api.server.ws.WebService.NewParam;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewParam;
 import org.sonar.core.util.Uuids;
 import org.sonar.server.ws.KeyExamples;
 

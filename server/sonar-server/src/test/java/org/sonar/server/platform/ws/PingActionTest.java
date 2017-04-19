@@ -20,7 +20,7 @@
 package org.sonar.server.platform.ws;
 
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.server.ws.TestResponse;
 import org.sonar.server.ws.WsActionTester;
 
@@ -33,7 +33,7 @@ public class PingActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action action = tester.getDef();
+    Action action = tester.getDef();
 
     assertThat(action.key()).isEqualTo("ping");
     assertThat(action.isPost()).isFalse();

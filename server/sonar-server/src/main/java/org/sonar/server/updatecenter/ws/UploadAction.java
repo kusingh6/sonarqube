@@ -22,9 +22,11 @@ package org.sonar.server.updatecenter.ws;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.platform.ServerFileSystem;
 import org.sonar.server.user.UserSession;
 
@@ -46,8 +48,8 @@ public class UploadAction implements UpdateCenterWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("upload")
+  public void define(NewController context) {
+    NewAction action = context.createAction("upload")
       .setDescription("Upload a plugin.<br /> Requires 'Administer System' permission.")
       .setSince("6.0")
       .setPost(true)

@@ -23,8 +23,8 @@ import java.io.IOException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
 import org.sonar.db.user.GroupDto;
@@ -312,7 +312,7 @@ public class GroupsActionTest {
 
   @Test
   public void verify_definition() {
-    WebService.Action action = ws.getDef();
+    Action action = ws.getDef();
 
     assertThat(action.since()).isEqualTo("5.2");
     assertThat(action.isPost()).isFalse();
@@ -321,10 +321,10 @@ public class GroupsActionTest {
 
     assertThat(action.params()).extracting(Param::key).containsOnly("p", "q", "ps", "login", "selected", "organization");
 
-    WebService.Param qualifiers = action.param("login");
+    Param qualifiers = action.param("login");
     assertThat(qualifiers.isRequired()).isTrue();
 
-    WebService.Param organization = action.param("organization");
+    Param organization = action.param("organization");
     assertThat(organization.isRequired()).isFalse();
     assertThat(organization.description()).isEqualTo("Organization key");
     assertThat(organization.isInternal()).isTrue();

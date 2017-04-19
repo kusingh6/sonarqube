@@ -27,7 +27,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
 import org.sonar.api.resources.Qualifiers;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.component.ComponentDto;
 import org.sonar.db.organization.OrganizationDto;
 import org.sonar.db.organization.OrganizationTesting;
@@ -100,14 +101,14 @@ public class SearchActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("search");
     assertThat(definition.isInternal()).isFalse();
     assertThat(definition.isPost()).isFalse();
     assertThat(definition.responseExampleAsString()).isNotEmpty();
     assertThat(definition.since()).isEqualTo("6.4");
-    assertThat(definition.params()).extracting(WebService.Param::key).containsOnly("q", "ps");
+    assertThat(definition.params()).extracting(Param::key).containsOnly("q", "ps");
   }
 
   private void index(ProjectMeasuresDoc... docs) {

@@ -27,8 +27,8 @@ import javax.annotation.CheckForNull;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.ServerSide;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.organization.OrganizationDto;
@@ -70,7 +70,7 @@ public class RuleQueryFactory {
    */
   public RuleQuery createRuleQuery(DbSession dbSession, Request request) {
     RuleQuery query = new RuleQuery();
-    query.setQueryText(request.param(WebService.Param.TEXT_QUERY));
+    query.setQueryText(request.param(Param.TEXT_QUERY));
     query.setSeverities(request.paramAsStrings(PARAM_SEVERITIES));
     query.setRepositories(request.paramAsStrings(PARAM_REPOSITORIES));
     Date availableSince = request.paramAsDate(PARAM_AVAILABLE_SINCE);
@@ -111,10 +111,10 @@ public class RuleQueryFactory {
     query.setTypes(toEnums(request.paramAsStrings(PARAM_TYPES), RuleType.class));
     query.setKey(request.param(PARAM_RULE_KEY));
 
-    String sortParam = request.param(WebService.Param.SORT);
+    String sortParam = request.param(Param.SORT);
     if (sortParam != null) {
       query.setSortField(sortParam);
-      query.setAscendingSort(request.mandatoryParamAsBoolean(WebService.Param.ASCENDING));
+      query.setAscendingSort(request.mandatoryParamAsBoolean(Param.ASCENDING));
     }
     return query;
   }

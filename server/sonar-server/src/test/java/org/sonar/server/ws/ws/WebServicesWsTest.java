@@ -21,7 +21,12 @@ package org.sonar.server.ws.ws;
 
 import com.google.common.io.Resources;
 import org.junit.Test;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.WsTester;
 
@@ -36,14 +41,14 @@ public class WebServicesWsTest {
   @Test
   public void define_ws() {
     WsTester tester = new WsTester(underTest);
-    WebService.Controller controller = tester.controller("api/webservices");
+    Controller controller = tester.controller("api/webservices");
     assertThat(controller).isNotNull();
     assertThat(controller.path()).isEqualTo("api/webservices");
     assertThat(controller.since()).isEqualTo("4.2");
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.actions()).hasSize(2);
 
-    WebService.Action index = controller.action("list");
+    Action index = controller.action("list");
     assertThat(index).isNotNull();
     assertThat(index.key()).isEqualTo("list");
     assertThat(index.handler()).isNotNull();

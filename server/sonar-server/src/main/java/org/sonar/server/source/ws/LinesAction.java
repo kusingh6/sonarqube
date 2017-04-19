@@ -23,9 +23,11 @@ import com.google.common.base.MoreObjects;
 import com.google.common.io.Resources;
 import java.util.Date;
 import java.util.Optional;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.UserRole;
@@ -65,8 +67,8 @@ public class LinesAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("lines")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("lines")
       .setDescription("Show source code with line oriented info. Require See Source Code permission on file's project<br/>" +
         "Each element of the result array is an object which contains:" +
         "<ol>" +

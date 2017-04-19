@@ -25,9 +25,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.sonar.api.resources.Scopes;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.component.ComponentDto;
@@ -59,8 +60,8 @@ public class IssuesAction implements BatchWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("issues")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("issues")
       .setDescription("Return open issues")
       .setResponseExample(getClass().getResource("issues-example.proto"))
       .setSince("5.1")

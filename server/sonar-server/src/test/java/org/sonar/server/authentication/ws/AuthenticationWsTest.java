@@ -21,7 +21,8 @@ package org.sonar.server.authentication.ws;
 
 import java.util.Arrays;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.server.ws.ServletFilterHandler;
 import org.sonar.server.ws.WsTester;
 
@@ -36,24 +37,24 @@ public class AuthenticationWsTest {
 
   @Test
   public void define_ws() {
-    WebService.Controller controller = tester.controller("api/authentication");
+    Controller controller = tester.controller("api/authentication");
     assertThat(controller).isNotNull();
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.actions()).hasSize(3);
 
-    WebService.Action validate = controller.action("validate");
+    Action validate = controller.action("validate");
     assertThat(validate).isNotNull();
     assertThat(validate.handler()).isInstanceOf(ServletFilterHandler.class);
     assertThat(validate.responseExampleAsString()).isNotEmpty();
     assertThat(validate.params()).isEmpty();
 
-    WebService.Action login = controller.action("login");
+    Action login = controller.action("login");
     assertThat(login).isNotNull();
     assertThat(login.handler()).isInstanceOf(ServletFilterHandler.class);
     assertThat(login.isPost()).isTrue();
     assertThat(login.params()).hasSize(2);
 
-    WebService.Action logout = controller.action("logout");
+    Action logout = controller.action("logout");
     assertThat(logout).isNotNull();
     assertThat(logout.handler()).isInstanceOf(ServletFilterHandler.class);
     assertThat(logout.isPost()).isTrue();

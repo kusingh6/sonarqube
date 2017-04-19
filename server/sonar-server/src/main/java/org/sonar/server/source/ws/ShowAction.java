@@ -21,9 +21,10 @@ package org.sonar.server.source.ws;
 
 import com.google.common.io.Resources;
 import org.apache.commons.lang.ObjectUtils;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -50,8 +51,8 @@ public class ShowAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("show")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("show")
       .setDescription("Get source code. Require See Source Code permission on file's project<br/>" +
         "Each element of the result array is composed of:" +
         "<ol>" +

@@ -20,9 +20,10 @@
 package org.sonar.server.root.ws;
 
 import java.util.List;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.user.UserQuery;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -43,7 +44,7 @@ public class SearchAction implements RootsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("search")
       .setInternal(true)
       .setPost(false)

@@ -28,9 +28,11 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.core.issue.FieldDiffs;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -67,8 +69,8 @@ public class ChangelogAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_CHANGELOG)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_CHANGELOG)
       .setDescription("Display changelog of an issue.<br/>" +
         "Require the 'Browse' permission on the project of the specified issue.<br/>" +
         "Since 6.3, changes on effort are returning raw value in minutes, it doesn't return anymore the duration.")

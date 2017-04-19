@@ -25,10 +25,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.rule.RuleStatus;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.organization.OrganizationDto;
@@ -65,7 +65,7 @@ public class SearchAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction action = controller.createAction(ACTION_SEARCH)
       .setSince("5.2")
       .setDescription("List quality profiles.")

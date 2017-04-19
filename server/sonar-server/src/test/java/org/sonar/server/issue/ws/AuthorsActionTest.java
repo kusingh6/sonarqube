@@ -24,7 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.server.issue.IssueService;
 import org.sonar.server.ws.WsTester;
 
@@ -36,7 +36,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class AuthorsActionTest {
 
-  WebService.Controller controller;
+  Controller controller;
 
   WsTester tester;
 

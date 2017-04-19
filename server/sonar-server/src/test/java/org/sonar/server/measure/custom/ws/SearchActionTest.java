@@ -27,7 +27,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
 import org.sonar.api.measures.Metric.ValueType;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
@@ -157,8 +157,8 @@ public class SearchActionTest {
 
     String response = newRequest()
       .setParam(SearchAction.PARAM_PROJECT_KEY, DEFAULT_PROJECT_KEY)
-      .setParam(WebService.Param.PAGE, "3")
-      .setParam(WebService.Param.PAGE_SIZE, "4")
+      .setParam(Param.PAGE, "3")
+      .setParam(Param.PAGE_SIZE, "4")
       .execute().outputAsString();
 
     assertThat(StringUtils.countMatches(response, "text-value")).isEqualTo(2);
@@ -171,7 +171,7 @@ public class SearchActionTest {
 
     String response = newRequest()
       .setParam(SearchAction.PARAM_PROJECT_KEY, DEFAULT_PROJECT_KEY)
-      .setParam(WebService.Param.FIELDS, "value, description")
+      .setParam(Param.FIELDS, "value, description")
       .execute().outputAsString();
 
     assertThat(response).contains("id", "value", "description")

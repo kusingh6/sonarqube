@@ -22,7 +22,7 @@ package org.sonar.server.permission.ws.template;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.component.ComponentDto;
 import org.sonar.db.organization.OrganizationDto;

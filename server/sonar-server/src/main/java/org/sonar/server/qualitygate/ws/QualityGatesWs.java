@@ -19,6 +19,9 @@
  */
 package org.sonar.server.qualitygate.ws;
 
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;

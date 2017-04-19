@@ -29,7 +29,7 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.api.config.Encryption;
 import org.sonar.api.config.MapSettings;
 import org.sonar.api.config.Settings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.server.exceptions.ForbiddenException;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.ws.WsActionTester;
@@ -66,7 +66,7 @@ public class GenerateSecretKeyActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("generate_secret_key");
     assertThat(definition.isPost()).isFalse();

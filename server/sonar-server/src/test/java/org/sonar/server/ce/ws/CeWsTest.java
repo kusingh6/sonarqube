@@ -21,7 +21,7 @@ package org.sonar.server.ce.ws;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Context;
 import org.sonar.server.computation.queue.ReportSubmitter;
 import org.sonar.server.organization.DefaultOrganizationProvider;
 
@@ -35,7 +35,7 @@ public class CeWsTest {
     CeWsAction wsAction = new SubmitAction(mock(ReportSubmitter.class), mock(DefaultOrganizationProvider.class));
 
     CeWs ws = new CeWs(wsAction);
-    WebService.Context context = mock(WebService.Context.class, Mockito.RETURNS_DEEP_STUBS);
+    Context context = mock(Context.class, Mockito.RETURNS_DEEP_STUBS);
     ws.define(context);
 
     assertThat(context.controller("api/ce")).isNotNull();

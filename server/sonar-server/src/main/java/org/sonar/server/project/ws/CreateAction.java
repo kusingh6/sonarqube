@@ -20,9 +20,10 @@
 package org.sonar.server.project.ws;
 
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.component.ComponentDto;
@@ -65,8 +66,8 @@ public class CreateAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_CREATE)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_CREATE)
       .setDescription("Create a project.<br/>" +
         "Requires 'Create Projects' permission<br/>" +
         "Since 6.3, the response format has been updated and does not contain the database ID anymore<br/>" +

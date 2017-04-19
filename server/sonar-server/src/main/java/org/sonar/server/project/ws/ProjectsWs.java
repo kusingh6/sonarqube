@@ -20,6 +20,9 @@
 package org.sonar.server.project.ws;
 
 import java.util.Arrays;
+
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
 import static org.sonarqube.ws.client.project.ProjectsWsParameters.CONTROLLER;

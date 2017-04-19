@@ -28,7 +28,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.Severity;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.DbTester;
@@ -81,10 +82,10 @@ public class ActivateRuleActionTest {
 
   @Test
   public void define_activate_rule_action() {
-    WebService.Action definition = wsActionTester.getDef();
+    Action definition = wsActionTester.getDef();
     assertThat(definition).isNotNull();
     assertThat(definition.isPost()).isTrue();
-    assertThat(definition.params()).extracting(WebService.Param::key).containsExactlyInAnyOrder("severity", "profile_key", "reset", "rule_key", "params");
+    assertThat(definition.params()).extracting(Param::key).containsExactlyInAnyOrder("severity", "profile_key", "reset", "rule_key", "params");
   }
 
   @Test

@@ -21,14 +21,15 @@ package org.sonar.server.measure.ws;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.server.ws.WsTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TimeMachineWsTest {
 
-  WebService.Controller controller;
+  Controller controller;
 
   @Before
   public void setUp() {
@@ -46,7 +47,7 @@ public class TimeMachineWsTest {
 
   @Test
   public void define_index_action() {
-    WebService.Action action = controller.action("index");
+    Action action = controller.action("index");
     assertThat(action).isNotNull();
     assertThat(action.responseExampleAsString()).isNotEmpty();
   }

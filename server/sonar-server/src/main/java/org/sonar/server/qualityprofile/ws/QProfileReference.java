@@ -24,8 +24,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.core.util.Uuids;
 import org.sonar.core.util.stream.MoreCollectors;
 
@@ -174,7 +174,7 @@ public class QProfileReference {
     return new QProfileReference(Type.NAME, null, organizationKey, requireNonNull(lang), requireNonNull(name));
   }
 
-  public static void defineParams(WebService.NewAction action, Languages languages) {
+  public static void defineParams(NewAction action, Languages languages) {
     action.createParam(PARAM_PROFILE_KEY)
       .setDescription("A quality profile key. Either this parameter, or a combination of profileName + language must be set.")
       .setExampleValue(Uuids.UUID_EXAMPLE_01);

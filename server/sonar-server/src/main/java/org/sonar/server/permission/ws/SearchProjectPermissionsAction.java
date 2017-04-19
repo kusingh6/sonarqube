@@ -23,10 +23,11 @@ import java.util.Locale;
 import java.util.Optional;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.ResourceTypes;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.core.permission.ProjectPermissions;
 import org.sonar.db.DbClient;
@@ -73,8 +74,8 @@ public class SearchProjectPermissionsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("search_project_permissions")
+  public void define(NewController context) {
+    NewAction action = context.createAction("search_project_permissions")
       .setDescription("List project permissions. A project can be a technical project, a view or a developer.<br />" +
         "Requires one of the following permissions:" +
         "<ul>" +

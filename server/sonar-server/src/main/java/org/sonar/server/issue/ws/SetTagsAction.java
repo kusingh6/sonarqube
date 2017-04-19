@@ -24,10 +24,11 @@ import com.google.common.io.Resources;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.core.util.Uuids;
 import org.sonar.server.issue.IssueService;
@@ -48,7 +49,7 @@ public class SetTagsAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction action = controller.createAction(ACTION_SET_TAGS)
       .setPost(true)
       .setSince("5.1")

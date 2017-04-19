@@ -22,6 +22,8 @@ package org.sonar.server.platform.ws;
 import com.google.common.io.Resources;
 import org.apache.commons.io.IOUtils;
 import org.sonar.api.platform.Server;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
 import org.sonar.api.server.ws.Response;

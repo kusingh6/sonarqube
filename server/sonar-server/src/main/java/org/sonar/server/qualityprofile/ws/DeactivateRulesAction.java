@@ -20,9 +20,10 @@
 package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.server.ServerSide;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.server.qualityprofile.BulkChangeResult;
@@ -54,8 +55,8 @@ public class DeactivateRulesAction implements QProfileWsAction {
     this.dbClient = dbClient;
   }
 
-  public void define(WebService.NewController controller) {
-    WebService.NewAction deactivate = controller
+  public void define(NewController controller) {
+    NewAction deactivate = controller
       .createAction(DEACTIVATE_RULES_ACTION)
       .setDescription("Bulk deactivate rules on Quality profiles")
       .setPost(true)

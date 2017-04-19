@@ -19,6 +19,8 @@
  */
 package org.sonar.server.user.ws;
 
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
 public class UsersWs implements WebService {

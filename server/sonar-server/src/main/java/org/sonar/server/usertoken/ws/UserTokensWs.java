@@ -19,6 +19,8 @@
  */
 package org.sonar.server.usertoken.ws;
 
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
 import static org.sonarqube.ws.client.usertoken.UserTokensWsParameters.CONTROLLER;

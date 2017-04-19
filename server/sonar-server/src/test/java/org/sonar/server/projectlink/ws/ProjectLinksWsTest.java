@@ -22,7 +22,8 @@ package org.sonar.server.projectlink.ws;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.tester.UserSessionRule;
@@ -36,7 +37,7 @@ public class ProjectLinksWsTest {
   @Rule
   public UserSessionRule userSessionRule = UserSessionRule.standalone();
 
-  WebService.Controller controller;
+  Controller controller;
 
   @Before
   public void setUp() {
@@ -58,7 +59,7 @@ public class ProjectLinksWsTest {
 
   @Test
   public void define_search_action() {
-    WebService.Action action = controller.action("search");
+    Action action = controller.action("search");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isFalse();
     assertThat(action.handler()).isNotNull();
@@ -68,7 +69,7 @@ public class ProjectLinksWsTest {
 
   @Test
   public void define_create_action() {
-    WebService.Action action = controller.action("create");
+    Action action = controller.action("create");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isTrue();
     assertThat(action.handler()).isNotNull();
@@ -78,7 +79,7 @@ public class ProjectLinksWsTest {
 
   @Test
   public void define_delete_action() {
-    WebService.Action action = controller.action("delete");
+    Action action = controller.action("delete");
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isTrue();
     assertThat(action.handler()).isNotNull();

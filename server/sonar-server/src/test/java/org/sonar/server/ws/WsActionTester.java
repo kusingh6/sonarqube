@@ -20,22 +20,25 @@
 package org.sonar.server.ws;
 
 import com.google.common.collect.Iterables;
-import org.sonar.api.server.ws.WebService;
+
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewController;
 
 public class WsActionTester {
 
   public static final String CONTROLLER_KEY = "test";
-  private final WebService.Action action;
+  private final Action action;
 
   public WsActionTester(WsAction wsAction) {
-    WebService.Context context = new WebService.Context();
-    WebService.NewController newController = context.createController(CONTROLLER_KEY);
+    Context context = new Context();
+    NewController newController = context.createController(CONTROLLER_KEY);
     wsAction.define(newController);
     newController.done();
     action = Iterables.get(context.controller(CONTROLLER_KEY).actions(), 0);
   }
 
-  public WebService.Action getDef() {
+  public Action getDef() {
     return action;
   }
 

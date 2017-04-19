@@ -26,7 +26,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.server.exceptions.NotFoundException;
 import org.sonar.server.platform.ServerFileSystem;
 import org.sonar.server.ws.WsActionTester;
@@ -89,11 +90,11 @@ public class FileActionTest {
 
   @Test
   public void test_definition() throws Exception {
-    WebService.Action definition = tester.getDef();
+    Action definition = tester.getDef();
     assertThat(definition.isInternal()).isTrue();
     assertThat(definition.isPost()).isFalse();
     assertThat(definition.responseExampleAsString()).isNotEmpty();
-    assertThat(definition.params()).extracting(WebService.Param::key).containsOnly("name");
+    assertThat(definition.params()).extracting(Param::key).containsOnly("name");
   }
 
 }

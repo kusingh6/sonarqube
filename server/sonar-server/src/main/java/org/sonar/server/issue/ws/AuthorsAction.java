@@ -20,11 +20,12 @@
 package org.sonar.server.issue.ws;
 
 import com.google.common.io.Resources;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.NewAction;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.server.issue.IssueService;
 
@@ -57,7 +58,7 @@ public class AuthorsAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     NewAction action = controller.createAction(ACTION_AUTHORS)
       .setSince("5.1")
       .setDescription("Search SCM accounts which match a given query")

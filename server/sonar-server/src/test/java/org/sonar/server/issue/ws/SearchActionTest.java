@@ -22,7 +22,7 @@ package org.sonar.server.issue.ws;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.server.issue.IssueQueryFactory;
 import org.sonar.server.issue.index.IssueIndex;
 import org.sonar.server.tester.UserSessionRule;
@@ -48,7 +48,7 @@ public class SearchActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action def = wsTester.getDef();
+    Action def = wsTester.getDef();
     assertThat(def.key()).isEqualTo("search");
     assertThat(def.isInternal()).isFalse();
     assertThat(def.isPost()).isFalse();

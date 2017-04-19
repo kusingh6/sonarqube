@@ -22,9 +22,10 @@ package org.sonar.server.ce.ws;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import org.apache.commons.lang.StringUtils;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.ce.queue.CeTask;
 import org.sonar.server.computation.queue.ReportSubmitter;
 import org.sonar.server.organization.DefaultOrganizationProvider;
@@ -48,8 +49,8 @@ public class SubmitAction implements CeWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("submit")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("submit")
       .setDescription("Submits a scanner report to the queue. Report is processed asynchronously. Requires analysis permission. " +
         "If the project does not exist, then the provisioning permission is also required.")
       .setPost(true)

@@ -22,7 +22,9 @@ package org.sonar.server.plugins.ws;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.server.exceptions.ForbiddenException;
 import org.sonar.server.tester.UserSessionRule;
@@ -87,15 +89,15 @@ public class UpdatesActionTest extends AbstractUpdateCenterBasedPluginsWsActionT
     logInAsSystemAdministrator();
 
     WsTester wsTester = new WsTester();
-    WebService.NewController newController = wsTester.context().createController(DUMMY_CONTROLLER_KEY);
+    NewController newController = wsTester.context().createController(DUMMY_CONTROLLER_KEY);
 
     underTest.define(newController);
     newController.done();
 
-    WebService.Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);
+    Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);
     assertThat(controller.actions()).extracting("key").containsExactly("updates");
 
-    WebService.Action action = controller.actions().iterator().next();
+    Action action = controller.actions().iterator().next();
     assertThat(action.isPost()).isFalse();
     assertThat(action.description()).isNotEmpty();
     assertThat(action.responseExample()).isNotNull();

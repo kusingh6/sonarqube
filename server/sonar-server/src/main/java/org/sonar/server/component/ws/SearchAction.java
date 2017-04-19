@@ -27,10 +27,11 @@ import java.util.Set;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.resources.ResourceTypes;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -78,8 +79,8 @@ public class SearchAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_SEARCH)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_SEARCH)
       .setSince("6.3")
       .setDescription("Search for components.<br>" +
         "Returns the components with the 'Browse' permission.")

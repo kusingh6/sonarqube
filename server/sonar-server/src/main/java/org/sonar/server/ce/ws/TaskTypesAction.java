@@ -21,9 +21,10 @@ package org.sonar.server.ce.ws;
 
 import com.google.common.collect.ImmutableSet;
 import java.util.Set;
+
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.ce.taskprocessor.CeTaskProcessor;
 import org.sonarqube.ws.WsCe;
 
@@ -41,7 +42,7 @@ public class TaskTypesAction implements CeWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
+  public void define(NewController controller) {
     controller.createAction("task_types")
       .setDescription("List available task types")
       .setResponseExample(getClass().getResource("task_types-example.json"))

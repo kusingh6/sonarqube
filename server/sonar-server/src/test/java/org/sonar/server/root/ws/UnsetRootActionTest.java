@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbSession;
 import org.sonar.db.DbTester;
@@ -56,7 +57,7 @@ public class UnsetRootActionTest {
 
   @Test
   public void verify_definition() {
-    WebService.Action action = wsTester.getDef();
+    Action action = wsTester.getDef();
     assertThat(action.key()).isEqualTo("unset_root");
     assertThat(action.isInternal()).isTrue();
     assertThat(action.isPost()).isTrue();
@@ -69,7 +70,7 @@ public class UnsetRootActionTest {
     assertThat(action.handler()).isSameAs(underTest);
     assertThat(action.params()).hasSize(1);
 
-    WebService.Param param = action.param("login");
+    Param param = action.param("login");
     assertThat(param.isRequired()).isTrue();
     assertThat(param.description()).isEqualTo("A user login");
     assertThat(param.defaultValue()).isNull();

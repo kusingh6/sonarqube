@@ -30,7 +30,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
 import org.sonar.api.config.Settings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
 import org.sonar.core.permission.GlobalPermissions;
@@ -121,7 +122,7 @@ public class CreateActionTest {
 
   @Test
   public void verify_define() {
-    WebService.Action action = wsTester.getDef();
+    Action action = wsTester.getDef();
     assertThat(action.key()).isEqualTo("create");
     assertThat(action.isPost()).isTrue();
     assertThat(action.description()).isEqualTo("Create an organization.<br />" +
@@ -132,7 +133,7 @@ public class CreateActionTest {
     assertThat(action.params()).hasSize(5);
     assertThat(action.responseExample()).isEqualTo(getClass().getResource("create-example.json"));
     assertThat(action.param("name"))
-      .matches(WebService.Param::isRequired)
+      .matches(Param::isRequired)
       .matches(param -> "Foo Company".equals(param.exampleValue()))
       .matches(param -> param.description() != null);
     assertThat(action.param("key"))

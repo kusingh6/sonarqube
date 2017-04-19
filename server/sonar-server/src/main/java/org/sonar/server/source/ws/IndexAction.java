@@ -21,9 +21,11 @@ package org.sonar.server.source.ws;
 
 import com.google.common.io.Resources;
 import java.util.Optional;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -48,8 +50,8 @@ public class IndexAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("index")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("index")
       .setDescription("Get source code as line number / text pairs. Require See Source Code permission on file")
       .setSince("5.0")
       .setResponseExample(Resources.getResource(getClass(), "example-index.json"))

@@ -22,7 +22,8 @@ package org.sonar.server.test.ws;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.test.index.TestIndex;
@@ -36,7 +37,7 @@ public class TestsWsTest {
   @Rule
   public UserSessionRule userSessionRule = UserSessionRule.standalone();
 
-  WebService.Controller controller;
+  Controller controller;
 
   @Before
   public void setUp() {
@@ -56,7 +57,7 @@ public class TestsWsTest {
 
   @Test
   public void define_list_action() {
-    WebService.Action action = controller.action("list");
+    Action action = controller.action("list");
     assertThat(action).isNotNull();
     assertThat(action.isInternal()).isFalse();
     assertThat(action.isPost()).isFalse();
@@ -77,7 +78,7 @@ public class TestsWsTest {
 
   @Test
   public void define_covered_files() {
-    WebService.Action action = controller.action("covered_files");
+    Action action = controller.action("covered_files");
     assertThat(action).isNotNull();
     assertThat(action.isInternal()).isFalse();
     assertThat(action.isPost()).isFalse();

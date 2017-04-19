@@ -21,7 +21,8 @@ package org.sonar.server.duplication.ws;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.tester.UserSessionRule;
@@ -40,12 +41,12 @@ public class DuplicationsWsTest {
 
   @Test
   public void define_ws() {
-    WebService.Controller controller = tester.controller("api/duplications");
+    Controller controller = tester.controller("api/duplications");
     assertThat(controller).isNotNull();
     assertThat(controller.since()).isEqualTo("4.4");
     assertThat(controller.description()).isNotEmpty();
 
-    WebService.Action show = controller.action("show");
+    Action show = controller.action("show");
     assertThat(show).isNotNull();
     assertThat(show.handler()).isNotNull();
     assertThat(show.since()).isEqualTo("4.4");

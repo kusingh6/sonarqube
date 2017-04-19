@@ -20,7 +20,7 @@
 package org.sonar.server.project.ws;
 
 import org.sonar.api.server.ServerSide;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.organization.OrganizationDto;
@@ -37,7 +37,7 @@ public class ProjectsWsSupport {
     this.dbClient = dbClient;
   }
 
-  void addOrganizationParam(WebService.NewAction action) {
+  void addOrganizationParam(NewAction action) {
     action.createParam(PARAM_ORGANIZATION)
       .setDescription("The key of the organization")
       .setRequired(false)

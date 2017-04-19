@@ -24,10 +24,11 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.CheckForNull;
 import org.sonar.api.measures.CoreMetrics;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -57,8 +58,8 @@ public class ShowAction implements RequestHandler {
     this.componentFinder = componentFinder;
   }
 
-  void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("show")
+  void define(NewController controller) {
+    NewAction action = controller.createAction("show")
       .setDescription("Get duplications. Require Browse permission on file's project")
       .setSince("4.4")
       .setHandler(this)

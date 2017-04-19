@@ -32,7 +32,7 @@ import org.sonar.api.resources.Languages;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -142,7 +142,7 @@ public class ChangeParentActionTest {
 
   @Test
   public void define_change_parent_action() {
-    WebService.Action changeParent = new WsTester(new QProfilesWs(underTest))
+    Action changeParent = new WsTester(new QProfilesWs(underTest))
       .action(QualityProfileWsParameters.CONTROLLER_QUALITY_PROFILES, "change_parent");
     assertThat(changeParent).isNotNull();
     assertThat(changeParent.isPost()).isTrue();

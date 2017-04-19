@@ -25,7 +25,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -176,11 +177,11 @@ public class SetActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.isPost()).isTrue();
     assertThat(definition.isInternal()).isFalse();
-    assertThat(definition.params()).extracting(WebService.Param::key)
+    assertThat(definition.params()).extracting(Param::key)
       .containsOnly("project", "tags");
     assertThat(definition.description()).isNotEmpty();
     assertThat(definition.since()).isEqualTo("6.4");

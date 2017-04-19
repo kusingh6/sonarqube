@@ -21,9 +21,9 @@ package org.sonar.server.organization.ws;
 
 import java.util.List;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.permission.GroupPermissionDto;
@@ -60,7 +60,7 @@ public class EnableSupportAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public void define(NewController context) {
     context.createAction(ACTION)
       .setPost(true)
       .setDescription("Enable support of organizations.<br />" +

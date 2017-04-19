@@ -24,9 +24,10 @@ import com.google.common.io.Resources;
 import java.util.Date;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.UserRole;
@@ -55,8 +56,8 @@ public class ScmAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("scm")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("scm")
       .setDescription("Get SCM information of source files. Require See Source Code permission on file's project<br/>" +
         "Each element of the result array is composed of:" +
         "<ol>" +

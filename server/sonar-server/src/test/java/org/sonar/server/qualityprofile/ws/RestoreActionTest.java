@@ -28,7 +28,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbSession;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
@@ -70,7 +71,7 @@ public class RestoreActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action definition = tester.getDef();
+    Action definition = tester.getDef();
 
     assertThat(definition.key()).isEqualTo("restore");
     assertThat(definition.isPost()).isTrue();
@@ -79,10 +80,10 @@ public class RestoreActionTest {
 
     // parameters
     assertThat(definition.params()).hasSize(2);
-    WebService.Param backupParam = definition.param("backup");
+    Param backupParam = definition.param("backup");
     assertThat(backupParam.isRequired()).isTrue();
     assertThat(backupParam.since()).isNull();
-    WebService.Param orgParam = definition.param("organization");
+    Param orgParam = definition.param("organization");
     assertThat(orgParam.isRequired()).isFalse();
     assertThat(orgParam.since()).isEqualTo("6.4");
   }

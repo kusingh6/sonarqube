@@ -26,10 +26,11 @@ import com.google.common.io.Resources;
 import java.util.List;
 import java.util.Optional;
 import org.sonar.api.security.DefaultGroups;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -68,8 +69,8 @@ public class GroupsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("groups")
+  public void define(NewController context) {
+    NewAction action = context.createAction("groups")
       .setSince("5.2")
       .setInternal(true)
       .setDescription("Lists the groups with their permissions.<br>" +

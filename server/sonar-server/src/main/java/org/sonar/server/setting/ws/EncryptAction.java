@@ -21,9 +21,10 @@ package org.sonar.server.setting.ws;
 
 import org.sonar.api.config.Encryption;
 import org.sonar.api.config.Settings;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.user.UserSession;
 import org.sonarqube.ws.Settings.EncryptWsResponse;
 
@@ -41,8 +42,8 @@ public class EncryptAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("encrypt")
+  public void define(NewController context) {
+    NewAction action = context.createAction("encrypt")
       .setDescription("Encrypt a setting value.<br>" +
         "Requires 'Administer System' permission.")
       .setSince("6.1")

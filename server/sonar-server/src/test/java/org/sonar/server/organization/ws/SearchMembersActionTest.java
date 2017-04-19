@@ -25,8 +25,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
+import org.sonar.api.server.ws.SelectionMode;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
@@ -179,7 +180,7 @@ public class SearchMembersActionTest {
     indexAllUsers();
     request
       .setOrganization(anotherOrganization.getKey())
-      .setSelected(WebService.SelectionMode.DESELECTED.value());
+      .setSelected(SelectionMode.DESELECTED.value());
 
     SearchMembersWsResponse result = call();
 
@@ -301,7 +302,7 @@ public class SearchMembersActionTest {
 
   @Test
   public void definition() {
-    WebService.Action action = ws.getDef();
+    Action action = ws.getDef();
 
     assertThat(action.key()).isEqualTo("search_members");
     assertThat(action.params()).extracting(Param::key).containsOnly("q", "selected", "p", "ps", "organization");

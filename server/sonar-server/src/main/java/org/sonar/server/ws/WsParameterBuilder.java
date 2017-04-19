@@ -28,7 +28,8 @@ import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.ResourceType;
 import org.sonar.api.resources.ResourceTypes;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewParam;
 
 import static com.google.common.base.Predicates.not;
 import static com.google.common.collect.FluentIterable.from;
@@ -44,13 +45,13 @@ public class WsParameterBuilder {
     // static methods only
   }
 
-  public static WebService.NewParam createRootQualifierParameter(WebService.NewAction action, QualifierParameterContext context) {
+  public static NewParam createRootQualifierParameter(NewAction action, QualifierParameterContext context) {
     return action.createParam(PARAM_QUALIFIER)
       .setDescription("Project qualifier. Filter the results with the specified qualifier. Possible values are:" + buildRootQualifiersDescription(context))
       .setPossibleValues(getRootQualifiers(context.getResourceTypes()));
   }
 
-  public static WebService.NewParam createQualifiersParameter(WebService.NewAction action, QualifierParameterContext context) {
+  public static NewParam createQualifiersParameter(NewAction action, QualifierParameterContext context) {
     return action.createParam(PARAM_QUALIFIERS)
       .setDescription(
         "Comma-separated list of component qualifiers. Filter the results with the specified qualifiers. Possible values are:" + buildAllQualifiersDescription(context))

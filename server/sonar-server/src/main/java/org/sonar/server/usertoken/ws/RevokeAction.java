@@ -19,9 +19,10 @@
  */
 package org.sonar.server.usertoken.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.server.user.UserSession;
@@ -41,8 +42,8 @@ public class RevokeAction implements UserTokensWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_REVOKE)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_REVOKE)
       .setDescription("Revoke a user access token. <br/>"+
         "If the login is set, it requires administration permissions. Otherwise, a token is generated for the authenticated user.")
       .setSince("5.3")

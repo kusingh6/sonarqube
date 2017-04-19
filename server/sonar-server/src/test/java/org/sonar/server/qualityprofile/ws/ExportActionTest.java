@@ -29,7 +29,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.profiles.ProfileExporter;
 import org.sonar.api.profiles.RulesProfile;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -66,24 +67,24 @@ public class ExportActionTest {
 
   @Test
   public void test_definition_without_exporters() {
-    WebService.Action definition = newWsActionTester().getDef();
+    Action definition = newWsActionTester().getDef();
 
     assertThat(definition.isPost()).isFalse();
     assertThat(definition.isInternal()).isFalse();
     assertThat(definition.params()).extracting("key").containsOnly("language", "name", "organization");
-    WebService.Param organizationParam = definition.param("organization");
+    Param organizationParam = definition.param("organization");
     assertThat(organizationParam.since()).isEqualTo("6.4");
     assertThat(organizationParam.isInternal()).isTrue();
   }
 
   @Test
   public void test_definition_with_exporters() {
-    WebService.Action definition = newWsActionTester(newExporter("polop"), newExporter("palap")).getDef();
+    Action definition = newWsActionTester(newExporter("polop"), newExporter("palap")).getDef();
 
     assertThat(definition.isPost()).isFalse();
     assertThat(definition.isInternal()).isFalse();
     assertThat(definition.params()).extracting("key").containsOnly("language", "name", "organization", "exporterKey");
-    WebService.Param exportersParam = definition.param("exporterKey");
+    Param exportersParam = definition.param("exporterKey");
     assertThat(exportersParam.possibleValues()).containsOnly("polop", "palap");
     assertThat(exportersParam.deprecatedKey()).isEqualTo("format");
     assertThat(exportersParam.deprecatedKeySince()).isEqualTo("6.3");

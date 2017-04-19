@@ -19,7 +19,7 @@
  */
 package org.sonar.server.ce.ws;
 
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.server.ws.WsAction;
 
 /**
@@ -27,5 +27,5 @@ import org.sonar.server.ws.WsAction;
  */
 interface CeWsAction extends WsAction {
   @Override
-  void define(WebService.NewController controller);
+  void define(NewController controller);
 }

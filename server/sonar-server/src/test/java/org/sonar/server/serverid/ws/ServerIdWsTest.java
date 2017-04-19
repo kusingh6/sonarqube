@@ -20,7 +20,7 @@
 package org.sonar.server.serverid.ws;
 
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.platform.ServerIdGenerator;
 import org.sonar.server.user.UserSession;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.mock;
 public class ServerIdWsTest {
 
   WsTester ws = new WsTester(new ServerIdWs(new ShowAction(mock(UserSession.class), mock(ServerIdGenerator.class), mock(DbClient.class))));
-  WebService.Controller underTest = ws.controller("api/server_id");
+  Controller underTest = ws.controller("api/server_id");
 
   @Test
   public void definition() {

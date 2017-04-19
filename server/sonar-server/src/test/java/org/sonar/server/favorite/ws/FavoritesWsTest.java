@@ -20,7 +20,7 @@
 package org.sonar.server.favorite.ws;
 
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService.Controller;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.favorite.FavoriteUpdater;

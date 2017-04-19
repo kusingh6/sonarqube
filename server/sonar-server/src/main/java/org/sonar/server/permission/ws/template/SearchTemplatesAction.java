@@ -22,10 +22,11 @@ package org.sonar.server.permission.ws.template;
 import java.util.Locale;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Qualifiers;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.core.permission.ProjectPermissions;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
@@ -109,8 +110,8 @@ public class SearchTemplatesAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("search_templates")
+  public void define(NewController context) {
+    NewAction action = context.createAction("search_templates")
       .setDescription("List permission templates.<br />" +
         "Requires the following permission: 'Administer System'.")
       .setResponseExample(getClass().getResource("search_templates-example.json"))

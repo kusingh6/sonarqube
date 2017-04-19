@@ -29,10 +29,11 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -107,16 +108,16 @@ public class WebServiceFilterTest {
   }
 
   private void initWebServiceEngine(WsUrl... wsUrls) {
-    List<WebService.Controller> controllers = new ArrayList<>();
+    List<Controller> controllers = new ArrayList<>();
 
     for (WsUrl wsUrl : wsUrls) {
       String controller = wsUrl.getController();
-      WebService.Controller wsController = mock(WebService.Controller.class);
+      Controller wsController = mock(Controller.class);
       when(wsController.path()).thenReturn(controller);
 
-      List<WebService.Action> actions = new ArrayList<>();
+      List<Action> actions = new ArrayList<>();
       for (String action : wsUrl.getActions()) {
-        WebService.Action wsAction = mock(WebService.Action.class);
+        Action wsAction = mock(Action.class);
         when(wsAction.path()).thenReturn(controller + "/" + action);
         when(wsAction.key()).thenReturn(action);
         when(wsAction.handler()).thenReturn(wsUrl.getRequestHandler());

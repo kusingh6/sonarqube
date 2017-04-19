@@ -20,9 +20,11 @@
 package org.sonar.server.ce.ws;
 
 import java.util.List;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.web.UserRole;
 import org.sonar.core.util.Uuids;
 import org.sonar.db.DbClient;
@@ -58,8 +60,8 @@ public class ComponentAction implements CeWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction("component")
+  public void define(NewController controller) {
+    NewAction action = controller.createAction("component")
       .setDescription("Get the pending tasks, in-progress tasks and the last executed task of a given component (usually a project).<br>" +
         "Requires the following permission: 'Browse' on the specified component.<br>" +
         "Either '%s' or '%s' must be provided, not both.<br>" +

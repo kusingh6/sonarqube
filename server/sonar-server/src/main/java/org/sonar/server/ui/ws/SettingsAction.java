@@ -20,9 +20,9 @@
 package org.sonar.server.ui.ws;
 
 import org.sonar.api.config.Settings;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService.NewController;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.page.Page;
 import org.sonar.core.config.WebConstants;

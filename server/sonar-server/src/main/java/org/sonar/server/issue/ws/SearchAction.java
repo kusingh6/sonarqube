@@ -32,10 +32,11 @@ import org.sonar.api.issue.Issue;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.Paging;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.server.es.Facets;
@@ -117,8 +118,8 @@ public class SearchAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller
+  public void define(NewController controller) {
+    NewAction action = controller
       .createAction(ACTION_SEARCH)
       .setHandler(this)
       .setDescription(
@@ -223,7 +224,7 @@ public class SearchAction implements IssuesWsAction {
       .setDefaultValue("false");
   }
 
-  private static void addComponentRelatedParams(WebService.NewAction action) {
+  private static void addComponentRelatedParams(NewAction action) {
     action.createParam(PARAM_ON_COMPONENT_ONLY)
       .setDescription("Return only issues at a component's level, not on its descendants (modules, directories, files, etc). " +
         "This parameter is only considered when componentKeys or componentUuids is set. " +

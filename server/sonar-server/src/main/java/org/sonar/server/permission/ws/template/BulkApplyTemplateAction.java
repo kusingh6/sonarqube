@@ -25,10 +25,11 @@ import javax.annotation.Nullable;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.ResourceType;
 import org.sonar.api.resources.ResourceTypes;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.component.ComponentDto;
@@ -79,8 +80,8 @@ public class BulkApplyTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("bulk_apply_template")
+  public void define(NewController context) {
+    NewAction action = context.createAction("bulk_apply_template")
       .setDescription("Apply a permission template to several projects.<br />" +
         "The template id or name must be provided.<br />" +
         "Requires the following permission: 'Administer System'.")

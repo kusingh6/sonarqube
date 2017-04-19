@@ -21,9 +21,11 @@ package org.sonar.server.user.ws;
 
 import java.util.Collections;
 import java.util.List;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.user.UserDto;
@@ -61,8 +63,8 @@ public class CreateAction implements UsersWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction(ACTION_CREATE)
+  public void define(NewController controller) {
+    NewAction action = controller.createAction(ACTION_CREATE)
       .setDescription("Create a user.<br/>" +
         "If a deactivated user account exists with the given login, it will be reactivated.<br/>" +
         "Requires Administer System permission<br/>" +

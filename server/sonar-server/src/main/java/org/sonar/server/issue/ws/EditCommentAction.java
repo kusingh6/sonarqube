@@ -24,9 +24,11 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.System2;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -63,8 +65,8 @@ public class EditCommentAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_EDIT_COMMENT)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_EDIT_COMMENT)
       .setDescription("Edit a comment.<br/>" +
         "Requires authentication and the following permission: 'Browse' on the project of the specified issue.<br/>" +
         "Since 6.3, the response contains the issue with all details, not only the edited comment.<br/>" +

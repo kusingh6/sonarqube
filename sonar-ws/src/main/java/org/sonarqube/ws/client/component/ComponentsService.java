@@ -21,6 +21,8 @@ package org.sonarqube.ws.client.component;
 
 import com.google.common.base.Joiner;
 import java.util.List;
+
+import org.sonar.api.server.ws.Param;
 import org.sonarqube.ws.WsComponents.SearchProjectsWsResponse;
 import org.sonarqube.ws.WsComponents.SearchWsResponse;
 import org.sonarqube.ws.WsComponents.ShowWsResponse;
@@ -29,7 +31,7 @@ import org.sonarqube.ws.client.BaseService;
 import org.sonarqube.ws.client.GetRequest;
 import org.sonarqube.ws.client.WsConnector;
 
-import static org.sonar.api.server.ws.WebService.Param;
+import static org.sonar.api.server.ws.Param;
 import static org.sonarqube.ws.client.component.ComponentsWsParameters.ACTION_SEARCH;
 import static org.sonarqube.ws.client.component.ComponentsWsParameters.ACTION_SEARCH_PROJECTS;
 import static org.sonarqube.ws.client.component.ComponentsWsParameters.ACTION_SHOW;

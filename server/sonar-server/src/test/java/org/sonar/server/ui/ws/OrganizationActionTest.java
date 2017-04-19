@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.page.Page;
 import org.sonar.api.web.page.PageDefinition;
@@ -64,14 +65,14 @@ public class OrganizationActionTest {
 
   @Test
   public void verify_definition() {
-    WebService.Action def = ws.getDef();
+    Action def = ws.getDef();
 
     assertThat(def.isInternal()).isTrue();
     assertThat(def.description()).isEqualTo("Get information concerning organization navigation for the current user");
     assertThat(def.since()).isEqualTo("6.3");
 
     assertThat(def.params()).hasSize(1);
-    WebService.Param organization = def.param("organization");
+    Param organization = def.param("organization");
     assertThat(organization.description()).isEqualTo("the organization key");
     assertThat(organization.isRequired()).isTrue();
     assertThat(organization.exampleValue()).isEqualTo("my-org");

@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.System2;
 import org.sonar.core.util.Uuids;
 import org.sonar.db.DbSession;
@@ -72,7 +73,7 @@ public class SearchActionTest {
 
   @Test
   public void verify_define() {
-    WebService.Action action = wsTester.getDef();
+    Action action = wsTester.getDef();
     assertThat(action.key()).isEqualTo("search");
     assertThat(action.isPost()).isFalse();
     assertThat(action.description()).isEqualTo("Search for organizations");
@@ -82,17 +83,17 @@ public class SearchActionTest {
     assertThat(action.params()).hasSize(3);
     assertThat(action.responseExample()).isEqualTo(getClass().getResource("search-example.json"));
 
-    WebService.Param organizationsParam = action.param("organizations");
+    Param organizationsParam = action.param("organizations");
     assertThat(organizationsParam.isRequired()).isFalse();
     assertThat(organizationsParam.defaultValue()).isNull();
     assertThat(organizationsParam.description()).isEqualTo("Comma-separated list of organization keys");
     assertThat(organizationsParam.exampleValue()).isEqualTo("my-org-1,foocorp");
     assertThat(organizationsParam.since()).isEqualTo("6.3");
-    WebService.Param pParam = action.param("p");
+    Param pParam = action.param("p");
     assertThat(pParam.isRequired()).isFalse();
     assertThat(pParam.defaultValue()).isEqualTo("1");
     assertThat(pParam.description()).isEqualTo("1-based page number");
-    WebService.Param psParam = action.param("ps");
+    Param psParam = action.param("ps");
     assertThat(psParam.isRequired()).isFalse();
     assertThat(psParam.defaultValue()).isEqualTo("25");
     assertThat(psParam.description()).isEqualTo("Page size. Must be greater than 0.");

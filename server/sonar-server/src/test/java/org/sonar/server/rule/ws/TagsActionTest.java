@@ -24,7 +24,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.sonar.api.config.MapSettings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
 import org.sonar.db.organization.OrganizationDto;
@@ -67,27 +68,27 @@ public class TagsActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action action = tester.getDef();
+    Action action = tester.getDef();
     assertThat(action.description()).isNotEmpty();
     assertThat(action.responseExampleAsString()).isNotEmpty();
     assertThat(action.isPost()).isFalse();
     assertThat(action.isInternal()).isFalse();
     assertThat(action.params()).hasSize(3);
 
-    WebService.Param query = action.param("q");
+    Param query = action.param("q");
     assertThat(query).isNotNull();
     assertThat(query.isRequired()).isFalse();
     assertThat(query.description()).isNotEmpty();
     assertThat(query.exampleValue()).isNotEmpty();
 
-    WebService.Param pageSize = action.param("ps");
+    Param pageSize = action.param("ps");
     assertThat(pageSize).isNotNull();
     assertThat(pageSize.isRequired()).isFalse();
     assertThat(pageSize.defaultValue()).isEqualTo("0");
     assertThat(pageSize.description()).isNotEmpty();
     assertThat(pageSize.exampleValue()).isNotEmpty();
 
-    WebService.Param organization = action.param("organization");
+    Param organization = action.param("organization");
     assertThat(organization).isNotNull();
     assertThat(organization.isRequired()).isFalse();
     assertThat(organization.isInternal()).isTrue();

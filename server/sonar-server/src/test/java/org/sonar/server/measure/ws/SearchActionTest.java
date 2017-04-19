@@ -30,7 +30,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.measures.Metric;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -366,7 +366,7 @@ public class SearchActionTest {
 
   @Test
   public void definition() {
-    WebService.Action result = ws.getDef();
+    Action result = ws.getDef();
 
     assertThat(result.key()).isEqualTo("search");
     assertThat(result.isPost()).isFalse();

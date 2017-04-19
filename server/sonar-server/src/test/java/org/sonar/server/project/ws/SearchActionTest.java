@@ -28,7 +28,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbTester;
 import org.sonar.db.component.ComponentDto;
 import org.sonar.db.organization.OrganizationDto;
@@ -215,7 +216,7 @@ public class SearchActionTest {
 
   @Test
   public void verify_define() {
-    WebService.Action action = ws.getDef();
+    Action action = ws.getDef();
     assertThat(action.key()).isEqualTo("search");
     assertThat(action.isPost()).isFalse();
     assertThat(action.description()).isEqualTo("Search for projects or views.<br>Requires 'System Administrator' permission");
@@ -225,28 +226,28 @@ public class SearchActionTest {
     assertThat(action.params()).hasSize(5);
     assertThat(action.responseExample()).isEqualTo(getClass().getResource("search-example.json"));
 
-    WebService.Param organization = action.param("organization");
+    Param organization = action.param("organization");
     Assertions.assertThat(organization.description()).isEqualTo("The key of the organization");
     Assertions.assertThat(organization.isInternal()).isTrue();
     Assertions.assertThat(organization.isRequired()).isFalse();
     Assertions.assertThat(organization.since()).isEqualTo("6.3");
 
-    WebService.Param qParam = action.param("q");
+    Param qParam = action.param("q");
     assertThat(qParam.isRequired()).isFalse();
     assertThat(qParam.description()).isEqualTo("Limit search to component names or component keys that contain the supplied string.");
 
-    WebService.Param qualifierParam = action.param("qualifiers");
+    Param qualifierParam = action.param("qualifiers");
     assertThat(qualifierParam.isRequired()).isFalse();
     assertThat(qualifierParam.description()).isEqualTo("Comma-separated list of component qualifiers. Filter the results with the specified qualifiers");
     assertThat(qualifierParam.possibleValues()).containsOnly("TRK", "VW");
     assertThat(qualifierParam.defaultValue()).isEqualTo("TRK");
 
-    WebService.Param pParam = action.param("p");
+    Param pParam = action.param("p");
     assertThat(pParam.isRequired()).isFalse();
     assertThat(pParam.defaultValue()).isEqualTo("1");
     assertThat(pParam.description()).isEqualTo("1-based page number");
 
-    WebService.Param psParam = action.param("ps");
+    Param psParam = action.param("ps");
     assertThat(psParam.isRequired()).isFalse();
     assertThat(psParam.defaultValue()).isEqualTo("100");
     assertThat(psParam.description()).isEqualTo("Page size. Must be greater than 0 and less than 500");

@@ -20,9 +20,9 @@
 package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.profiles.ProfileExporter;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService.NewController;
 import org.sonar.api.utils.text.JsonWriter;
 
 public class ExportersAction implements QProfileWsAction {

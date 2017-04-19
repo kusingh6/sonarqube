@@ -20,8 +20,9 @@
 package org.sonar.server.organization.ws;
 
 import javax.annotation.CheckForNull;
+
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.organization.OrganizationDto;
 import org.sonar.server.organization.OrganizationValidation;
 import org.sonarqube.ws.Organizations;
@@ -77,7 +78,7 @@ public class OrganizationsWsSupport {
     return organizationValidation.checkDescription(request.param(PARAM_DESCRIPTION));
   }
 
-  void addOrganizationDetailsParams(WebService.NewAction action, boolean isNameRequired) {
+  void addOrganizationDetailsParams(NewAction action, boolean isNameRequired) {
     action.createParam(PARAM_NAME)
       .setRequired(isNameRequired)
       .setDescription("Name of the organization. <br />" +

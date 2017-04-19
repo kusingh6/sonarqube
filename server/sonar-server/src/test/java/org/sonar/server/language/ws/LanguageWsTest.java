@@ -28,8 +28,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.resources.AbstractLanguage;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService.Action;
-import org.sonar.api.server.ws.WebService.Controller;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.server.ws.WsTester;
 
 import static org.assertj.core.api.Assertions.assertThat;

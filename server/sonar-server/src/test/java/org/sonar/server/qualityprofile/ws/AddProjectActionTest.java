@@ -24,7 +24,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
@@ -65,16 +66,16 @@ public class AddProjectActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action definition = tester.getDef();
+    Action definition = tester.getDef();
     assertThat(definition.since()).isEqualTo("5.2");
     assertThat(definition.isPost()).isTrue();
 
     // parameters
-    assertThat(definition.params()).extracting(WebService.Param::key).containsOnly("profileKey", "profileName", "projectKey", "language", "projectUuid", "organization");
-    WebService.Param languageParam = definition.param("language");
+    assertThat(definition.params()).extracting(Param::key).containsOnly("profileKey", "profileName", "projectKey", "language", "projectUuid", "organization");
+    Param languageParam = definition.param("language");
     assertThat(languageParam.possibleValues()).containsOnly(LANGUAGE_1, LANGUAGE_2);
     assertThat(languageParam.exampleValue()).isNull();
-    WebService.Param organizationParam = definition.param("organization");
+    Param organizationParam = definition.param("organization");
     assertThat(organizationParam.since()).isEqualTo("6.4");
     assertThat(organizationParam.isInternal()).isTrue();
   }

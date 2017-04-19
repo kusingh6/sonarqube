@@ -22,9 +22,11 @@ package org.sonar.server.project.ws;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
+
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.component.ComponentDto;
@@ -55,8 +57,8 @@ public class BulkDeleteAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context
+  public void define(NewController context) {
+    NewAction action = context
       .createAction(ACTION)
       .setPost(true)
       .setDescription("Delete one or several projects.<br />" +

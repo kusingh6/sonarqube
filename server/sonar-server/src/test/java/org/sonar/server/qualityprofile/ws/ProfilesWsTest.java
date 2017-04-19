@@ -22,7 +22,8 @@ package org.sonar.server.qualityprofile.ws;
 import org.junit.Before;
 import org.junit.Test;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.qualityprofile.QProfileBackuper;
 import org.sonar.server.user.UserSession;
@@ -44,7 +45,7 @@ public class ProfilesWsTest {
 
   @Test
   public void define_controller() {
-    WebService.Controller controller = controller();
+    Controller controller = controller();
     assertThat(controller).isNotNull();
     assertThat(controller.path()).isEqualTo("api/profiles");
     assertThat(controller.description()).isNotEmpty();
@@ -53,9 +54,9 @@ public class ProfilesWsTest {
 
   @Test
   public void define_index_action() {
-    WebService.Controller controller = ws.controller("api/profiles");
+    Controller controller = ws.controller("api/profiles");
 
-    WebService.Action restoreProfiles = controller.action("index");
+    Action restoreProfiles = controller.action("index");
     assertThat(restoreProfiles).isNotNull();
     assertThat(restoreProfiles.handler()).isInstanceOf(RemovedWebServiceHandler.class);
     assertThat(restoreProfiles.responseExampleAsString()).isNotEmpty();
@@ -64,16 +65,16 @@ public class ProfilesWsTest {
 
   @Test
   public void define_list_action() {
-    WebService.Controller controller = controller();
+    Controller controller = controller();
 
-    WebService.Action listProfiles = controller.action("list");
+    Action listProfiles = controller.action("list");
     assertThat(listProfiles).isNotNull();
     assertThat(listProfiles.handler()).isInstanceOf(RemovedWebServiceHandler.class);
     assertThat(listProfiles.responseExampleAsString()).isNotEmpty();
     assertThat(listProfiles.params()).isEmpty();
   }
 
-  private WebService.Controller controller() {
+  private Controller controller() {
     return ws.controller("api/profiles");
   }
 }

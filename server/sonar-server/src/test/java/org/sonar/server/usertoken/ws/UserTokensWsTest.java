@@ -21,7 +21,7 @@ package org.sonar.server.usertoken.ws;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.server.user.UserSession;
@@ -51,7 +51,7 @@ public class UserTokensWsTest {
 
   @Test
   public void generate_action() {
-    WebService.Action action = ws.action(CONTROLLER_KEY, "generate");
+    Action action = ws.action(CONTROLLER_KEY, "generate");
 
     assertThat(action).isNotNull();
     assertThat(action.since()).isEqualTo("5.3");
@@ -63,7 +63,7 @@ public class UserTokensWsTest {
 
   @Test
   public void revoke_action() {
-    WebService.Action action = ws.action(CONTROLLER_KEY, "revoke");
+    Action action = ws.action(CONTROLLER_KEY, "revoke");
 
     assertThat(action).isNotNull();
     assertThat(action.since()).isEqualTo("5.3");
@@ -74,7 +74,7 @@ public class UserTokensWsTest {
 
   @Test
   public void search_action() {
-    WebService.Action action = ws.action(CONTROLLER_KEY, "search");
+    Action action = ws.action(CONTROLLER_KEY, "search");
 
     assertThat(action).isNotNull();
     assertThat(action.since()).isEqualTo("5.3");

@@ -19,9 +19,10 @@
  */
 package org.sonar.server.permission.ws.template;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.permission.template.PermissionTemplateDto;
@@ -53,8 +54,8 @@ public class AddGroupToTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context
+  public void define(NewController context) {
+    NewAction action = context
       .createAction("add_group_to_template")
       .setPost(true)
       .setSince("5.2")

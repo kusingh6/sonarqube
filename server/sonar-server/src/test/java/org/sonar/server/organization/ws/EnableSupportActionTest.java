@@ -26,7 +26,7 @@ import java.util.Optional;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.db.DbTester;
 import org.sonar.db.component.ComponentDto;
 import org.sonar.db.organization.OrganizationDto;
@@ -214,7 +214,7 @@ public class EnableSupportActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action def = tester.getDef();
+    Action def = tester.getDef();
     assertThat(def.key()).isEqualTo("enable_support");
     assertThat(def.isPost()).isTrue();
     assertThat(def.isInternal()).isTrue();

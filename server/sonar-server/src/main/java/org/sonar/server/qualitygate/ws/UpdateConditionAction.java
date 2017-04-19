@@ -19,9 +19,10 @@
  */
 package org.sonar.server.qualitygate.ws;
 
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.qualitygate.QualityGateConditionDto;
@@ -59,8 +60,8 @@ public class UpdateConditionAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction createCondition = controller.createAction(ACTION_UPDATE_CONDITION)
+  public void define(NewController controller) {
+    NewAction createCondition = controller.createAction(ACTION_UPDATE_CONDITION)
       .setDescription("Update a condition attached to a quality gate. Require Administer Quality Gates permission")
       .setPost(true)
       .setSince("4.3")

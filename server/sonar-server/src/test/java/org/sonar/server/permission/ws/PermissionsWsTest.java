@@ -21,7 +21,8 @@ package org.sonar.server.permission.ws;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.permission.ws.template.TemplateGroupsAction;
 import org.sonar.server.permission.ws.template.TemplateUsersAction;
@@ -49,7 +50,7 @@ public class PermissionsWsTest {
 
   @Test
   public void define_controller() {
-    WebService.Controller controller = controller();
+    Controller controller = controller();
     assertThat(controller).isNotNull();
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.since()).isEqualTo("3.7");
@@ -58,7 +59,7 @@ public class PermissionsWsTest {
 
   @Test
   public void define_template_users() {
-    WebService.Action action = controller().action("template_users");
+    Action action = controller().action("template_users");
 
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isFalse();
@@ -69,7 +70,7 @@ public class PermissionsWsTest {
 
   @Test
   public void define_template_groups() {
-    WebService.Action action = controller().action("template_groups");
+    Action action = controller().action("template_groups");
 
     assertThat(action).isNotNull();
     assertThat(action.isPost()).isFalse();
@@ -78,7 +79,7 @@ public class PermissionsWsTest {
     assertThat(action.param(PARAM_PERMISSION).isRequired()).isTrue();
   }
 
-  private WebService.Controller controller() {
+  private Controller controller() {
     return ws.controller("api/permissions");
   }
 }

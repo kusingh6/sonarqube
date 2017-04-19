@@ -21,7 +21,7 @@ package org.sonar.server.metric.ws;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.user.UserSession;
 import org.sonar.server.ws.WsTester;
@@ -48,7 +48,7 @@ public class MetricsWsTest {
 
   @Test
   public void define_ws() {
-    WebService.Controller controller = ws.controller("api/metrics");
+    Controller controller = ws.controller("api/metrics");
     assertThat(controller).isNotNull();
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.actions()).hasSize(6);

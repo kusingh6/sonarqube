@@ -25,9 +25,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbTester;
@@ -174,7 +174,7 @@ public class AddCommentActionTest {
 
   @Test
   public void test_definition() {
-    WebService.Action action = tester.getDef();
+    Action action = tester.getDef();
     assertThat(action.key()).isEqualTo("add_comment");
     assertThat(action.isPost()).isTrue();
     assertThat(action.isInternal()).isFalse();

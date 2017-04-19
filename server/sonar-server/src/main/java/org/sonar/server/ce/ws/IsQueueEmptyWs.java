@@ -20,6 +20,8 @@
 package org.sonar.server.ce.ws;
 
 import org.apache.commons.io.IOUtils;
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
 import org.sonar.api.server.ws.Response;
@@ -57,7 +59,7 @@ public class IsQueueEmptyWs implements WebService {
       this.dbClient = dbClient;
     }
 
-    public void define(WebService.NewController controller) {
+    public void define(NewController controller) {
       controller
         .createAction("is_queue_empty")
         .setDescription("Check if the queue of Compute Engine is empty")

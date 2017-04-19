@@ -29,7 +29,7 @@ import org.junit.Test;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.organization.OrganizationDto;
@@ -189,7 +189,7 @@ public class QProfilesWsMediumTest {
     // 1. Deactivate Rule
     WsTester.TestRequest request = wsTester.newPostRequest(QProfilesWs.API_ENDPOINT, DeactivateRulesAction.DEACTIVATE_RULES_ACTION);
     request.setParam(PARAM_PROFILE_KEY, profile.getKey());
-    request.setParam(WebService.Param.TEXT_QUERY, "hello");
+    request.setParam(Param.TEXT_QUERY, "hello");
     WsTester.Result result = request.execute();
     session.clearCache();
 
@@ -328,7 +328,7 @@ public class QProfilesWsMediumTest {
     // 1. Activate Rule with query returning 0 hits
     WsTester.TestRequest request = wsTester.newPostRequest(QProfilesWs.API_ENDPOINT, ActivateRulesAction.ACTIVATE_RULES_ACTION);
     request.setParam(PARAM_PROFILE_KEY, profile.getKey());
-    request.setParam(WebService.Param.TEXT_QUERY, "php");
+    request.setParam(Param.TEXT_QUERY, "php");
     request.execute();
     session.clearCache();
 
@@ -338,7 +338,7 @@ public class QProfilesWsMediumTest {
     // 1. Activate Rule with query returning 1 hits
     request = wsTester.newPostRequest(QProfilesWs.API_ENDPOINT, ActivateRulesAction.ACTIVATE_RULES_ACTION);
     request.setParam(PARAM_PROFILE_KEY, profile.getKey());
-    request.setParam(WebService.Param.TEXT_QUERY, "world");
+    request.setParam(Param.TEXT_QUERY, "world");
     request.execute();
     session.commit();
 

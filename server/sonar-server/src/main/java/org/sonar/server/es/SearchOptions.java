@@ -26,7 +26,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.StringUtils;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.utils.text.JsonWriter;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -137,8 +137,8 @@ public class SearchOptions {
 
   public SearchOptions writeJson(JsonWriter json, long totalHits) {
     json.prop("total", totalHits);
-    json.prop(WebService.Param.PAGE, getPage());
-    json.prop(WebService.Param.PAGE_SIZE, getLimit());
+    json.prop(Param.PAGE, getPage());
+    json.prop(Param.PAGE_SIZE, getLimit());
     return this;
   }
 }

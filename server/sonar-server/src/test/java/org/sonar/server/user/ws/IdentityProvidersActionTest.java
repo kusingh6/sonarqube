@@ -25,7 +25,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.server.authentication.Display;
 import org.sonar.api.server.authentication.IdentityProvider;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.server.authentication.IdentityProviderRepositoryRule;
 import org.sonar.server.authentication.TestIdentityProvider;
 import org.sonar.server.ws.WsActionTester;
@@ -70,7 +70,7 @@ public class IdentityProvidersActionTest {
 
   @Test
   public void ws_properties() {
-    WebService.Action webService = ws.getDef();
+    Action webService = ws.getDef();
 
     assertThat(webService.key()).isEqualTo("identity_providers");
     assertThat(webService.responseExampleAsString()).isNotEmpty();

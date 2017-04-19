@@ -24,9 +24,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.mail.EmailException;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.server.exceptions.BadRequestException;
 import org.sonar.server.notification.email.EmailNotificationChannel;
 import org.sonar.server.user.UserSession;
@@ -46,8 +47,8 @@ public class SendAction implements EmailsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("send")
+  public void define(NewController context) {
+    NewAction action = context.createAction("send")
       .setDescription("Test email configuration by sending an email<br>" +
         "Requires 'Administer System' permission.")
       .setSince("6.1")

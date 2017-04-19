@@ -27,7 +27,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.config.MapSettings;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Param;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.DbTester;
@@ -240,19 +241,19 @@ public class AddMemberActionTest {
 
   @Test
   public void definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
 
     assertThat(definition.key()).isEqualTo("add_member");
     assertThat(definition.since()).isEqualTo("6.4");
     assertThat(definition.isPost()).isTrue();
     assertThat(definition.isInternal()).isTrue();
     assertThat(definition.responseExampleAsString()).isNotEmpty();
-    assertThat(definition.params()).extracting(WebService.Param::key).containsOnly("organization", "login");
+    assertThat(definition.params()).extracting(Param::key).containsOnly("organization", "login");
 
-    WebService.Param organization = definition.param("organization");
+    Param organization = definition.param("organization");
     assertThat(organization.isRequired()).isTrue();
 
-    WebService.Param login = definition.param("login");
+    Param login = definition.param("login");
     assertThat(login.isRequired()).isTrue();
   }
 

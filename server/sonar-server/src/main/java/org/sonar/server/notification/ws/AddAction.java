@@ -27,9 +27,10 @@ import java.util.stream.Stream;
 import org.sonar.api.notifications.NotificationChannel;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.Scopes;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.component.ComponentDto;
@@ -73,8 +74,8 @@ public class AddAction implements NotificationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(ACTION_ADD)
+  public void define(NewController context) {
+    NewAction action = context.createAction(ACTION_ADD)
       .setDescription("Add a notification for the authenticated user.<br>" +
         "Requires authentication. If a project is provided, requires the 'Browse' permission on the specified project.")
       .setSince("6.3")

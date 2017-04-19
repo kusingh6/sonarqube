@@ -25,7 +25,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.Test;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.ResourceTypes;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.server.ws.WsTester;
 
 public class MeasuresWsTest {
@@ -35,7 +35,7 @@ public class MeasuresWsTest {
 
   @Test
   public void define_ws() {
-    WebService.Controller controller = ws.controller("api/measures");
+    Controller controller = ws.controller("api/measures");
 
     assertThat(controller).isNotNull();
     assertThat(controller.since()).isEqualTo("5.4");

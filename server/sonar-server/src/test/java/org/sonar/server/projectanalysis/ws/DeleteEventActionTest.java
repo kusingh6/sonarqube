@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
 import org.sonar.db.DbClient;
@@ -139,7 +139,7 @@ public class DeleteEventActionTest {
 
   @Test
   public void ws_definition() {
-    WebService.Action definition = ws.getDef();
+    Action definition = ws.getDef();
     assertThat(definition.key()).isEqualTo("delete_event");
     assertThat(definition.isPost()).isTrue();
     assertThat(definition.isInternal()).isFalse();

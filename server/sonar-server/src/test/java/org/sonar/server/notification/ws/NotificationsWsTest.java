@@ -20,10 +20,10 @@
 package org.sonar.server.notification.ws;
 
 import org.junit.Test;
+import org.sonar.api.server.ws.Controller;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Controller;
 import org.sonar.server.ws.WsTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,7 +42,7 @@ public class NotificationsWsTest {
 
   private static class FakeNotificationAction implements NotificationsWsAction {
     @Override
-    public void define(WebService.NewController context) {
+    public void define(NewController context) {
       context.createAction("fake")
         .setHandler(this);
     }

@@ -21,7 +21,8 @@ package org.sonar.server.source.ws;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.sonar.api.server.ws.WebService;
+import org.sonar.api.server.ws.Action;
+import org.sonar.api.server.ws.Controller;
 import org.sonar.db.DbClient;
 import org.sonar.server.component.ComponentFinder;
 import org.sonar.server.source.HtmlSourceDecorator;
@@ -44,13 +45,13 @@ public class SourcesWsTest {
 
   @Test
   public void define_ws() {
-    WebService.Controller controller = tester.controller("api/sources");
+    Controller controller = tester.controller("api/sources");
     assertThat(controller).isNotNull();
     assertThat(controller.since()).isEqualTo("4.2");
     assertThat(controller.description()).isNotEmpty();
     assertThat(controller.actions()).hasSize(4);
 
-    WebService.Action show = controller.action("show");
+    Action show = controller.action("show");
     assertThat(show).isNotNull();
     assertThat(show.handler()).isSameAs(showAction);
     assertThat(show.since()).isEqualTo("4.4");
@@ -58,7 +59,7 @@ public class SourcesWsTest {
     assertThat(show.responseExampleAsString()).isNotEmpty();
     assertThat(show.params()).hasSize(3);
 
-    WebService.Action raw = controller.action("raw");
+    Action raw = controller.action("raw");
     assertThat(raw).isNotNull();
     assertThat(raw.handler()).isSameAs(rawAction);
     assertThat(raw.since()).isEqualTo("5.0");
@@ -66,7 +67,7 @@ public class SourcesWsTest {
     assertThat(raw.responseExampleAsString()).isNotEmpty();
     assertThat(raw.params()).hasSize(1);
 
-    WebService.Action lines = controller.action("lines");
+    Action lines = controller.action("lines");
     assertThat(lines).isNotNull();
     assertThat(lines.handler()).isSameAs(linesAction);
     assertThat(lines.since()).isEqualTo("5.0");
@@ -74,7 +75,7 @@ public class SourcesWsTest {
     assertThat(lines.responseExampleAsString()).isNotEmpty();
     assertThat(lines.params()).hasSize(4);
 
-    WebService.Action hash = controller.action("hash");
+    Action hash = controller.action("hash");
     assertThat(hash).isNotNull();
     assertThat(hash.handler()).isSameAs(hashAction);
     assertThat(hash.since()).isEqualTo("5.0");

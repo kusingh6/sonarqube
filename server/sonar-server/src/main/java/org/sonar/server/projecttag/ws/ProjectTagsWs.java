@@ -21,6 +21,9 @@
 package org.sonar.server.projecttag.ws;
 
 import java.util.List;
+
+import org.sonar.api.server.ws.Context;
+import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 
 public class ProjectTagsWs implements WebService {

@@ -34,10 +34,11 @@ import java.util.stream.Stream;
 import javax.annotation.Nullable;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.server.ws.Change;
+import org.sonar.api.server.ws.NewAction;
+import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
-import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -99,8 +100,8 @@ public class SearchProjectsAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("search_projects")
+  public void define(NewController context) {
+    NewAction action = context.createAction("search_projects")
       .setSince("6.2")
       .setDescription("Search for projects")
       .addPagingParams(DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE)
