@@ -23,6 +23,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Resources;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +36,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.sonar.api.CoreProperties;
+import org.sonar.api.batch.fs.internal.FileMetadata;
 import org.sonar.api.utils.log.LogTester;
 import org.sonar.scanner.mediumtest.ScannerMediumTester;
 import org.sonar.scanner.issue.tracking.TrackedIssue;
@@ -69,8 +71,9 @@ public class ScanOnlyChangedTest {
   @Before
   public void prepare() throws IOException {
     String filePath = "xources/hello/HelloJava.xoo";
-    String md5sum = DigestUtils.md5Hex(FileUtils.readFileToString(new File(
-      Resources.getResource("mediumtest/xoo/sample/" + filePath).getPath())));
+    String hash = new FileMetadata()
+      .readMetadata(new File(Resources.getResource("mediumtest/xoo/sample/" + filePath).getPath()), StandardCharsets.UTF_8)
+      .hash();
 
     tester = ScannerMediumTester.builder()
       .bootstrapProperties(ImmutableMap.of(CoreProperties.ANALYSIS_MODE, CoreProperties.ANALYSIS_MODE_ISSUES))
@@ -81,7 +84,7 @@ public class ScanOnlyChangedTest {
       .addActiveRule("xoo", "OneIssueOnDirPerFile", null, "OneIssueOnDirPerFile", "MAJOR", null, "xoo")
       .addActiveRule("xoo", "OneIssuePerModule", null, "OneIssuePerModule", "MAJOR", null, "xoo")
       // this will cause the file to have status==SAME
-      .addFileData("sample", filePath, new FileData(md5sum, null))
+      .addFileData("sample", filePath, new FileData(hash, null))
       .setPreviousAnalysisDate(new Date())
       // Existing issue that is copied
       .mockServerIssue(ServerIssue.newBuilder().setKey("xyz")
