@@ -36,7 +36,7 @@ public class DomainsAction implements MetricsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction("domains")
       .setDescription("List all custom metric domains.")
       .setSince("5.2")

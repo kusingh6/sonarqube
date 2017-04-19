@@ -70,7 +70,7 @@ public class CreateEventAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("create_event")
       .setDescription("Create a project analysis event.<br>" +
         "Only event of category '%s' and '%s' can be created.<br>" +

@@ -68,7 +68,7 @@ public class TemplateUsersAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context
       .createAction("template_users")
       .setSince("5.2")

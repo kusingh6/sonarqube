@@ -37,7 +37,7 @@ public class IndexAction implements BatchWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction("index")
       .setInternal(true)
       .setSince("4.4")

@@ -68,7 +68,7 @@ public class ListAction implements WsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction(ACTION_LIST)
       .setDescription("List licenses settings.<br>" +
         "Requires 'Administer System' permission")

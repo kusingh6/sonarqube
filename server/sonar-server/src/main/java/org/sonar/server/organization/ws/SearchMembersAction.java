@@ -71,7 +71,7 @@ public class SearchMembersAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("search_members")
       .setDescription("Search members of an organization")
       .setResponseExample(getClass().getResource("search_members-example.json"))

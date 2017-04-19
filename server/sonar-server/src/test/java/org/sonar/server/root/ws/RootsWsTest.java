@@ -41,7 +41,7 @@ public class RootsWsTest {
 
   private static class DummyRootsWsAction implements RootsWsAction {
     @Override
-    public void define(WebService.NewController context) {
+    public WebService.NewAction define() {
       context.createAction("ooo").setHandler(this);
     }
 

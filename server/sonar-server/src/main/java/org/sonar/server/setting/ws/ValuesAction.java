@@ -80,7 +80,7 @@ public class ValuesAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_VALUES)
       .setDescription("List settings values.<br>" +
         "If no value has been set for a setting, then the default value is returned.<br>" +

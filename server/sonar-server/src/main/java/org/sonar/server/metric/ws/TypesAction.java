@@ -27,7 +27,7 @@ import org.sonar.api.utils.text.JsonWriter;
 
 public class TypesAction implements MetricsWsAction {
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction("types")
       .setDescription("List all available metric types.")
       .setResponseExample(getClass().getResource("example-types.json"))

@@ -62,7 +62,7 @@ public class ListDefinitionsAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_LIST_DEFINITIONS)
       .setDescription("List settings definitions.<br>" +
         "Requires 'Browse' permission when a component is specified<br/>",

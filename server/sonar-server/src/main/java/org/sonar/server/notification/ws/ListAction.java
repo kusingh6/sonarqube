@@ -77,7 +77,7 @@ public class ListAction implements NotificationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction(ACTION_LIST)
       .setDescription("List notifications of the authenticated user.<br>" +
         "Requires authentication.")

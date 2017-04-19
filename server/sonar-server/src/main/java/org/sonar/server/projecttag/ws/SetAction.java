@@ -62,7 +62,7 @@ public class SetAction implements ProjectTagsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("set")
       .setDescription("Set tags on a project.<br>" +
         "Requires the following permission: 'Administer' rights on the specified project")

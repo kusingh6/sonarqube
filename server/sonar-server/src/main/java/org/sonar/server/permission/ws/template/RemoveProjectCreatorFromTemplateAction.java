@@ -67,7 +67,7 @@ public class RemoveProjectCreatorFromTemplateAction implements PermissionsWsActi
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("remove_project_creator_from_template")
       .setDescription("Remove a project creator from a permission template.<br>" +
         "Requires the following permission: 'Administer System'.")

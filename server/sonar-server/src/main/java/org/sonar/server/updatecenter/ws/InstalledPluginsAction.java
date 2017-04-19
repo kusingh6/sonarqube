@@ -39,7 +39,7 @@ public class InstalledPluginsAction implements UpdateCenterWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("installed_plugins")
       .setDescription("Get the list of all the plugins installed on the SonarQube instance")
       .setSince("2.10")

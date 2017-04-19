@@ -48,7 +48,7 @@ public class AddAction implements FavoritesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("add")
       .setDescription("Add a component (project, directory, file etc.) as favorite for the authenticated user.<br>" +
         "Requires authentication and the following permission: 'Browse' on the project of the specified component.")

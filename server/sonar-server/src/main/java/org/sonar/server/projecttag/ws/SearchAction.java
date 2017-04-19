@@ -39,7 +39,7 @@ public class SearchAction implements ProjectTagsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("search")
       .setDescription("Search tags")
       .setSince("6.4")

@@ -73,7 +73,7 @@ public class SearchProjectPermissionsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("search_project_permissions")
       .setDescription("List project permissions. A project can be a technical project, a view or a developer.<br />" +
         "Requires one of the following permissions:" +

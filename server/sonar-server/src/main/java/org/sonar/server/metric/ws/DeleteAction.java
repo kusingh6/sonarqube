@@ -44,7 +44,7 @@ public class DeleteAction implements MetricsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("delete")
       .setHandler(this)
       .setSince("5.2")

@@ -40,7 +40,7 @@ public class SearchMyOrganizationsAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction(ACTION)
       .setPost(false)
       .setDescription("List keys of the organizations for which the currently authenticated user has the System Administer permission for.")

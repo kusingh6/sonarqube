@@ -38,7 +38,7 @@ public class GenerateSecretKeyAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction("generate_secret_key")
       .setDescription("Generate a secret key.<br>" +
         "Requires the 'Administer System' permission")

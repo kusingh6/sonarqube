@@ -59,7 +59,7 @@ public class ShowAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_SHOW)
       .setDescription(format("Returns a component (file, directory, project, view…) and its ancestors. " +
         "The ancestors are ordered from the parent to the root project. " +

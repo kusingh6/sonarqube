@@ -68,7 +68,7 @@ public class CreateAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION)
       .setDescription("Create a custom measure.<br /> " +
         "The project id or the project key must be provided (only project and module custom measures can be created). The metric id or the metric key must be provided.<br/>" +

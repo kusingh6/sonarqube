@@ -59,7 +59,7 @@ public class GhostsAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION);
 
     action.setChangelog(new Change("6.4", "The 'uuid' field is deprecated in the response"));

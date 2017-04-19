@@ -60,7 +60,7 @@ public class CreateAction implements ProjectLinksWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_CREATE)
       .setDescription("Create a new project link.<br>" +
         "Requires 'Administer' permission on the specified project, " +

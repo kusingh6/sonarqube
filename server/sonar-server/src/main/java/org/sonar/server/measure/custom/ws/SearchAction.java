@@ -69,7 +69,7 @@ public class SearchAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION)
       .setDescription("List custom measures. The project id or project key must be provided.<br />" +
         "Requires 'Administer System' permission or 'Administer' permission on the project.")

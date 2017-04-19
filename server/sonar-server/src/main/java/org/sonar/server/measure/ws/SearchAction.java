@@ -72,7 +72,7 @@ public class SearchAction implements MeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("search")
       .setInternal(true)
       .setDescription("Search for project measures ordered by project names.<br>" +

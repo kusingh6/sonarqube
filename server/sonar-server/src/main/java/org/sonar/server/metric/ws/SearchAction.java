@@ -55,7 +55,7 @@ public class SearchAction implements MetricsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION)
       .setSince("5.2")
       .setDescription("Search for metrics")

@@ -38,7 +38,7 @@ public class CheckSecretKeyAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction("check_secret_key")
       .setDescription("Check if a secret key is available.<br>" +
         "Requires the 'Administer System' permission.")

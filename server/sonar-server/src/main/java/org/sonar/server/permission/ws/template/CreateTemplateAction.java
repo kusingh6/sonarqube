@@ -79,7 +79,7 @@ public class CreateTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("create_template")
       .setDescription("Create a permission template.<br />" +
         "Requires the following permission: 'Administer System'.")

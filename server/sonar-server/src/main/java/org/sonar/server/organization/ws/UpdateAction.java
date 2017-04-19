@@ -59,7 +59,7 @@ public class UpdateAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION)
       .setPost(true)
       .setDescription("Update an organization.<br/>" +

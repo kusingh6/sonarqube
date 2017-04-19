@@ -57,7 +57,7 @@ public class UpdateAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION)
       .setPost(true)
       .setDescription("Update a custom measure. Value and/or description must be provided<br />" +

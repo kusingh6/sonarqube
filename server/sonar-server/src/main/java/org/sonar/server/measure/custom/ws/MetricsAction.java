@@ -53,7 +53,7 @@ public class MetricsAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION)
       .setSince("5.2")
       .setInternal(true)

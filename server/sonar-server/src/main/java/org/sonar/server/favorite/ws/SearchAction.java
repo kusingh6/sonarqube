@@ -60,7 +60,7 @@ public class SearchAction implements FavoritesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_SEARCH)
       .setDescription("Search for the authenticated user favorites.<br>" +
         "Requires authentication.")

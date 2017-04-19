@@ -73,7 +73,7 @@ public class AddAction implements NotificationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_ADD)
       .setDescription("Add a notification for the authenticated user.<br>" +
         "Requires authentication. If a project is provided, requires the 'Browse' permission on the specified project.")

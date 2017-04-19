@@ -62,7 +62,7 @@ public class IndexAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_INDEX)
       .setDescription("This web service is deprecated, please use api/components/search instead")
       .setSince("2.10")

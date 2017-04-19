@@ -54,7 +54,7 @@ public class SearchMyProjectsAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("search_my_projects")
       .setDescription("Return list of projects for which the current user has 'Administer' permission.")
       .setResponseExample(getClass().getResource("search_my_projects-example.json"))

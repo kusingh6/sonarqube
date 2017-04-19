@@ -46,7 +46,7 @@ public class SendAction implements EmailsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("send")
       .setDescription("Test email configuration by sending an email<br>" +
         "Requires 'Administer System' permission.")

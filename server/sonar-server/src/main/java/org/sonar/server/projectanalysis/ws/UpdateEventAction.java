@@ -61,7 +61,7 @@ public class UpdateEventAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("update_event")
       .setDescription("Update a project analysis event.<br>" +
         "Only events of category '%s' and '%s' can be updated.<br>" +

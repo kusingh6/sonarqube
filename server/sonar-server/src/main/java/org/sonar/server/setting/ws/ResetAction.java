@@ -64,7 +64,7 @@ public class ResetAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_RESET)
       .setDescription("Remove a setting value.<br>" +
         "Requires one of the following permissions: " +

@@ -68,7 +68,7 @@ public class GroupsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("groups")
       .setSince("5.2")
       .setInternal(true)

@@ -53,7 +53,7 @@ public class AddGroupToTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context
       .createAction("add_group_to_template")
       .setPost(true)

@@ -60,7 +60,7 @@ public class EnableSupportAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction(ACTION)
       .setPost(true)
       .setDescription("Enable support of organizations.<br />" +

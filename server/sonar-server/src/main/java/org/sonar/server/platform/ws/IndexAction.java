@@ -46,7 +46,7 @@ public class IndexAction implements WsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction indexAction = context.createAction("index")
       .setInternal(true)
       .setDescription("Get all localization messages for a given locale")

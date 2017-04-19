@@ -72,7 +72,7 @@ public class SetDefaultTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("set_default_template")
       .setDescription("Set a permission template as default.<br />" +
         "Requires the following permission: 'Administer System'.")

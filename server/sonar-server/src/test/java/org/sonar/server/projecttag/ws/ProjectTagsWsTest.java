@@ -44,7 +44,7 @@ public class ProjectTagsWsTest {
 
   private static class FakeAction implements ProjectTagsWsAction {
     @Override
-    public void define(WebService.NewController context) {
+    public WebService.NewAction define() {
       context.createAction("blaba").setHandler(this);
     }
 

@@ -46,7 +46,7 @@ public class UploadAction implements UpdateCenterWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("upload")
       .setDescription("Upload a plugin.<br /> Requires 'Administer System' permission.")
       .setSince("6.0")

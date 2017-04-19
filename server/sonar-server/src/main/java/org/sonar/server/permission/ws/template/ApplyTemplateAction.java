@@ -66,7 +66,7 @@ public class ApplyTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("apply_template")
       .setDescription("Apply a permission template to one project.<br>" +
         "The project id or project key must be provided.<br>" +

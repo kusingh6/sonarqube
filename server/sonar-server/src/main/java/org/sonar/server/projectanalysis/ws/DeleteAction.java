@@ -49,7 +49,7 @@ public class DeleteAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("delete")
       .setDescription("Delete a project analysis.<br>" +
         "Requires one of the following permissions:" +

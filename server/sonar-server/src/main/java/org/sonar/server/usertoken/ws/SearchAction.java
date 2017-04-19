@@ -47,7 +47,7 @@ public class SearchAction implements UserTokensWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_SEARCH)
       .setDescription("List the access tokens of a user.<br>" +
         "The login must exist and active.<br>" +

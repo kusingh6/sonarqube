@@ -107,7 +107,7 @@ public class TreeAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_TREE)
       .setDescription(format("Navigate through components based on the chosen strategy. The %s or the %s parameter must be provided.<br>" +
         "Requires the following permission: 'Browse' on the specified project.<br>" +

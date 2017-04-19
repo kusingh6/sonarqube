@@ -57,7 +57,7 @@ public class GetByProjectAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_GET_BY_PROJECT)
       .setInternal(true)
       .setSince("6.1")

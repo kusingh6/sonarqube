@@ -65,7 +65,7 @@ public class BulkUpdateKeyAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     doDefine(context);
   }
 

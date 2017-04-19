@@ -44,7 +44,7 @@ public class DeleteAction implements ProjectLinksWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_DELETE)
       .setDescription("Delete existing project link.<br>" +
         "Requires 'Administer' permission on the specified project, " +

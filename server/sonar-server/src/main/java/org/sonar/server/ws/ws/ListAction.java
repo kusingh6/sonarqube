@@ -36,7 +36,7 @@ public class ListAction implements WebServicesWsAction {
   private WebService.Context context;
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context
       .createAction("list")
       .setSince("4.2")

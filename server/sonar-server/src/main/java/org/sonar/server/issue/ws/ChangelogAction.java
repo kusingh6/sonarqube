@@ -67,7 +67,7 @@ public class ChangelogAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_CHANGELOG)
       .setDescription("Display changelog of an issue.<br/>" +
         "Require the 'Browse' permission on the project of the specified issue.<br/>" +

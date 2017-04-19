@@ -58,7 +58,7 @@ public class GenerateAction implements UserTokensWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_GENERATE)
       .setSince("5.3")
       .setPost(true)

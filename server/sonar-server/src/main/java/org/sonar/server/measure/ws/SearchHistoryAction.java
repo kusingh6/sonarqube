@@ -84,7 +84,7 @@ public class SearchHistoryAction implements MeasuresWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_SEARCH_HISTORY)
       .setDescription("Search measures history of a component.<br>" +
         "Measures are ordered chronologically.<br>" +

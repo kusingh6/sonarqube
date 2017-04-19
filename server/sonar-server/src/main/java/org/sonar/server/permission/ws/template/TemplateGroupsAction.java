@@ -66,7 +66,7 @@ public class TemplateGroupsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("template_groups")
       .setSince("5.2")
       .setInternal(true)

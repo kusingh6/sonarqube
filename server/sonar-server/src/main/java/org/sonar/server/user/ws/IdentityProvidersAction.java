@@ -41,7 +41,7 @@ public class IdentityProvidersAction implements UsersWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     context.createAction("identity_providers")
       .setDescription("List the external identity providers")
       .setResponseExample(getClass().getResource("identity_providers-example.json"))

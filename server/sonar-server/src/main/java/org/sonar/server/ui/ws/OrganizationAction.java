@@ -55,7 +55,7 @@ public class OrganizationAction implements NavigationWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction projectNavigation = context.createAction(ACTION_NAME)
       .setDescription("Get information concerning organization navigation for the current user")
       .setHandler(this)

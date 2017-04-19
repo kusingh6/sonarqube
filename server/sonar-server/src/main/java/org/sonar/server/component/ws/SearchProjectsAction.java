@@ -99,7 +99,7 @@ public class SearchProjectsAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("search_projects")
       .setSince("6.2")
       .setDescription("Search for projects")

@@ -42,7 +42,7 @@ public class NotificationsWsTest {
 
   private static class FakeNotificationAction implements NotificationsWsAction {
     @Override
-    public void define(WebService.NewController context) {
+    public WebService.NewAction define() {
       context.createAction("fake")
         .setHandler(this);
     }

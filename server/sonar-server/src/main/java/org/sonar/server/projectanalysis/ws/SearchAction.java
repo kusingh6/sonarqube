@@ -66,7 +66,7 @@ public class SearchAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("search")
       .setDescription("Search a project analyses and attached events.<br>" +
         "Requires the following permission: 'Browse' on the specified project")

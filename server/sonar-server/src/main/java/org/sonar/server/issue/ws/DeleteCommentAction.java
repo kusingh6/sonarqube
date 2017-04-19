@@ -57,7 +57,7 @@ public class DeleteCommentAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_DELETE_COMMENT)
       .setDescription("Delete a comment.<br/>" +
         "Requires authentication and the following permission: 'Browse' on the project of the specified issue.<br/>" +

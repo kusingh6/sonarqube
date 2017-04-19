@@ -70,7 +70,7 @@ public class UsersAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("users")
       .setSince("5.2")
       .setDescription("Lists the users with their permissions as individual users rather than through group affiliation.<br>" +

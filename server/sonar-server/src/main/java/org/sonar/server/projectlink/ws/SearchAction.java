@@ -56,7 +56,7 @@ public class SearchAction implements ProjectLinksWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_SEARCH)
       .setDescription("List links of a project.<br>" +
         "The '%s' or '%s' must be provided.<br>" +

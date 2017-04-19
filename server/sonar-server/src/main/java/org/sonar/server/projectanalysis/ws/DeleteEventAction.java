@@ -51,7 +51,7 @@ public class DeleteEventAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("delete_event")
       .setDescription("Delete a project analysis event.<br>" +
         "Only event of category '%s' and '%s' can be deleted.<br>" +

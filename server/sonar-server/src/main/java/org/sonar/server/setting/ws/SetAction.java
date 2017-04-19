@@ -89,7 +89,7 @@ public class SetAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_SET)
       .setDescription("Update a setting value.<br>" +
         "Either '%s' or '%s' must be provided, not both.<br> " +

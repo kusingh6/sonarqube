@@ -67,7 +67,7 @@ public class AddProjectCreatorToTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("add_project_creator_to_template")
       .setDescription("Add a project creator to a permission template.<br>" +
         "Requires the following permission: 'Administer System'.")

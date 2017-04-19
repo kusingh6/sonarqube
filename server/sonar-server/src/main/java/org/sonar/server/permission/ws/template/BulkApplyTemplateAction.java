@@ -79,7 +79,7 @@ public class BulkApplyTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("bulk_apply_template")
       .setDescription("Apply a permission template to several projects.<br />" +
         "The template id or name must be provided.<br />" +

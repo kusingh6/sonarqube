@@ -35,7 +35,7 @@ public class FileAction implements BatchWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction("file")
       .setInternal(true)
       .setSince("4.4")

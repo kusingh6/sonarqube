@@ -65,7 +65,7 @@ public class CreateAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context.createAction(ACTION_CREATE)
       .setDescription("Create a project.<br/>" +
         "Requires 'Create Projects' permission<br/>" +

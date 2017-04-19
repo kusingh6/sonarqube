@@ -50,7 +50,7 @@ public class RemoveGroupFromTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
+  public WebService.NewAction define() {
     WebService.NewAction action = context
       .createAction("remove_group_from_template")
       .setPost(true)
