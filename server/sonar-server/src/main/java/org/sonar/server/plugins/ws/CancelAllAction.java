@@ -19,7 +19,7 @@
  */
 package org.sonar.server.plugins.ws;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.plugins.PluginDownloader;
@@ -39,8 +39,8 @@ public class CancelAllAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("cancel_all")
+  public NewAction define() {
+    new NewAction("cancel_all")
       .setPost(true)
       .setSince("5.2")
       .setDescription("Cancels any operation pending on any plugin (install, update or uninstall)" +

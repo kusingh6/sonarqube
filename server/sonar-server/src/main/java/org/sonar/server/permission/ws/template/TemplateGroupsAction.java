@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.sonar.api.security.DefaultGroups;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.Paging;
@@ -67,8 +66,8 @@ public class TemplateGroupsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("template_groups")
+  public NewAction define() {
+    NewAction action = new NewAction("template_groups")
       .setSince("5.2")
       .setInternal(true)
       .setDescription("Lists the groups with their permission as individual groups rather than through user affiliation on the chosen template.<br />" +

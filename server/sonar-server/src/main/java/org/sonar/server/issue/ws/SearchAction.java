@@ -33,7 +33,6 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -118,9 +117,8 @@ public class SearchAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction(ACTION_SEARCH)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SEARCH)
       .setHandler(this)
       .setDescription(
         "Search for issues. Requires Browse permission on project(s).<br>" +

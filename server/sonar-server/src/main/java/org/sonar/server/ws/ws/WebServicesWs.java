@@ -44,7 +44,7 @@ public class WebServicesWs implements WebService {
       .setDescription("Get information on the web api supported on this instance.");
 
     actions.forEach(action -> {
-      action.define(controller);
+      action.define();
     });
 
     return controller;

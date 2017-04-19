@@ -20,13 +20,14 @@
 package org.sonar.server.ws;
 
 import org.sonar.api.server.ws.Definable;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.Definable2;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.RequestHandler;
 
 /**
  * Since 5.2, this interface is the base for Web Service marker interfaces
  * Convention for naming implementations: <i>web_service_class_name</i>Action. ex: ProjectsWsAction, UsersWsAction
  */
-public interface WsAction extends RequestHandler, Definable<NewController> {
+public interface WsAction extends RequestHandler, Definable2<NewAction> {
   // Marker interface
 }

@@ -21,7 +21,7 @@ package org.sonar.server.batch;
 
 import java.io.IOException;
 import org.apache.commons.io.IOUtils;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 
@@ -37,8 +37,8 @@ public class IndexAction implements BatchWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction("index")
+  public NewAction define() {
+    new NewAction("index")
       .setInternal(true)
       .setSince("4.4")
       .setDescription("List the JAR files to be downloaded by scanners")

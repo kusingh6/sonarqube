@@ -24,7 +24,7 @@ import com.google.common.collect.ImmutableSortedSet;
 import com.google.common.io.Resources;
 import java.util.Collection;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -51,8 +51,8 @@ public class AvailableAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("available")
+  public NewAction define() {
+    new NewAction("available")
       .setDescription("Get the list of all the plugins available for installation on the SonarQube instance, sorted by plugin name." +
         "<br/>" +
         "Plugin information is retrieved from Update Center. Date and time at which Update Center was last refreshed is provided in the response." +

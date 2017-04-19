@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.Locale;
 import org.sonar.api.platform.Server;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -47,8 +46,8 @@ public class IndexAction implements WsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction indexAction = context.createAction("index")
+  public NewAction define() {
+    NewAction indexAction = new NewAction("index")
       .setInternal(true)
       .setDescription("Get all localization messages for a given locale")
       .setResponseExample(getClass().getResource("l10n-index-example.json"))
@@ -61,6 +60,7 @@ public class IndexAction implements WsAction {
     indexAction.createParam(TS_PARAM)
       .setDescription("Date of the last cache update.")
       .setExampleValue("2014-06-04T09:31:42+0000");
+    return indexAction;
   }
 
   @Override

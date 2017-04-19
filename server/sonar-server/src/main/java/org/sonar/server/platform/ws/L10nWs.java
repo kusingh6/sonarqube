@@ -35,7 +35,7 @@ public class L10nWs implements WebService {
     NewController l10n = new NewController("api/l10n");
     l10n.setDescription("Manage localization.")
       .setSince("4.4");
-    indexAction.define(l10n);
+    indexAction.define();
     return l10n;
   }
 }

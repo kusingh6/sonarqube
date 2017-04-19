@@ -37,7 +37,7 @@ public class NavigationWs implements WebService {
       .setSince("5.2");
 
     for (NavigationWsAction action : actions) {
-      action.define(navigation);
+      action.define();
     }
 
     return navigation;

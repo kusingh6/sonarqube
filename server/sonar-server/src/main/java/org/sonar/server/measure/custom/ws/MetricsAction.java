@@ -23,7 +23,6 @@ import com.google.common.io.Resources;
 import java.util.List;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -55,8 +54,8 @@ public class MetricsAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setSince("5.2")
       .setInternal(true)
       .setHandler(this)

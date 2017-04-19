@@ -28,7 +28,6 @@ import java.util.Optional;
 import java.util.Set;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -63,8 +62,8 @@ public class IndexAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_INDEX)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_INDEX)
       .setDescription("This web service is deprecated, please use api/components/search instead")
       .setSince("2.10")
       .setDeprecatedSince("6.3")

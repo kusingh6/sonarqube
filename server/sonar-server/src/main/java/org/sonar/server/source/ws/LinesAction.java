@@ -25,7 +25,6 @@ import java.util.Date;
 import java.util.Optional;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.DateUtils;
@@ -67,8 +66,8 @@ public class LinesAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("lines")
+  public NewAction define() {
+    NewAction action = new NewAction("lines")
       .setDescription("Show source code with line oriented info. Require See Source Code permission on file's project<br/>" +
         "Each element of the result array is an object which contains:" +
         "<ol>" +

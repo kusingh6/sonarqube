@@ -20,7 +20,6 @@
 package org.sonar.server.project.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -53,9 +52,8 @@ public class DeleteAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context
-      .createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setPost(true)
       .setDescription("Delete a project.<br> " +
         "Requires 'Administer System' permission or 'Administer' permission on the project.")

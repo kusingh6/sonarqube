@@ -21,7 +21,6 @@ package org.sonar.server.usergroups.ws;
 
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -55,8 +54,8 @@ public class AddUserAction implements UserGroupsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("add_user")
+  public NewAction define() {
+    NewAction action = new NewAction("add_user")
       .setDescription(format("Add a user to a group.<br />" +
         "'%s' or '%s' must be provided.<br />" +
         "Requires the following permission: 'Administer System'.", PARAM_GROUP_ID, PARAM_GROUP_NAME))

@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 
@@ -36,8 +35,8 @@ public class FileAction implements BatchWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("file")
+  public NewAction define() {
+    NewAction action = new NewAction("file")
       .setInternal(true)
       .setSince("4.4")
       .setDescription("Download a JAR file listed in the index (see batch/index)")

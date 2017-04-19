@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.Protobuf;
@@ -56,8 +55,8 @@ public class InheritanceAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction inheritance = context.createAction("inheritance")
+  public NewAction define() {
+    NewAction inheritance = new NewAction("inheritance")
       .setSince("5.2")
       .setDescription("Show a quality profile's ancestors and children.")
       .setHandler(this)

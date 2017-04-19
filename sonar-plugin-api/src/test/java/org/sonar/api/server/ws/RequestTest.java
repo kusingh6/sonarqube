@@ -608,7 +608,7 @@ public class RequestTest {
     @Override
     public NewController define() {
       NewController controller = new NewController("my_controller");
-      NewAction action = controller.createAction("my_action")
+      NewAction action = new NewAction("my_action")
         .setDescription("Action Description")
         .setPost(true)
         .setSince("5.2")

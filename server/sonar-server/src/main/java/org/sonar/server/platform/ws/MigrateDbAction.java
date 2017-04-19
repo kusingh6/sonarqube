@@ -22,7 +22,7 @@ package org.sonar.server.platform.ws;
 import com.google.common.io.Resources;
 import java.util.Optional;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -58,8 +58,8 @@ public class MigrateDbAction implements SystemWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("migrate_db")
+  public NewAction define() {
+    new NewAction("migrate_db")
       .setDescription("Migrate the database to match the current version of SonarQube." +
         "<br/>" +
         "Sending a POST request to this URL starts the DB migration. " +

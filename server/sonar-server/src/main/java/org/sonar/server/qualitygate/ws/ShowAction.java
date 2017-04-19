@@ -24,7 +24,6 @@ import java.util.Collection;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -43,8 +42,8 @@ public class ShowAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("show")
+  public NewAction define() {
+    NewAction action = new NewAction("show")
       .setDescription("Display the details of a quality gate")
       .setSince("4.3")
       .setResponseExample(Resources.getResource(this.getClass(), "example-show.json"))

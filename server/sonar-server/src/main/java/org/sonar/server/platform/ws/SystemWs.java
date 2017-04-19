@@ -36,7 +36,7 @@ public class SystemWs implements WebService {
       .setDescription("Get system details, and perform some management actions, such as restarting, and initiating a database migration (as part of a system upgrade).");
 
     for (SystemWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

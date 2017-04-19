@@ -36,7 +36,7 @@ public class EmailsWs implements WebService {
       .setDescription("Manage emails")
       .setSince("6.1");
     for (EmailsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
     return controller;
   }

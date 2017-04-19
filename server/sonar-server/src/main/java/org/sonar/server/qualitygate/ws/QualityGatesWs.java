@@ -51,7 +51,7 @@ public class QualityGatesWs implements WebService {
       .setDescription("Manage quality gates, including conditions and project association.");
 
     for (QualityGatesWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

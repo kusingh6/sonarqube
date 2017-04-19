@@ -25,7 +25,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -59,8 +58,8 @@ public class WebhookDeliveriesAction implements WebhooksWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("deliveries")
+  public NewAction define() {
+    NewAction action = new NewAction("deliveries")
       .setSince("6.2")
       .setDescription("Get the recent deliveries for a specified project or Compute Engine task.<br/>" +
         "Require 'Administer' permission on the related project.<br/>" +

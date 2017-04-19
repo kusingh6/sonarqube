@@ -37,7 +37,7 @@ public class ProjectAnalysesWs implements WebService {
       .setSince("6.3");
 
     for (ProjectAnalysesWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

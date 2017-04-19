@@ -31,7 +31,7 @@ public class NewAction {
   URL responseExample = null;
   List<Change> changelog = new ArrayList<>();
 
-  NewAction(String key) {
+  public NewAction(String key) {
     this.key = key;
   }
 

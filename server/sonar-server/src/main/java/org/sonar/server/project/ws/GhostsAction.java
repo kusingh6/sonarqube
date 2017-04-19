@@ -26,7 +26,6 @@ import java.util.Set;
 import javax.annotation.Nullable;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -60,8 +59,8 @@ public class GhostsAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION);
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION);
 
     action.setChangelog(new Change("6.4", "The 'uuid' field is deprecated in the response"));
 

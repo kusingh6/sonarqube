@@ -20,7 +20,6 @@
 package org.sonar.server.measure.custom.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -44,8 +43,8 @@ public class DeleteAction implements CustomMeasuresWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setPost(true)
       .setHandler(this)
       .setSince("5.2")

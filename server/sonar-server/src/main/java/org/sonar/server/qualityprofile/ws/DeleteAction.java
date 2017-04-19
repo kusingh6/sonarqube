@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.stream.MoreCollectors;
@@ -52,8 +51,8 @@ public class DeleteAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("delete")
+  public NewAction define() {
+    NewAction action = new NewAction("delete")
       .setDescription("Delete a quality profile and all its descendants. The default quality profile cannot be deleted. " +
         "Require Administer Quality Profiles permission.")
       .setSince("5.2")

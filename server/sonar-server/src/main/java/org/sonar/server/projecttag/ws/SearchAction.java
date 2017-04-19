@@ -23,7 +23,6 @@ package org.sonar.server.projecttag.ws;
 import java.util.List;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.measure.index.ProjectMeasuresIndex;
@@ -41,8 +40,8 @@ public class SearchAction implements ProjectTagsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search")
+  public NewAction define() {
+    NewAction action = new NewAction("search")
       .setDescription("Search tags")
       .setSince("6.4")
       .setResponseExample(getClass().getResource("search-example.json"))

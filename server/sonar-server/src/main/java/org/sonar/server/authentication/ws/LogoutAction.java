@@ -29,6 +29,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.web.ServletFilter;
 import org.sonar.server.authentication.JwtHttpHandler;
@@ -55,7 +56,7 @@ public class LogoutAction extends ServletFilter implements AuthenticationWsActio
 
   @Override
   public void define(NewController controller) {
-    controller.createAction(LOGOUT_ACTION)
+    new NewAction(LOGOUT_ACTION)
       .setDescription("Logout a user.")
       .setSince("6.3")
       .setPost(true)

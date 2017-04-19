@@ -21,7 +21,7 @@ package org.sonar.server.organization.ws;
 
 import java.util.List;
 import org.sonar.api.server.ws.Change;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -60,8 +60,8 @@ public class EnableSupportAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction(ACTION)
+  public NewAction define() {
+    new NewAction(ACTION)
       .setPost(true)
       .setDescription("Enable support of organizations.<br />" +
         "'Administer System' permission is required. The logged-in user will be flagged as root and will be able to manage organizations and other root users.")

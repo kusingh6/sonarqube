@@ -22,7 +22,6 @@ package org.sonar.server.ce.ws;
 import com.google.common.base.Optional;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -55,9 +54,8 @@ public class ActivityStatusAction implements CeWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("activity_status")
+  public NewAction define() {
+    NewAction action = new NewAction("activity_status")
       .setDescription("Return CE activity related metrics.<br>" +
         "Requires 'Administer System' permission or 'Administer' rights on the specified project.")
       .setSince("5.5")

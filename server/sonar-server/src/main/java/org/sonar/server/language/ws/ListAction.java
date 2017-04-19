@@ -64,7 +64,7 @@ public class ListAction implements RequestHandler {
   }
 
   void define(NewController controller) {
-    NewAction action = controller.createAction("list")
+    NewAction action = new NewAction("list")
       .setDescription("List supported programming languages")
       .setSince("5.1")
       .setHandler(this)

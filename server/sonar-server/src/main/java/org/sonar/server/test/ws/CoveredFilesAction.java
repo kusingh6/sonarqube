@@ -28,7 +28,6 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -60,8 +59,8 @@ public class CoveredFilesAction implements TestsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("covered_files")
+  public NewAction define() {
+    NewAction action = new NewAction("covered_files")
       .setDescription("Get the list of source files covered by a test. Require Browse permission on test file's project")
       .setSince("4.4")
       .setResponseExample(Resources.getResource(getClass(), "tests-example-covered-files.json"))

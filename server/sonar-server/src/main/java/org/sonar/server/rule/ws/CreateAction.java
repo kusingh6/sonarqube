@@ -28,7 +28,6 @@ import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.KeyValueFormat;
@@ -75,9 +74,8 @@ public class CreateAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("create")
+  public NewAction define() {
+    NewAction action = new NewAction("create")
       .setDescription("Create a custom rule")
       .setSince("4.4")
       .setChangelog(

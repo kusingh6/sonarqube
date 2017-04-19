@@ -19,6 +19,7 @@
  */
 package org.sonar.server.measure.ws;
 
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -35,7 +36,7 @@ public class TimeMachineWs implements WebService {
   }
 
   private static void defineIndexAction(NewController controller) {
-    controller.createAction("index")
+    new NewAction("index")
       .setDescription("The web service is removed and you're invited to use api/measures/search_history instead")
       .setSince("2.10")
       .setDeprecatedSince("6.3")

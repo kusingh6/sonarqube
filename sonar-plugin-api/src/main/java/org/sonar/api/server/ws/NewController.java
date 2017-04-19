@@ -52,13 +52,12 @@ public class NewController {
     return this;
   }
 
-  public NewAction createAction(String actionKey) {
+  private void add(NewAction action) {
+    String actionKey = action.key;
     if (actions.containsKey(actionKey)) {
       throw new IllegalStateException(
         format("The action '%s' is defined multiple times in the web service '%s'", actionKey, path));
     }
-    NewAction action = new NewAction(actionKey);
     actions.put(actionKey, action);
-    return action;
   }
 }

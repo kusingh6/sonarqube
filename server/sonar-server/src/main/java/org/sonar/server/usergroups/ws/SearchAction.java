@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.Set;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -70,8 +69,8 @@ public class SearchAction implements UserGroupsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search")
+  public NewAction define() {
+    NewAction action = new NewAction("search")
       .setDescription("Search for user groups.<br>" +
         "Requires the following permission: 'Administer System'.")
       .setHandler(this)

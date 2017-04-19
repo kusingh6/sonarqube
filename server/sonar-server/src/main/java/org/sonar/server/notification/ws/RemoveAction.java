@@ -29,7 +29,6 @@ import org.sonar.api.notifications.NotificationChannel;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.Scopes;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -74,8 +73,8 @@ public class RemoveAction implements NotificationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_REMOVE)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_REMOVE)
       .setDescription("Remove a notification for the authenticated user.<br>" +
         "Requires authentication. If a project is provided, requires the 'Browse' permission on the specified project.")
       .setSince("6.3")

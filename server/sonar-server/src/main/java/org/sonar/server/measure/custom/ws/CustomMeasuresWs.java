@@ -38,7 +38,7 @@ public class CustomMeasuresWs implements WebService {
       .setSince("5.2");
 
     for (CustomMeasuresWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

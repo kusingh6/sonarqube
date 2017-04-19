@@ -21,7 +21,7 @@ package org.sonar.server.root.ws;
 
 import java.util.List;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.user.UserQuery;
@@ -44,8 +44,8 @@ public class SearchAction implements RootsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("search")
+  public NewAction define() {
+    new NewAction("search")
       .setInternal(true)
       .setPost(false)
       .setDescription("Search for root users.<br/>" +

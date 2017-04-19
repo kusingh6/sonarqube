@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.annotation.Nonnull;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -70,8 +70,8 @@ public class PendingAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("pending")
+  public NewAction define() {
+    new NewAction("pending")
       .setDescription("Get the list of plugins which will either be installed or removed at the next startup of the SonarQube instance, sorted by plugin name.<br/>" +
         "Require 'Administer System' permission.")
       .setSince("5.2")

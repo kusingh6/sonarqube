@@ -35,7 +35,6 @@ import java.util.stream.Collectors;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -74,8 +73,8 @@ public class IndexAction implements WsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("index")
+  public NewAction define() {
+    NewAction action = new NewAction("index")
       .setDescription("This web service is deprecated, please use api/settings/values instead.")
       .setDeprecatedSince("6.3")
       .setResponseExample(getClass().getResource("index-example.json"))
@@ -90,6 +89,7 @@ public class IndexAction implements WsAction {
     action.createParam(PARAM_FORMAT)
       .setDescription("Only json response format is available")
       .setPossibleValues("json");
+    return action;
   }
 
   @Override

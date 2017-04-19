@@ -22,7 +22,6 @@ package org.sonar.server.permission.ws;
 import java.util.Locale;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -59,8 +58,8 @@ public class SearchGlobalPermissionsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setDescription("List global permissions. <br />" +
         "Requires the following permission: 'Administer System'")
       .setResponseExample(getClass().getResource("search_global_permissions-example.json"))

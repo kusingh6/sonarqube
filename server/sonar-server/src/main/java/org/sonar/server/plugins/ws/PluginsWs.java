@@ -39,7 +39,7 @@ public class PluginsWs implements WebService {
       .setSince("5.2");
 
     for (PluginsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

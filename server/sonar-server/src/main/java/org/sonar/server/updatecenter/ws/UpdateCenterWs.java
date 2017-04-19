@@ -37,7 +37,7 @@ public class UpdateCenterWs implements WebService {
     NewController controller = new NewController("api/updatecenter")
       .setDescription("Get list of installed plugins")
       .setSince("2.10");
-    Arrays.stream(actions).forEach(action -> action.define(controller));
+    Arrays.stream(actions).forEach(action -> action.define());
     return controller;
   }
 }

@@ -23,7 +23,6 @@ import com.google.common.io.Resources;
 import java.util.Date;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.issue.DefaultIssue;
@@ -61,8 +60,8 @@ public class SetSeverityAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_SET_SEVERITY)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SET_SEVERITY)
       .setDescription("Change severity.<br/>" +
         "Requires the following permissions:" +
         "<ul>" +

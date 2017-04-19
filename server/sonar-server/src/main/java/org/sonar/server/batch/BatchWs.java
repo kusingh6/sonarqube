@@ -39,7 +39,7 @@ public class BatchWs implements WebService {
     NewController controller = new NewController(API_ENDPOINT)
       .setSince("4.4")
       .setDescription("Get JAR files and referentials for batch");
-    stream(actions).forEach(action -> action.define(controller));
+    stream(actions).forEach(action -> action.define());
     return controller;
   }
 

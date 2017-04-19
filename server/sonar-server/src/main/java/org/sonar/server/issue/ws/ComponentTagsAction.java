@@ -23,7 +23,6 @@ import com.google.common.io.Resources;
 import java.util.Map;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -52,8 +51,8 @@ public class ComponentTagsAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_COMPONENT_TAGS)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_COMPONENT_TAGS)
       .setHandler(this)
       .setSince("5.1")
       .setInternal(true)

@@ -30,7 +30,6 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.Uuids;
@@ -67,8 +66,8 @@ public class TaskAction implements CeWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setDescription("Give Compute Engine task details such as type, status, duration and associated component.<br />" +
         "Requires 'Administer System' or 'Execute Analysis' permission.<br/>" +
         "Since 6.1, field \"logs\" is deprecated and its value is always false.")

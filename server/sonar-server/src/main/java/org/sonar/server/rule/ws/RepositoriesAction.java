@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -52,8 +51,8 @@ public class RepositoriesAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("repositories")
+  public NewAction define() {
+    NewAction action = new NewAction("repositories")
       .setDescription("List available rule repositories")
       .setSince("4.5")
       .setHandler(this)

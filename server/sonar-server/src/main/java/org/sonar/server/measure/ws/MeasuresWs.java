@@ -37,7 +37,7 @@ public class MeasuresWs implements WebService {
       .setDescription("Get components or children with specified measures.");
 
     for (MeasuresWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

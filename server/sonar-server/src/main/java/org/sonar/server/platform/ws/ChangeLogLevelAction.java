@@ -20,7 +20,6 @@
 package org.sonar.server.platform.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.log.LoggerLevel;
@@ -51,8 +50,8 @@ public class ChangeLogLevelAction implements SystemWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction newAction = controller.createAction("change_log_level")
+  public NewAction define() {
+    NewAction newAction = new NewAction("change_log_level")
       .setDescription("Temporarily changes level of logs. New level is not persistent and is lost " +
         "when restarting server. Requires system administration permission.")
       .setSince("5.2")

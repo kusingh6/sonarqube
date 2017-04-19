@@ -23,7 +23,6 @@ import java.io.File;
 import java.net.HttpURLConnection;
 import org.apache.commons.io.FileUtils;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.stream.MoreCollectors;
@@ -47,8 +46,8 @@ public class LogsAction implements SystemWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("logs")
+  public NewAction define() {
+    NewAction action = new NewAction("logs")
       .setDescription("Get system logs in plain-text format. Requires system administration permission.")
       .setResponseExample(getClass().getResource("logs-example.log"))
       .setSince("5.2")

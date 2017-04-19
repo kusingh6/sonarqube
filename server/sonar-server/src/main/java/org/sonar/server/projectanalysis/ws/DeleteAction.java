@@ -24,7 +24,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -51,8 +50,8 @@ public class DeleteAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("delete")
+  public NewAction define() {
+    NewAction action = new NewAction("delete")
       .setDescription("Delete a project analysis.<br>" +
         "Requires one of the following permissions:" +
         "<ul>" +

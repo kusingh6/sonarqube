@@ -38,7 +38,7 @@ public class SettingsWs implements WebService {
       .setDescription("Manage settings.")
       .setSince("6.1");
     for (SettingsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
     return controller;
   }

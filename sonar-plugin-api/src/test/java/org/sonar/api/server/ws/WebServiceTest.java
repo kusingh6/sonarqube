@@ -455,13 +455,13 @@ public class WebServiceTest {
         .setDescription("Metrics")
         .setSince("3.2");
 
-      newController.createAction("show")
+      new NewAction("show")
         .setDescription("Show metric")
         .setSince("4.2")
         .setResponseExample(getClass().getResource("WebServiceTest/response-example.txt"))
         .setHandler(this::show);
 
-      newController.createAction("create")
+      new NewAction("create")
         .setDescription("Create metric")
         .setSince("4.1")
         .setDeprecatedSince("5.3")
@@ -487,7 +487,7 @@ public class WebServiceTest {
   }
 
   private NewAction newDefaultAction(NewController controller, String actionKey) {
-    return controller.createAction(actionKey)
+    return new NewAction(actionKey)
       .setDescription("default description")
       .setSince("5.3")
       .setResponseExample(getClass().getResource("WebServiceTest/response-example.txt"))

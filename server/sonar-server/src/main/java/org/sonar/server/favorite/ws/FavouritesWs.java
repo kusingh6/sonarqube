@@ -19,6 +19,7 @@
  */
 package org.sonar.server.favorite.ws;
 
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -30,7 +31,7 @@ public class FavouritesWs implements WebService {
     NewController controller = new NewController("api/favourites")
       .setDescription("Removed since 6.3, please use api/favorites instead")
       .setSince("2.6");
-    controller.createAction("index")
+    new NewAction("index")
       .setDescription("The web service is removed and you're invited to use api/favorites instead")
       .setSince("2.6")
       .setDeprecatedSince("6.3")

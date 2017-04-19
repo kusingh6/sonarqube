@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Locale;
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -63,8 +62,8 @@ public class SetAction implements ProjectTagsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("set")
+  public NewAction define() {
+    NewAction action = new NewAction("set")
       .setDescription("Set tags on a project.<br>" +
         "Requires the following permission: 'Administer' rights on the specified project")
       .setSince("6.4")

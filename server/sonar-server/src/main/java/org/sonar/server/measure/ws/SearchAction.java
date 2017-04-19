@@ -28,7 +28,6 @@ import java.util.Set;
 import java.util.function.Function;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -74,8 +73,8 @@ public class SearchAction implements MeasuresWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search")
+  public NewAction define() {
+    NewAction action = new NewAction("search")
       .setInternal(true)
       .setDescription("Search for project measures ordered by project names.<br>" +
         "At most %d projects can be provided.<br>" +

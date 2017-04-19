@@ -22,7 +22,6 @@ package org.sonar.server.usergroups.ws;
 import java.util.List;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -56,8 +55,8 @@ public class UsersAction implements UserGroupsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("users")
+  public NewAction define() {
+    NewAction action = new NewAction("users")
       .setDescription("Search for users with membership information with respect to a group.<br>" +
         "Requires the following permission: 'Administer System'.")
       .setHandler(this)

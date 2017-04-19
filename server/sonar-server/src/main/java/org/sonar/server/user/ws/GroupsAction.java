@@ -24,7 +24,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.server.ws.SelectionMode;
@@ -74,8 +73,8 @@ public class GroupsAction implements UsersWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("groups")
+  public NewAction define() {
+    NewAction action = new NewAction("groups")
       .setDescription("Lists the groups a user belongs to. <br/>" +
         "Requires Administer System permission.")
       .setHandler(this)

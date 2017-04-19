@@ -27,7 +27,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -72,8 +71,8 @@ public class UsersAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("users")
+  public NewAction define() {
+    NewAction action = new NewAction("users")
       .setSince("5.2")
       .setDescription("Lists the users with their permissions as individual users rather than through group affiliation.<br>" +
         "This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br> " +

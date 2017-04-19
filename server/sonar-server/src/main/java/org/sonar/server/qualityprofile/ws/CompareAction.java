@@ -31,7 +31,6 @@ import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -79,8 +78,8 @@ public class CompareAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction compare = context.createAction("compare")
+  public NewAction define() {
+    NewAction compare = new NewAction("compare")
       .setDescription("Compare two quality profiles.")
       .setHandler(this)
       .setInternal(true)

@@ -22,7 +22,6 @@ package org.sonar.server.permission.ws.template;
 import java.util.Optional;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -69,8 +68,8 @@ public class AddProjectCreatorToTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("add_project_creator_to_template")
+  public NewAction define() {
+    NewAction action = new NewAction("add_project_creator_to_template")
       .setDescription("Add a project creator to a permission template.<br>" +
         "Requires the following permission: 'Administer System'.")
       .setSince("6.0")

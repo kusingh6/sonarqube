@@ -40,7 +40,7 @@ public class ComponentsWs implements WebService {
         "Update a project or module key.");
 
     for (ComponentsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

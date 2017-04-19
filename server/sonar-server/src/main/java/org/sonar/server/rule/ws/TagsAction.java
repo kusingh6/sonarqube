@@ -25,7 +25,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -52,9 +51,8 @@ public class TagsAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("tags")
+  public NewAction define() {
+    NewAction action = new NewAction("tags")
       .setDescription("List rule tags")
       .setSince("4.4")
       .setHandler(this)

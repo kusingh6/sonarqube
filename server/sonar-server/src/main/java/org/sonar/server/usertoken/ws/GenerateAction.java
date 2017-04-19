@@ -22,7 +22,6 @@ package org.sonar.server.usertoken.ws;
 import com.google.common.base.Optional;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -60,8 +59,8 @@ public class GenerateAction implements UserTokensWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_GENERATE)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_GENERATE)
       .setSince("5.3")
       .setPost(true)
       .setDescription("Generate a user access token. <br />" +

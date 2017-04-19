@@ -23,7 +23,6 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -53,8 +52,8 @@ public class DeleteEventAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("delete_event")
+  public NewAction define() {
+    NewAction action = new NewAction("delete_event")
       .setDescription("Delete a project analysis event.<br>" +
         "Only event of category '%s' and '%s' can be deleted.<br>" +
         "Requires one of the following permissions:" +

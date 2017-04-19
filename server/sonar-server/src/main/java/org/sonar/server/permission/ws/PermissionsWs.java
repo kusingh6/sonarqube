@@ -38,7 +38,7 @@ public class PermissionsWs implements WebService {
     controller.setSince("3.7");
 
     for (PermissionsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

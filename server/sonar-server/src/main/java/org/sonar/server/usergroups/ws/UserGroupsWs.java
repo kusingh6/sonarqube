@@ -37,7 +37,7 @@ public class UserGroupsWs implements WebService {
       .setSince("5.2");
 
     for (UserGroupsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

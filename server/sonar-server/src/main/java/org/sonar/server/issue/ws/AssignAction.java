@@ -27,7 +27,6 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.BooleanUtils;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -78,8 +77,8 @@ public class AssignAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_ASSIGN)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_ASSIGN)
       .setDescription("Assign/Unassign an issue. Requires authentication and Browse permission on project")
       .setSince("3.6")
       .setHandler(this)

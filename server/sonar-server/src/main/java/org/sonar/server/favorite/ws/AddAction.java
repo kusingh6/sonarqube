@@ -22,7 +22,6 @@ package org.sonar.server.favorite.ws;
 import java.util.function.Consumer;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -50,8 +49,8 @@ public class AddAction implements FavoritesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("add")
+  public NewAction define() {
+    NewAction action = new NewAction("add")
       .setDescription("Add a component (project, directory, file etc.) as favorite for the authenticated user.<br>" +
         "Requires authentication and the following permission: 'Browse' on the project of the specified component.")
       .setSince("6.3")

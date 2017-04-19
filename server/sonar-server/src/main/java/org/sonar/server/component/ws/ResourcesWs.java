@@ -19,6 +19,7 @@
  */
 package org.sonar.server.component.ws;
 
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -35,7 +36,7 @@ public class ResourcesWs implements WebService {
   }
 
   private static void defineIndexAction(NewController controller) {
-    controller.createAction("index")
+    new NewAction("index")
       .setDescription("The web service is removed and you're invited to use the alternatives: " +
         "<ul>" +
         "<li>if you need one component without measures: api/components/show</li>" +

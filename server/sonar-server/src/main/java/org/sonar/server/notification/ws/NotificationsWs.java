@@ -38,7 +38,7 @@ public class NotificationsWs implements WebService {
       .setSince("6.3");
 
     for (NotificationsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

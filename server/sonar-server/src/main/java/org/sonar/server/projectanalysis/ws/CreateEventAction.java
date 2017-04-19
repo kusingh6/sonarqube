@@ -25,7 +25,6 @@ import java.util.function.Predicate;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.Scopes;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -71,8 +70,8 @@ public class CreateEventAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("create_event")
+  public NewAction define() {
+    NewAction action = new NewAction("create_event")
       .setDescription("Create a project analysis event.<br>" +
         "Only event of category '%s' and '%s' can be created.<br>" +
         "Requires one of the following permissions:" +

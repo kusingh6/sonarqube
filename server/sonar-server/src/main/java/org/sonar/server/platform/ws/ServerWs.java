@@ -22,6 +22,7 @@ package org.sonar.server.platform.ws;
 import com.google.common.io.Resources;
 import org.apache.commons.io.IOUtils;
 import org.sonar.api.platform.Server;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
@@ -43,7 +44,7 @@ public class ServerWs implements WebService, RequestHandler {
   public NewController define() {
     NewController controller = new NewController("api/server");
 
-    controller.createAction("version")
+    new NewAction("version")
       .setDescription("Version of SonarQube in plain text")
       .setSince("2.10")
       .setResponseExample(Resources.getResource(this.getClass(), "example-server-version.txt"))

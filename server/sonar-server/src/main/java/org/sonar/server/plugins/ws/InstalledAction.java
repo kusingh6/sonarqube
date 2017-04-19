@@ -27,7 +27,6 @@ import java.util.Map;
 import java.util.SortedSet;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -64,8 +63,8 @@ public class InstalledAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("installed")
+  public NewAction define() {
+    NewAction action = new NewAction("installed")
       .setDescription("Get the list of all the plugins installed on the SonarQube instance, sorted by plugin name.<br/>" +
         "Require 'Administer System' permission.")
       .setSince("5.2")

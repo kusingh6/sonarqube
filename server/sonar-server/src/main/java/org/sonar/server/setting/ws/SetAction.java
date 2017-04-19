@@ -41,7 +41,6 @@ import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
 import org.sonar.api.config.PropertyFieldDefinition;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -90,8 +89,8 @@ public class SetAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_SET)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SET)
       .setDescription("Update a setting value.<br>" +
         "Either '%s' or '%s' must be provided, not both.<br> " +
         "Requires one of the following permissions: " +

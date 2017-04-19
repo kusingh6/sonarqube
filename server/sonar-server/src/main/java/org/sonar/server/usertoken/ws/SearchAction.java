@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -49,8 +48,8 @@ public class SearchAction implements UserTokensWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_SEARCH)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SEARCH)
       .setDescription("List the access tokens of a user.<br>" +
         "The login must exist and active.<br>" +
         "If the login is set, it requires administration permissions. Otherwise, a token is generated for the authenticated user.")

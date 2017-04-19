@@ -159,7 +159,7 @@ public class QProfileReferenceTest {
     WsTester wsTester = new WsTester();
     Context r = wsTester.context();
     NewController controller = new NewController("api/qualityprofiles");
-    NewAction newAction = controller.createAction("do").setHandler((request, response) -> {
+    NewAction newAction = new NewAction("do").setHandler((request, response) -> {
     });
 
     Languages languages = new Languages(newLanguage("java"), newLanguage("js"));

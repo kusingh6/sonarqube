@@ -20,6 +20,7 @@
 package org.sonar.server.ce.ws;
 
 import org.apache.commons.io.IOUtils;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
@@ -58,8 +59,7 @@ public class IsQueueEmptyWs implements WebService {
     }
 
     public void define(NewController controller) {
-      controller
-        .createAction("is_queue_empty")
+      new NewAction("is_queue_empty")
         .setDescription("Check if the queue of Compute Engine is empty")
         .setResponseExample(getClass().getResource("is_queue_empty-example.txt"))
         .setSince("5.1")

@@ -23,7 +23,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -63,8 +62,8 @@ public class CreateAction implements UsersWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_CREATE)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_CREATE)
       .setDescription("Create a user.<br/>" +
         "If a deactivated user account exists with the given login, it will be reactivated.<br/>" +
         "Requires Administer System permission<br/>" +

@@ -22,7 +22,6 @@ package org.sonar.server.permission.ws;
 import java.util.Optional;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -60,8 +59,8 @@ public class RemoveGroupAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setDescription("Remove a permission from a group.<br /> " +
         "This service defaults to global permissions, but can be limited to project permissions by providing project id or project key.<br /> " +
         "The group id or group name must be provided, not both.<br />" +

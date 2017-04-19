@@ -37,7 +37,7 @@ public class LicensesWs implements WebService {
     NewController controller = new NewController(CONTROLLER_SETTINGS)
       .setDescription("Manage licenses")
       .setSince("6.1");
-    listAction.define(controller);
+    listAction.define();
     return controller;
   }
 }

@@ -21,7 +21,7 @@ package org.sonar.server.plugins.ws;
 
 import org.junit.Test;
 import org.sonar.api.server.ws.Controller;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.ws.WsTester;
@@ -43,9 +43,8 @@ public class PluginsWsTest {
 
   private static class DummyPluginsWsAction implements PluginsWsAction {
     @Override
-    public void define(NewController context) {
-      context
-        .createAction("dummy")
+    public NewAction define() {
+      new NewAction("dummy")
         .setDescription("Dummy Description")
         .setPost(true)
         .setSince("5.3")

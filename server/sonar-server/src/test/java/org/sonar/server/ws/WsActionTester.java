@@ -33,7 +33,7 @@ public class WsActionTester {
   public WsActionTester(WsAction wsAction) {
     Context context = new Context();
     NewController newController = new NewController(CONTROLLER_KEY);
-    wsAction.define(newController);
+    wsAction.define();
     return newController;
     action = Iterables.get(context.controller(CONTROLLER_KEY).actions(), 0);
   }

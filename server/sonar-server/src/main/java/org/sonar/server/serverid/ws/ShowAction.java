@@ -28,7 +28,7 @@ import java.util.Set;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.stream.MoreCollectors;
@@ -60,8 +60,8 @@ public class ShowAction implements ServerIdWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("show")
+  public NewAction define() {
+    new NewAction("show")
       .setDescription("Get server id configuration.<br/>" +
         "Requires 'System Administer' permissions")
       .setSince("6.1")

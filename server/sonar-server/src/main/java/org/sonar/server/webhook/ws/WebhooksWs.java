@@ -38,7 +38,7 @@ public class WebhooksWs implements WebService {
     controller.setDescription("Webhooks allow to notify external services when a project analysis is done");
     controller.setSince("6.2");
     for (WebhooksWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
     return controller;
   }

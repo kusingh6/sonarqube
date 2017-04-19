@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.scanner.protocol.input.ScannerInput;
@@ -47,8 +46,8 @@ public class UsersAction implements BatchWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("users")
+  public NewAction define() {
+    NewAction action = new NewAction("users")
       .setDescription("Return user details.")
       .setSince("5.2")
       .setResponseExample(getClass().getResource("users-example.proto"))

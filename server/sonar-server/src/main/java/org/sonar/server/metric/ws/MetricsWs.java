@@ -39,7 +39,7 @@ public class MetricsWs implements WebService {
     controller.setSince("2.6");
 
     for (MetricsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

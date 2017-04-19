@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -63,8 +62,8 @@ public class UpdateAction implements UsersWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_UPDATE)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_UPDATE)
       .setDescription("Update a user. If a deactivated user account exists with the given login, it will be reactivated. " +
         "Requires Administer System permission. Since 5.2, a user's password can only be changed using the 'change_password' action.")
       .setSince("3.7")

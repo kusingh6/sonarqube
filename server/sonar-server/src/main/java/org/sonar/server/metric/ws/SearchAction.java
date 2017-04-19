@@ -24,7 +24,6 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -57,8 +56,8 @@ public class SearchAction implements MetricsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setSince("5.2")
       .setDescription("Search for metrics")
       .setResponseExample(getClass().getResource("example-search.json"))

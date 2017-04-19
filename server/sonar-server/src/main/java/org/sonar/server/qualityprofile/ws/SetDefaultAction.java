@@ -21,7 +21,6 @@ package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -48,8 +47,8 @@ public class SetDefaultAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction setDefault = controller.createAction("set_default")
+  public NewAction define() {
+    NewAction setDefault = new NewAction("set_default")
       .setSince("5.2")
       .setDescription("Select the default profile for a given language. Require Administer Quality Profiles permission.")
       .setPost(true)

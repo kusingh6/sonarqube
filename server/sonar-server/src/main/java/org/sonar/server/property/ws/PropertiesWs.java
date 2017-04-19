@@ -37,7 +37,7 @@ public class PropertiesWs implements WebService {
     NewController controller = new NewController(CONTROLLER_PROPERTIES)
       .setDescription("This web service is deprecated, please use api/settings instead.")
       .setSince("2.6");
-    indexAction.define(controller);
+    indexAction.define();
     return controller;
   }
 }

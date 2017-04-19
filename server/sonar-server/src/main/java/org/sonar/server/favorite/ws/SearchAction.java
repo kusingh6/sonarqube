@@ -26,7 +26,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -62,8 +61,8 @@ public class SearchAction implements FavoritesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_SEARCH)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SEARCH)
       .setDescription("Search for the authenticated user favorites.<br>" +
         "Requires authentication.")
       .setSince("6.3")

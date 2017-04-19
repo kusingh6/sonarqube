@@ -33,7 +33,6 @@ import java.util.stream.Collectors;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -81,8 +80,8 @@ public class ValuesAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_VALUES)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_VALUES)
       .setDescription("List settings values.<br>" +
         "If no value has been set for a setting, then the default value is returned.<br>" +
         "Requires 'Browse' permission when a component is specified<br/>",

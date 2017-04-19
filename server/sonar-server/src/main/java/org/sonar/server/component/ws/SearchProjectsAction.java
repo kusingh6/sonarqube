@@ -35,7 +35,6 @@ import javax.annotation.Nullable;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -100,8 +99,8 @@ public class SearchProjectsAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search_projects")
+  public NewAction define() {
+    NewAction action = new NewAction("search_projects")
       .setSince("6.2")
       .setDescription("Search for projects")
       .addPagingParams(DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE)

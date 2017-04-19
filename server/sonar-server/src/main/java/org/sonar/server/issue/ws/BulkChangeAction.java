@@ -37,7 +37,6 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -119,8 +118,8 @@ public class BulkChangeAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_BULK_CHANGE)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_BULK_CHANGE)
       .setDescription("Bulk change on issues.<br/>" +
         "Requires authentication.<br/>" +
         "Since 6.3, 'actions' parameter is useless.")

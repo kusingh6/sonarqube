@@ -22,7 +22,6 @@ package org.sonar.server.organization.ws;
 import java.util.List;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -51,8 +50,8 @@ public class SearchAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setPost(false)
       .setDescription("Search for organizations")
       .setResponseExample(getClass().getResource("search-example.json"))

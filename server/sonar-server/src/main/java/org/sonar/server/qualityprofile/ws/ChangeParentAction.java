@@ -21,7 +21,6 @@ package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.Uuids;
@@ -57,8 +56,8 @@ public class ChangeParentAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction inheritance = context.createAction("change_parent")
+  public NewAction define() {
+    NewAction inheritance = new NewAction("change_parent")
       .setSince("5.2")
       .setPost(true)
       .setDescription("Change a quality profile's parent.")

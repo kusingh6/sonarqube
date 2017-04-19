@@ -27,7 +27,6 @@ import java.util.stream.Stream;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.Scopes;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -67,8 +66,8 @@ public class SearchAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search")
+  public NewAction define() {
+    NewAction action = new NewAction("search")
       .setDescription("Search a project analyses and attached events.<br>" +
         "Requires the following permission: 'Browse' on the specified project")
       .setSince("6.3")

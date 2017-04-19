@@ -20,7 +20,7 @@
 package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.profiles.ProfileExporter;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -41,8 +41,8 @@ public class ExportersAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction("exporters")
+  public NewAction define() {
+    new NewAction("exporters")
       .setDescription("Lists available profile export formats.")
       .setHandler(this)
       .setResponseExample(getClass().getResource("example-exporters.json"))

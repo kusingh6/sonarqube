@@ -20,7 +20,6 @@
 package org.sonar.server.root.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -44,8 +43,8 @@ public class SetRootAction implements RootsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("set_root")
+  public NewAction define() {
+    NewAction action = new NewAction("set_root")
       .setInternal(true)
       .setPost(true)
       .setDescription("Make the specified user root.<br/>" +

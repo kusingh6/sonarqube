@@ -26,7 +26,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.stream.MoreCollectors;
@@ -59,8 +58,8 @@ public class DeleteCommentAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_DELETE_COMMENT)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_DELETE_COMMENT)
       .setDescription("Delete a comment.<br/>" +
         "Requires authentication and the following permission: 'Browse' on the project of the specified issue.<br/>" +
         "Since 6.3, the response contains the issue with all details, not the removed comment.<br/>" +

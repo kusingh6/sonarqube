@@ -21,7 +21,6 @@ package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -52,8 +51,8 @@ public class RestoreBuiltInAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("restore_built_in")
+  public NewAction define() {
+    NewAction action = new NewAction("restore_built_in")
       .setDescription("Restore built-in profiles from the definitions declared by plugins. " +
         "Missing profiles are created, existing ones are updated.")
       .setSince("4.4")

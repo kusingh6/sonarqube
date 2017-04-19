@@ -25,7 +25,6 @@ import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
 import org.sonar.api.config.PropertyFieldDefinition;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -63,8 +62,8 @@ public class ListDefinitionsAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_LIST_DEFINITIONS)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_LIST_DEFINITIONS)
       .setDescription("List settings definitions.<br>" +
         "Requires 'Browse' permission when a component is specified<br/>",
         "To access licensed settings, authentication is required<br/>" +

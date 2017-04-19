@@ -21,7 +21,6 @@ package org.sonar.server.rule.ws;
 
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.rule.RuleDeleter;
@@ -39,9 +38,8 @@ public class DeleteAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("delete")
+  public NewAction define() {
+    NewAction action = new NewAction("delete")
       .setDescription("Delete custom rule")
       .setSince("4.4")
       .setPost(true)

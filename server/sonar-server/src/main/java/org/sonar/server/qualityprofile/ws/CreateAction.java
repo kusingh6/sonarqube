@@ -23,7 +23,6 @@ import java.io.InputStream;
 import org.sonar.api.profiles.ProfileImporter;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -79,8 +78,8 @@ public class CreateAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction create = controller.createAction(ACTION_CREATE)
+  public NewAction define() {
+    NewAction create = new NewAction(ACTION_CREATE)
       .setSince("5.2")
       .setDescription("Create a quality profile.<br/>" +
         "Require Administer Quality Profiles permission.")

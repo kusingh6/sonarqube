@@ -25,7 +25,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 import org.sonar.api.resources.Language;
 import org.sonar.api.resources.Languages;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -66,8 +66,8 @@ public class OldRestoreAction implements WsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("restore")
+  public NewAction define() {
+    new NewAction("restore")
       .setSince("5.2")
       .setDescription("Restore a quality profile using an XML file. The restored profile name is taken from the backup file, " +
         "so if a profile with the same name and language already exists, it will be overwritten. " +

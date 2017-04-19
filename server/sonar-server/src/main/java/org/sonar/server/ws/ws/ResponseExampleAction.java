@@ -23,7 +23,6 @@ import org.sonar.api.server.ws.Action;
 import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 
@@ -34,9 +33,8 @@ public class ResponseExampleAction implements WebServicesWsAction {
   private Context context;
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("response_example")
+  public NewAction define() {
+    NewAction action = new NewAction("response_example")
       .setDescription("Display web service response example")
       .setResponseExample(getClass().getResource("response_example-example.json"))
       .setSince("4.4")

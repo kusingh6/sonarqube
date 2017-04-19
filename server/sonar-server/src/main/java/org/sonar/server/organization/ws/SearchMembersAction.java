@@ -27,7 +27,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -73,8 +72,8 @@ public class SearchMembersAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search_members")
+  public NewAction define() {
+    NewAction action = new NewAction("search_members")
       .setDescription("Search members of an organization")
       .setResponseExample(getClass().getResource("search_members-example.json"))
       .setSince("6.4")

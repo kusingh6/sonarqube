@@ -94,7 +94,7 @@ public class WebServicesWsTest {
         .setSince("3.2");
 
       // action with default values
-      newController.createAction("show")
+      new NewAction("show")
         .setSince("3.2")
         .setDescription("Show Description")
         .setResponseExample(getClass().getResource("web-services-ws-test.txt"))
@@ -102,7 +102,7 @@ public class WebServicesWsTest {
         });
 
       // action with a lot of overridden values
-      NewAction create = newController.createAction("create")
+      NewAction create = new NewAction("create")
         .setDescription("Create metric")
         .setSince("4.1")
         .setDeprecatedSince("5.3")
@@ -128,7 +128,7 @@ public class WebServicesWsTest {
       create.createParam("name");
       create.createParam("internal").setInternal(true);
 
-      newController.createAction("internal_action")
+      new NewAction("internal_action")
         .setDescription("Internal Action Description")
         .setResponseExample(getClass().getResource("web-services-ws-test.txt"))
         .setSince("5.3")

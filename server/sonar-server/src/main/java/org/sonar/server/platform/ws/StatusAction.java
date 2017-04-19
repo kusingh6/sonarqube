@@ -21,7 +21,7 @@ package org.sonar.server.platform.ws;
 
 import com.google.common.io.Resources;
 import org.sonar.api.platform.Server;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.log.Logger;
@@ -57,8 +57,8 @@ public class StatusAction implements SystemWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("status")
+  public NewAction define() {
+    new NewAction("status")
       .setDescription("Get the server status:" +
         "<ul>" +
         "<li>STARTING: SonarQube Web Server is up and serving some Web Services (eg. api/system/status) " +

@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 import org.sonar.api.config.License;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.stream.MoreCollectors;
@@ -68,8 +68,8 @@ public class ListAction implements WsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction(ACTION_LIST)
+  public NewAction define() {
+    return new NewAction(ACTION_LIST)
       .setDescription("List licenses settings.<br>" +
         "Requires 'Administer System' permission")
       .setResponseExample(getClass().getResource("list-example.json"))

@@ -24,7 +24,6 @@ import java.util.Collections;
 import java.util.List;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -64,9 +63,8 @@ public class ShowAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("show")
+  public NewAction define() {
+    NewAction action = new NewAction("show")
       .setDescription("Get detailed information about a rule<br>" +
         "Since 5.5, following fields in the response have been deprecated :" +
         "<ul>" +

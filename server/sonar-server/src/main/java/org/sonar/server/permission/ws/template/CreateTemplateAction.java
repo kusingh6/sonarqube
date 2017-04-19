@@ -22,7 +22,6 @@ package org.sonar.server.permission.ws.template;
 import java.util.Date;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -81,8 +80,8 @@ public class CreateTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("create_template")
+  public NewAction define() {
+    NewAction action = new NewAction("create_template")
       .setDescription("Create a permission template.<br />" +
         "Requires the following permission: 'Administer System'.")
       .setResponseExample(getClass().getResource("create_template-example.json"))

@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -70,9 +69,8 @@ public class TemplateUsersAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context
-      .createAction("template_users")
+  public NewAction define() {
+    NewAction action = new NewAction("template_users")
       .setSince("5.2")
       .setDescription("Lists the users with their permission as individual users rather than through group affiliation on the chosen template. <br />" +
         "This service defaults to all users, but can be limited to users with a specific permission by providing the desired permission.<br>" +

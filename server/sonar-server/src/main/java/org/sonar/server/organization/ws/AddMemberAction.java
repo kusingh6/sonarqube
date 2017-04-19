@@ -21,7 +21,6 @@
 package org.sonar.server.organization.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -64,8 +63,8 @@ public class AddMemberAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("add_member")
+  public NewAction define() {
+    NewAction action = new NewAction("add_member")
       .setDescription("Add a user as a member of an organization.<br>" +
         "Requires 'Administer System' permission on the specified organization.")
       .setSince("6.4")

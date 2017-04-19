@@ -36,7 +36,7 @@ public class ServerIdWs implements WebService {
       .setDescription("Get server id information and generate server id.")
       .setSince("6.1");
     for (ServerIdWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
     return controller;
   }

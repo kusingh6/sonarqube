@@ -22,7 +22,7 @@ package org.sonar.server.platform.ws;
 import java.util.Map;
 import java.util.Optional;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -47,8 +47,8 @@ public class InfoAction implements SystemWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("info")
+  public NewAction define() {
+    new NewAction("info")
       .setDescription("Get detailed information about system configuration.<br/>" +
         "Requires 'Administer' permissions.<br/>" +
         "Since 5.5, this web service becomes internal in order to more easily update result.")

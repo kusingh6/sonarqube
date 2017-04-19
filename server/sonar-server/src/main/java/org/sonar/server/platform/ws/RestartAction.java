@@ -20,7 +20,7 @@
 package org.sonar.server.platform.ws;
 
 import org.sonar.api.config.Settings;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.log.Logger;
@@ -52,8 +52,8 @@ public class RestartAction implements SystemWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("restart")
+  public NewAction define() {
+    new NewAction("restart")
       .setDescription("Restart server. Require 'Administer System' permission. Perform a full restart of the Web, Search and Compute Engine Servers processes.")
       .setSince("4.3")
       .setPost(true)

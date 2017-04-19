@@ -22,7 +22,7 @@ package org.sonar.server.projecttag.ws;
 
 import org.junit.Test;
 import org.sonar.api.server.ws.Controller;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.ws.WsTester;
@@ -45,8 +45,8 @@ public class ProjectTagsWsTest {
 
   private static class FakeAction implements ProjectTagsWsAction {
     @Override
-    public void define(NewController context) {
-      context.createAction("blaba").setHandler(this);
+    public NewAction define() {
+      new NewAction("blaba").setHandler(this);
     }
 
     @Override

@@ -51,12 +51,12 @@ public class UpdateKeyAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
+  public NewAction define() {
     doDefine(context);
   }
 
   public NewAction doDefine(NewController context) {
-    NewAction action = context.createAction(ACTION_UPDATE_KEY)
+    NewAction action = new NewAction(ACTION_UPDATE_KEY)
       .setDescription("Update a project or module key and all its sub-components keys.<br>" +
         "Either '%s' or '%s' must be provided, not both.<br> " +
         "Requires one of the following permissions: " +

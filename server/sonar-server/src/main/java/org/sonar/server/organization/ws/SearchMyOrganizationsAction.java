@@ -19,7 +19,7 @@
  */
 package org.sonar.server.organization.ws;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -40,8 +40,8 @@ public class SearchMyOrganizationsAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction(ACTION)
+  public NewAction define() {
+    new NewAction(ACTION)
       .setPost(false)
       .setDescription("List keys of the organizations for which the currently authenticated user has the System Administer permission for.")
       .setResponseExample(getClass().getResource("search_my_organization-example.json"))

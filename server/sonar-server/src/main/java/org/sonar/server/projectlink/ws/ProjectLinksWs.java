@@ -37,7 +37,7 @@ public class ProjectLinksWs implements WebService {
       .setSince("6.1");
 
     for (ProjectLinksWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

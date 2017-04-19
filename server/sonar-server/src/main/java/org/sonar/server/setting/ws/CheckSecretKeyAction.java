@@ -20,7 +20,7 @@
 package org.sonar.server.setting.ws;
 
 import org.sonar.api.config.Settings;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.user.UserSession;
@@ -38,8 +38,8 @@ public class CheckSecretKeyAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction("check_secret_key")
+  public NewAction define() {
+    new NewAction("check_secret_key")
       .setDescription("Check if a secret key is available.<br>" +
         "Requires the 'Administer System' permission.")
       .setSince("6.1")

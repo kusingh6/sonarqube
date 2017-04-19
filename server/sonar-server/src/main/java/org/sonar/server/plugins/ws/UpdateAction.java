@@ -26,7 +26,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.plugins.PluginDownloader;
@@ -56,8 +55,8 @@ public class UpdateAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("update")
+  public NewAction define() {
+    NewAction action = new NewAction("update")
       .setPost(true)
       .setSince("5.2")
       .setDescription("Updates a plugin specified by its key to the latest version compatible with the SonarQube instance." +

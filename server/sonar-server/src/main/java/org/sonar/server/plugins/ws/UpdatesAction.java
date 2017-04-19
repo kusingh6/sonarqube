@@ -28,7 +28,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.annotation.Nonnull;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -68,8 +68,8 @@ public class UpdatesAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("updates")
+  public NewAction define() {
+    new NewAction("updates")
       .setDescription("Lists plugins installed on the SonarQube instance for which at least one newer version is available, sorted by plugin name." +
         "<br/>" +
         "Each newer version is listed, ordered from the oldest to the newest, with its own update/compatibility status." +

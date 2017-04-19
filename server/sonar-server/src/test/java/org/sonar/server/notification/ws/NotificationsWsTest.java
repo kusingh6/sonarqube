@@ -21,7 +21,7 @@ package org.sonar.server.notification.ws;
 
 import org.junit.Test;
 import org.sonar.api.server.ws.Controller;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.ws.WsTester;
@@ -42,8 +42,8 @@ public class NotificationsWsTest {
 
   private static class FakeNotificationAction implements NotificationsWsAction {
     @Override
-    public void define(NewController context) {
-      context.createAction("fake")
+    public NewAction define() {
+      new NewAction("fake")
         .setHandler(this);
     }
 

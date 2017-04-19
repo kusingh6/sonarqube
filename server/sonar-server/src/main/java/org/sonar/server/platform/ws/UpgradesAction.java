@@ -23,7 +23,7 @@ import com.google.common.base.Optional;
 import com.google.common.io.Resources;
 import java.util.List;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -72,8 +72,8 @@ public class UpgradesAction implements SystemWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("upgrades")
+  public NewAction define() {
+    new NewAction("upgrades")
       .setDescription("Lists available upgrades for the SonarQube instance (if any) and for each one, " +
         "lists incompatible plugins and plugins requiring upgrade." +
         "<br/>" +

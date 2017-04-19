@@ -20,7 +20,6 @@
 package org.sonar.server.updatecenter.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -40,8 +39,8 @@ public class InstalledPluginsAction implements UpdateCenterWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("installed_plugins")
+  public NewAction define() {
+    NewAction action = new NewAction("installed_plugins")
       .setDescription("Get the list of all the plugins installed on the SonarQube instance")
       .setSince("2.10")
       .setDeprecatedSince("6.3")

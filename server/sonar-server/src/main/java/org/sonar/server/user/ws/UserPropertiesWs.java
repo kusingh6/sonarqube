@@ -19,6 +19,7 @@
  */
 package org.sonar.server.user.ws;
 
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -35,7 +36,7 @@ public class UserPropertiesWs implements WebService {
   }
 
   private static void defineIndexAction(NewController controller) {
-    controller.createAction("index")
+    new NewAction("index")
       .setDescription("This web service is removed")
       .setSince("2.6")
       .setDeprecatedSince("6.3")

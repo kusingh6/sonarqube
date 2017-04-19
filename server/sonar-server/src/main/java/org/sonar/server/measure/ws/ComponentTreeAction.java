@@ -29,7 +29,6 @@ import java.util.Set;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.ResourceTypes;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -127,8 +126,8 @@ public class ComponentTreeAction implements MeasuresWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_COMPONENT_TREE)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_COMPONENT_TREE)
       .setDescription(format("Navigate through components based on the chosen strategy with specified measures. The %s or the %s parameter must be provided.<br>" +
         "Requires the following permission: 'Browse' on the specified project.<br>" +
         "When limiting search with the %s parameter, directories are not returned.",

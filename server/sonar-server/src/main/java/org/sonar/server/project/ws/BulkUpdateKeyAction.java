@@ -66,12 +66,12 @@ public class BulkUpdateKeyAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
+  public NewAction define() {
     doDefine(context);
   }
 
   public NewAction doDefine(NewController context) {
-    NewAction action = context.createAction(ACTION_BULK_UPDATE_KEY)
+    NewAction action = new NewAction(ACTION_BULK_UPDATE_KEY)
       .setDescription("Bulk update a project or module key and all its sub-components keys. " +
         "The bulk update allows to replace a part of the current key by another string on the current project and all its sub-modules.<br>" +
         "It's possible to simulate the bulk update by setting the parameter '%s' at true. No key is updated with a dry run.<br>" +

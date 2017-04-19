@@ -28,7 +28,6 @@ import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.resources.ResourceTypes;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -79,8 +78,8 @@ public class SearchAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_SEARCH)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SEARCH)
       .setSince("6.3")
       .setDescription("Search for components.<br>" +
         "Returns the components with the 'Browse' permission.")

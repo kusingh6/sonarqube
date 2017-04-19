@@ -35,7 +35,7 @@ public class OrganizationsWs implements WebService {
       .setSince("6.2")
       .setDescription("Manage organizations.");
     for (OrganizationsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
     return controller;
   }

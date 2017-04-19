@@ -78,7 +78,7 @@ public class AvailableActionTest extends AbstractUpdateCenterBasedPluginsWsActio
     Context r = wsTester.context();
     NewController newController = new NewController(DUMMY_CONTROLLER_KEY);
 
-    underTest.define(newController);
+    underTest.define();
     return newController;
 
     Controller controller = wsTester.controller(DUMMY_CONTROLLER_KEY);

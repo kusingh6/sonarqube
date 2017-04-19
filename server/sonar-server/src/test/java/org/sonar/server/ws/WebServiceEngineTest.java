@@ -392,8 +392,7 @@ public class WebServiceEngineTest {
     }
 
     private NewAction createNewDefaultAction(NewController controller, String key) {
-      return controller
-        .createAction(key)
+      return new NewAction(key)
         .setDescription("Dummy Description")
         .setSince("5.3")
         .setResponseExample(getClass().getResource("web-service-engine-test.txt"));

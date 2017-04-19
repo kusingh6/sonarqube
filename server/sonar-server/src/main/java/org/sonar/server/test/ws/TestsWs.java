@@ -37,7 +37,7 @@ public class TestsWs implements WebService {
       .setDescription("Get details on test files. See also api/sources. Deprecated since 5.6.");
 
     for (TestsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

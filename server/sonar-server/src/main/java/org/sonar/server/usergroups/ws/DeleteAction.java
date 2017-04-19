@@ -20,7 +20,6 @@
 package org.sonar.server.usergroups.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -48,8 +47,8 @@ public class DeleteAction implements UserGroupsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("delete")
+  public NewAction define() {
+    NewAction action = new NewAction("delete")
       .setDescription(format("Delete a group. The default groups cannot be deleted.<br/>" +
         "'%s' or '%s' must be provided.<br />" +
         "Requires the following permission: 'Administer System'.",

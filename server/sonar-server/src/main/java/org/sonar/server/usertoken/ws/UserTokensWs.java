@@ -38,7 +38,7 @@ public class UserTokensWs implements WebService {
       .setSince("5.3");
 
     for (UserTokensWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

@@ -23,7 +23,6 @@ import com.google.common.base.Optional;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -59,8 +58,8 @@ public class SelectAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_SELECT)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SELECT)
       .setDescription("Associate a project to a quality gate.<br>" +
         "The '%s' or '%s' must be provided.<br>" +
         "Project id as a numeric value is deprecated since 6.1. Please use the id similar to '%s'.<br>" +

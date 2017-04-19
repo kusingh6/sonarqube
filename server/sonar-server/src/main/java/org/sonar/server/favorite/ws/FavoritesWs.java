@@ -36,7 +36,7 @@ public class FavoritesWs implements WebService {
       .setSince("6.3");
 
     for (FavoritesWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

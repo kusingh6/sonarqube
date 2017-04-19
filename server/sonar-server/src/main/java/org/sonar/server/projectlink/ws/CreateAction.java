@@ -20,7 +20,6 @@
 package org.sonar.server.projectlink.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -61,8 +60,8 @@ public class CreateAction implements ProjectLinksWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_CREATE)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_CREATE)
       .setDescription("Create a new project link.<br>" +
         "Requires 'Administer' permission on the specified project, " +
         "or global 'Administer' permission.")

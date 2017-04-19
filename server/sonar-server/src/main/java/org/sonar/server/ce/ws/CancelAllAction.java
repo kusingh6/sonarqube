@@ -19,7 +19,7 @@
  */
 package org.sonar.server.ce.ws;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.ce.queue.CeQueue;
@@ -36,8 +36,8 @@ public class CancelAllAction implements CeWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("cancel_all")
+  public NewAction define() {
+    new NewAction("cancel_all")
       .setDescription("Cancels all pending tasks. Requires system administration permission. In-progress tasks are not canceled.")
       .setInternal(true)
       .setPost(true)

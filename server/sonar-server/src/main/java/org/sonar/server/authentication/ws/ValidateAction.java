@@ -30,6 +30,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.sonar.api.config.Settings;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.web.ServletFilter;
@@ -60,7 +61,7 @@ public class ValidateAction extends ServletFilter implements AuthenticationWsAct
 
   @Override
   public void define(NewController controller) {
-    controller.createAction("validate")
+    new NewAction("validate")
       .setDescription("Check credentials.")
       .setSince("3.3")
       .setHandler(ServletFilterHandler.INSTANCE)

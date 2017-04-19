@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import org.sonar.api.resources.Scopes;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -60,8 +59,8 @@ public class IssuesAction implements BatchWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("issues")
+  public NewAction define() {
+    NewAction action = new NewAction("issues")
       .setDescription("Return open issues")
       .setResponseExample(getClass().getResource("issues-example.proto"))
       .setSince("5.1")

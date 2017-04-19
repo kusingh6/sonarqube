@@ -22,7 +22,6 @@ package org.sonar.server.qualitygate.ws;
 import com.google.common.io.Resources;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -41,8 +40,8 @@ public class SearchAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("search")
+  public NewAction define() {
+    NewAction action = new NewAction("search")
       .setDescription("Search for projects associated (or not) to a quality gate.<br/>" +
         "Only authorized projects for current user will be returned.")
       .setSince("4.3")

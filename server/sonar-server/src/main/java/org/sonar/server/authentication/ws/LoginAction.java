@@ -72,7 +72,7 @@ public class LoginAction extends ServletFilter implements AuthenticationWsAction
 
   @Override
   public void define(NewController controller) {
-    NewAction action = controller.createAction(LOGIN_ACTION)
+    NewAction action = new NewAction(LOGIN_ACTION)
       .setDescription("Authenticate a user.")
       .setSince("6.0")
       .setPost(true)

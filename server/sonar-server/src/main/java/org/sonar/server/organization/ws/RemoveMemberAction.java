@@ -21,7 +21,6 @@
 package org.sonar.server.organization.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -53,8 +52,8 @@ public class RemoveMemberAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("remove_member")
+  public NewAction define() {
+    NewAction action = new NewAction("remove_member")
       .setDescription("Remove a member from an organization.<br>" +
         "Requires 'Administer System' permission on the specified organization.")
       .setSince("6.4")

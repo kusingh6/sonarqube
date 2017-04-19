@@ -25,7 +25,7 @@ import org.sonar.api.config.Settings;
 import org.sonar.api.platform.Server;
 import org.sonar.api.resources.ResourceType;
 import org.sonar.api.resources.ResourceTypes;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -76,8 +76,8 @@ public class GlobalAction implements NavigationWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction("global")
+  public NewAction define() {
+    new NewAction("global")
       .setDescription("Get information concerning global navigation for the current user.")
       .setHandler(this)
       .setInternal(true)

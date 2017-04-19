@@ -22,7 +22,7 @@ package org.sonar.server.user.ws;
 import java.util.Collection;
 import java.util.Optional;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -51,8 +51,8 @@ public class CurrentAction implements UsersWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction("current")
+  public NewAction define() {
+    new NewAction("current")
       .setDescription("Get the details of the current authenticated user.")
       .setHandler(this)
       .setInternal(true)

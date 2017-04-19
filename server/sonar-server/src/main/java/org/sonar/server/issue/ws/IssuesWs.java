@@ -38,7 +38,7 @@ public class IssuesWs implements WebService {
     controller.setDescription("Read and update issues.");
     controller.setSince("3.6");
     for (IssuesWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
     return controller;
   }

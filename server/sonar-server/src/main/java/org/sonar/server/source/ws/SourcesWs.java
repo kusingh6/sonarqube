@@ -36,7 +36,7 @@ public class SourcesWs implements WebService {
       .setSince("4.2")
       .setDescription("Get details on source files. See also api/tests.");
     for (SourcesWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
     return controller;
   }

@@ -23,7 +23,6 @@ import java.util.Locale;
 import org.sonar.api.i18n.I18n;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -110,8 +109,8 @@ public class SearchTemplatesAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search_templates")
+  public NewAction define() {
+    NewAction action = new NewAction("search_templates")
       .setDescription("List permission templates.<br />" +
         "Requires the following permission: 'Administer System'.")
       .setResponseExample(getClass().getResource("search_templates-example.json"))

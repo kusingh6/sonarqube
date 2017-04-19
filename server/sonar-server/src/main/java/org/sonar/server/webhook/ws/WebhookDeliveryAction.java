@@ -23,7 +23,6 @@ import com.google.common.io.Resources;
 import java.util.Optional;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -56,8 +55,8 @@ public class WebhookDeliveryAction implements WebhooksWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("delivery")
+  public NewAction define() {
+    NewAction action = new NewAction("delivery")
       .setSince("6.2")
       .setDescription("Get a webhook delivery by its id.<br/>" +
         "Require 'Administer System' permission.<br/>" +

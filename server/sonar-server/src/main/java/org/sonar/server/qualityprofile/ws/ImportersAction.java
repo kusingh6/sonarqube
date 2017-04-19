@@ -20,7 +20,7 @@
 package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.profiles.ProfileImporter;
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -38,8 +38,8 @@ public class ImportersAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller.createAction("importers")
+  public NewAction define() {
+    new NewAction("importers")
       .setSince("5.2")
       .setDescription("List supported importers.")
       .setResponseExample(getClass().getResource("example-importers.json"))

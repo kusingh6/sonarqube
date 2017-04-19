@@ -27,7 +27,6 @@ import org.apache.ibatis.session.RowBounds;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -63,8 +62,8 @@ public class ProvisionedAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("provisioned");
+  public NewAction define() {
+    NewAction action = new NewAction("provisioned");
     action
       .setDescription(
         "Get the list of provisioned projects.<br /> " +

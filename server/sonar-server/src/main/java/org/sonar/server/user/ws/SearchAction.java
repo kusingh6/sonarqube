@@ -29,7 +29,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -59,8 +58,8 @@ public class SearchAction implements UsersWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("search")
+  public NewAction define() {
+    NewAction action = new NewAction("search")
       .setDescription("Get a list of active users. <br/>" +
         "Administer System permission is required to show the 'groups' field.<br/>" +
         "When accessed anonymously, only logins and names are returned.")

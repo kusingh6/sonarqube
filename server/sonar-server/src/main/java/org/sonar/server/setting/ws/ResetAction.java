@@ -26,7 +26,6 @@ import java.util.Optional;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.config.PropertyDefinitions;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -65,8 +64,8 @@ public class ResetAction implements SettingsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_RESET)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_RESET)
       .setDescription("Remove a setting value.<br>" +
         "Requires one of the following permissions: " +
         "<ul>" +

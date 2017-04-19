@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.scanner.protocol.input.FileData;
@@ -49,8 +48,8 @@ public class ProjectAction implements BatchWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("project")
+  public NewAction define() {
+    NewAction action = new NewAction("project")
       .setDescription("Return project repository")
       .setResponseExample(getClass().getResource("project-example.json"))
       .setSince("4.5")

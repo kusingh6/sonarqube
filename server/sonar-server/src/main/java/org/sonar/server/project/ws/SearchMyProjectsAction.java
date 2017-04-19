@@ -22,7 +22,6 @@ package org.sonar.server.project.ws;
 import java.util.function.Function;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -55,8 +54,8 @@ public class SearchMyProjectsAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("search_my_projects")
+  public NewAction define() {
+    NewAction action = new NewAction("search_my_projects")
       .setDescription("Return list of projects for which the current user has 'Administer' permission.")
       .setResponseExample(getClass().getResource("search_my_projects-example.json"))
       .addPagingParams(100, MAX_SIZE)

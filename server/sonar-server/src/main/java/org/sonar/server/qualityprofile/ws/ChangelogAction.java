@@ -23,7 +23,6 @@ import java.util.Date;
 import java.util.Map;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -56,8 +55,8 @@ public class ChangelogAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction wsAction = context.createAction("changelog")
+  public NewAction define() {
+    NewAction wsAction = new NewAction("changelog")
       .setSince("5.2")
       .setDescription("Get the history of changes on a quality profile: rule activation/deactivation, change in parameters/severity. " +
         "Events are ordered by date in descending order (most recent first).")

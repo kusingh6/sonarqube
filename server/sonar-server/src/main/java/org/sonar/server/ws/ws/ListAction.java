@@ -29,7 +29,6 @@ import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.Context;
 import org.sonar.api.server.ws.Controller;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -42,9 +41,8 @@ public class ListAction implements WebServicesWsAction {
   private Context context;
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context
-      .createAction("list")
+  public NewAction define() {
+    NewAction action = new NewAction("list")
       .setSince("4.2")
       .setDescription("List web services")
       .setResponseExample(getClass().getResource("list-example.json"))

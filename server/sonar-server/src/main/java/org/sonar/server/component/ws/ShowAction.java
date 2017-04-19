@@ -24,7 +24,6 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -60,8 +59,8 @@ public class ShowAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_SHOW)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SHOW)
       .setDescription(format("Returns a component (file, directory, project, view…) and its ancestors. " +
         "The ancestors are ordered from the parent to the root project. " +
         "The '%s' or '%s' parameter must be provided.<br>" +

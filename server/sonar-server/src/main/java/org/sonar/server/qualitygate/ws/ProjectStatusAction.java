@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -74,8 +73,8 @@ public class ProjectStatusAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_PROJECT_STATUS)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_PROJECT_STATUS)
       .setDescription(String.format("Get the quality gate status of a project or a Compute Engine task.<br />" +
         MSG_ONE_PARAMETER_ONLY + "<br />" +
         "The different statuses returned are: %s. The %s status is returned when there is no quality gate associated with the analysis.<br />" +

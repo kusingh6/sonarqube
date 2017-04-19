@@ -22,7 +22,6 @@ package org.sonar.server.qualityprofile.ws;
 import java.io.OutputStreamWriter;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.server.ws.Response.Stream;
@@ -49,8 +48,8 @@ public class BackupAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("backup")
+  public NewAction define() {
+    NewAction action = new NewAction("backup")
       .setSince("5.2")
       .setDescription("Backup a quality profile in XML form. The exported profile can be restored through api/qualityprofiles/restore.")
       .setResponseExample(getClass().getResource("backup-example.xml"))

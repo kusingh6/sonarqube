@@ -26,7 +26,6 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -63,8 +62,8 @@ public class UpdateEventAction implements ProjectAnalysesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("update_event")
+  public NewAction define() {
+    NewAction action = new NewAction("update_event")
       .setDescription("Update a project analysis event.<br>" +
         "Only events of category '%s' and '%s' can be updated.<br>" +
         "Requires one of the following permissions:" +

@@ -39,7 +39,7 @@ public class ProjectsWs implements WebService {
     NewController controller = new NewController(CONTROLLER)
       .setSince("2.10")
       .setDescription("Manage project existence.");
-    Arrays.stream(actions).forEach(action -> action.define(controller));
+    Arrays.stream(actions).forEach(action -> action.define());
     return controller;
   }
 

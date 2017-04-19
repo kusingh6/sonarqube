@@ -20,7 +20,6 @@
 package org.sonar.server.plugins.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.plugins.ServerPluginRepository;
@@ -43,8 +42,8 @@ public class UninstallAction implements PluginsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("uninstall")
+  public NewAction define() {
+    NewAction action = new NewAction("uninstall")
       .setPost(true)
       .setSince("5.2")
       .setDescription("Uninstalls the plugin specified by its key." +

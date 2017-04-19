@@ -21,7 +21,7 @@ package org.sonar.server.metric.ws;
 
 import java.util.List;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -37,8 +37,8 @@ public class DomainsAction implements MetricsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    context.createAction("domains")
+  public NewAction define() {
+    new NewAction("domains")
       .setDescription("List all custom metric domains.")
       .setSince("5.2")
       .setResponseExample(getClass().getResource("example-domains.json"))

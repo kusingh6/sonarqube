@@ -24,7 +24,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -57,9 +56,8 @@ public class BulkDeleteAction implements ProjectsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context
-      .createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setPost(true)
       .setDescription("Delete one or several projects.<br />" +
         "Requires 'Administer System' permission.")

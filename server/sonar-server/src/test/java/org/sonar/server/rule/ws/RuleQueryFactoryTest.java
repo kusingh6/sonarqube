@@ -24,7 +24,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -256,8 +255,8 @@ public class RuleQueryFactoryTest {
     }
 
     @Override
-    public void define(NewController controller) {
-      NewAction action = controller.createAction("fake")
+    public NewAction define() {
+      NewAction action = new NewAction("fake")
         .setHandler(this);
       defineRuleSearchParameters(action);
     }

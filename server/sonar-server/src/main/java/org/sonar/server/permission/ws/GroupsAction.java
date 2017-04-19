@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Optional;
 import org.sonar.api.security.DefaultGroups;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -69,8 +68,8 @@ public class GroupsAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("groups")
+  public NewAction define() {
+    NewAction action = new NewAction("groups")
       .setSince("5.2")
       .setInternal(true)
       .setDescription("Lists the groups with their permissions.<br>" +

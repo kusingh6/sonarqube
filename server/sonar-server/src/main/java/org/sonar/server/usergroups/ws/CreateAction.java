@@ -20,7 +20,6 @@
 package org.sonar.server.usergroups.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.user.UserGroupValidation;
@@ -53,8 +52,8 @@ public class CreateAction implements UserGroupsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("create")
+  public NewAction define() {
+    NewAction action = new NewAction("create")
       .setDescription("Create a group.<br>" +
         "Requires the following permission: 'Administer System'.")
       .setHandler(this)

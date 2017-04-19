@@ -38,7 +38,7 @@ public class ProjectTagsWs implements WebService {
       .setDescription("Manage project tags")
       .setSince("6.4");
 
-    actions.forEach(a -> a.define(controller));
+    actions.forEach(a -> a.define());
 
     return controller;
   }

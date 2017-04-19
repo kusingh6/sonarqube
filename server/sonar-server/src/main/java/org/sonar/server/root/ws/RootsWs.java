@@ -36,7 +36,7 @@ public class RootsWs implements WebService {
         .setDescription("Manage root users");
 
     for (RootsWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

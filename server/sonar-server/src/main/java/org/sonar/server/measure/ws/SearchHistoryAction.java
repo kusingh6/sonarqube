@@ -27,7 +27,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -86,8 +85,8 @@ public class SearchHistoryAction implements MeasuresWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION_SEARCH_HISTORY)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SEARCH_HISTORY)
       .setDescription("Search measures history of a component.<br>" +
         "Measures are ordered chronologically.<br>" +
         "Pagination applies to the number of measures for each metric.<br>" +

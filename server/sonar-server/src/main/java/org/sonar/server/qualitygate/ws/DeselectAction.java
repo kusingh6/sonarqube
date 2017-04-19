@@ -23,7 +23,6 @@ import com.google.common.base.Optional;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.core.util.Uuids;
@@ -51,8 +50,8 @@ public class DeselectAction implements QualityGatesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("deselect")
+  public NewAction define() {
+    NewAction action = new NewAction("deselect")
       .setDescription("Remove the association of a project from a quality gate. Require Administer Quality Gates permission")
       .setPost(true)
       .setSince("4.3")

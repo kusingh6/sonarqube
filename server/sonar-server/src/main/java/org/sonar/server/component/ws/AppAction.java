@@ -30,7 +30,6 @@ import org.apache.commons.lang.BooleanUtils;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.RequestHandler;
 import org.sonar.api.server.ws.Response;
@@ -74,8 +73,8 @@ public class AppAction implements RequestHandler, ComponentsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("app")
+  public NewAction define() {
+    NewAction action = new NewAction("app")
       .setDescription("Coverage data required for rendering the component viewer.<br>" +
         "Requires the following permission: 'Browse'.")
       .setResponseExample(getClass().getResource("app-example.json"))

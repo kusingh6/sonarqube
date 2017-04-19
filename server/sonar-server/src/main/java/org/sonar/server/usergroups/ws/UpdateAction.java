@@ -22,7 +22,6 @@ package org.sonar.server.usergroups.ws;
 import java.util.Optional;
 import org.sonar.api.server.ws.Change;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.user.UserGroupValidation;
@@ -59,8 +58,8 @@ public class UpdateAction implements UserGroupsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("update")
+  public NewAction define() {
+    NewAction action = new NewAction("update")
       .setDescription("Update a group.<br>" +
         "Requires the following permission: 'Administer System'.")
       .setHandler(this)

@@ -23,7 +23,6 @@ import com.google.common.io.Resources;
 import java.util.Date;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.System2;
@@ -67,8 +66,8 @@ public class AddCommentAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(IssuesWsParameters.ACTION_ADD_COMMENT)
+  public NewAction define() {
+    NewAction action = new NewAction(IssuesWsParameters.ACTION_ADD_COMMENT)
       .setDescription("Add a comment.<br/>" +
         "Requires authentication and the following permission: 'Browse' on the project of the specified issue.<br/>" +
         "Since 6.3, the response contains the issue with all details, not only the added comment")

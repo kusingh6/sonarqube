@@ -42,7 +42,7 @@ public class QProfilesWs implements WebService {
       .setSince("4.4");
 
     stream(actions)
-      .forEach(action -> action.define(controller));
+      .forEach(action -> action.define());
 
     return controller;
   }

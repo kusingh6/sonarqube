@@ -30,7 +30,6 @@ import javax.annotation.Nullable;
 import org.sonar.api.profiles.ProfileExporter;
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.server.ws.Response.Stream;
@@ -69,8 +68,8 @@ public class ExportAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("export")
+  public NewAction define() {
+    NewAction action = new NewAction("export")
       .setSince("5.2")
       .setDescription("Export a quality profile.")
       .setResponseExample(getClass().getResource("export-example.xml"))

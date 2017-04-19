@@ -31,7 +31,6 @@ import org.sonar.api.rule.Severity;
 import org.sonar.api.server.debt.DebtRemediationFunction;
 import org.sonar.api.server.debt.internal.DefaultDebtRemediationFunction;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.KeyValueFormat;
@@ -90,9 +89,8 @@ public class UpdateAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("update")
+  public NewAction define() {
+    NewAction action = new NewAction("update")
       .setPost(true)
       .setDescription("Update an existing rule")
       .setSince("4.4")

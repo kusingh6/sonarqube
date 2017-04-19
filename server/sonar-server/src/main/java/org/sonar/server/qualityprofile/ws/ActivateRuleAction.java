@@ -24,7 +24,6 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.server.ServerSide;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.KeyValueFormat;
@@ -62,9 +61,8 @@ public class ActivateRuleAction implements QProfileWsAction {
     this.activeRuleIndexer = activeRuleIndexer;
   }
 
-  public void define(NewController controller) {
-    NewAction activate = controller
-      .createAction(ACTION_ACTIVATE_RULE)
+  public NewAction define() {
+    NewAction activate = new NewAction(ACTION_ACTIVATE_RULE)
       .setDescription("Activate a rule on a Quality profile")
       .setHandler(this)
       .setPost(true)

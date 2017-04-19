@@ -20,7 +20,6 @@
 package org.sonar.server.permission.ws.template;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -62,8 +61,8 @@ public class DeleteTemplateAction implements PermissionsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("delete_template")
+  public NewAction define() {
+    NewAction action = new NewAction("delete_template")
       .setDescription("Delete a permission template.<br />" +
         "Requires the following permission: 'Administer System'.")
       .setSince("5.2")

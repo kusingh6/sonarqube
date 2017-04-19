@@ -23,7 +23,6 @@ import java.util.List;
 import javax.annotation.Nullable;
 import org.sonar.api.measures.Metric;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -61,8 +60,8 @@ public class CreateAction implements MetricsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setPost(true)
       .setDescription("Create custom metric.<br /> Requires 'Administer System' permission.")
       .setSince("5.2")

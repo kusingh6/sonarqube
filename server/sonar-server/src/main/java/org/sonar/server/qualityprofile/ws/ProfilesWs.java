@@ -19,6 +19,7 @@
  */
 package org.sonar.server.qualityprofile.ws;
 
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.ws.RemovedWebServiceHandler;
@@ -42,14 +43,14 @@ public class ProfilesWs implements WebService {
     NewController controller = new NewController(API_ENDPOINT)
       .setDescription("Removed since 6.3, please use api/qualityprofiles instead")
       .setSince("4.4");
-    restoreAction.define(controller);
+    restoreAction.define();
     defineListAction(controller);
     defineIndexAction(controller);
     return controller;
   }
 
   private static void defineIndexAction(NewController controller) {
-    controller.createAction("index")
+    new NewAction("index")
       .setDescription("Get a profile.<br/>" +
         "The web service is removed and you're invited to use api/qualityprofiles/search instead")
       .setSince("3.3")
@@ -59,7 +60,7 @@ public class ProfilesWs implements WebService {
   }
 
   private static void defineListAction(NewController controller) {
-    controller.createAction("list")
+    new NewAction("list")
       .setDescription("Get a list of profiles.<br/>" +
         "The web service is removed and you're invited to use api/qualityprofiles/search instead")
       .setSince("3.3")

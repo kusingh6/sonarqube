@@ -20,7 +20,6 @@
 package org.sonar.server.usergroups.ws;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -52,8 +51,8 @@ public class RemoveUserAction implements UserGroupsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("remove_user")
+  public NewAction define() {
+    NewAction action = new NewAction("remove_user")
       .setDescription(format("Remove a user from a group.<br />" +
         "'%s' or '%s' must be provided.<br>" +
         "Requires the following permission: 'Administer System'.",

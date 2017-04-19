@@ -59,7 +59,7 @@ public class ShowAction implements RequestHandler {
   }
 
   void define(NewController controller) {
-    NewAction action = controller.createAction("show")
+    NewAction action = new NewAction("show")
       .setDescription("Get duplications. Require Browse permission on file's project")
       .setSince("4.4")
       .setHandler(this)

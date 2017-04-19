@@ -29,7 +29,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -74,9 +73,8 @@ public class ListAction implements TestsWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller
-      .createAction("list")
+  public NewAction define() {
+    NewAction action = new NewAction("list")
       .setDescription(String.format(
         "Get the list of tests either in a test file or that test a given line of source code.<br /> " +
           "Require Browse permission on the file's project.<br /> " +

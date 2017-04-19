@@ -23,7 +23,6 @@ import com.google.common.io.Resources;
 import java.util.Optional;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -50,8 +49,8 @@ public class IndexAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("index")
+  public NewAction define() {
+    NewAction action = new NewAction("index")
       .setDescription("Get source code as line number / text pairs. Require See Source Code permission on file")
       .setSince("5.0")
       .setResponseExample(Resources.getResource(getClass(), "example-index.json"))

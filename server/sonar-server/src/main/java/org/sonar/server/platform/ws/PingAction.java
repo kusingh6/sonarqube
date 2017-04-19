@@ -19,7 +19,7 @@
  */
 package org.sonar.server.platform.ws;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 
@@ -28,8 +28,8 @@ import static org.apache.commons.io.IOUtils.write;
 
 public class PingAction implements SystemWsAction {
   @Override
-  public void define(NewController controller) {
-    controller.createAction("ping")
+  public NewAction define() {
+    new NewAction("ping")
       .setDescription("Answers \"pong\" as plain-text")
       .setSince("6.3")
       .setResponseExample(getClass().getResource("ping-example.txt"))

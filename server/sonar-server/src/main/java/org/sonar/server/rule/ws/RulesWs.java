@@ -36,7 +36,7 @@ public class RulesWs implements WebService {
       .setDescription("Get and update some details of automatic rules, and manage custom rules.");
 
     for (RulesWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

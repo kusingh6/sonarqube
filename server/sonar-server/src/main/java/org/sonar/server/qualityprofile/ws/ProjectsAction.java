@@ -26,7 +26,6 @@ import java.util.Collection;
 import java.util.List;
 import org.apache.commons.lang.builder.CompareToBuilder;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -64,8 +63,8 @@ public class ProjectsAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction projects = controller.createAction("projects")
+  public NewAction define() {
+    NewAction projects = new NewAction("projects")
       .setSince("5.2")
       .setHandler(this)
       .setDescription("List projects with their association status regarding a quality profile.<br/>" +

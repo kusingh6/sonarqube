@@ -32,7 +32,6 @@ import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.resources.ResourceType;
 import org.sonar.api.resources.ResourceTypes;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.DateUtils;
@@ -111,8 +110,8 @@ public class ComponentAction implements NavigationWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction projectNavigation = context.createAction("component")
+  public NewAction define() {
+    NewAction projectNavigation = new NewAction("component")
       .setDescription("Get information concerning component navigation for the current user. " +
         "Requires the 'Browse' permission on the component's project.")
       .setHandler(this)

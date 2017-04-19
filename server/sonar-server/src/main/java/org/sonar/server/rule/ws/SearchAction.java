@@ -42,7 +42,6 @@ import org.sonar.api.rule.RuleStatus;
 import org.sonar.api.rule.Severity;
 import org.sonar.api.rules.RuleType;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.NewParam;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -128,8 +127,8 @@ public class SearchAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .addPagingParams(100, MAX_LIMIT)
       .setHandler(this);
 

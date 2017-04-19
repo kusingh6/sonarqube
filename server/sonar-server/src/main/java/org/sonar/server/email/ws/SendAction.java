@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.mail.EmailException;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.server.exceptions.BadRequestException;
@@ -47,8 +46,8 @@ public class SendAction implements EmailsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction("send")
+  public NewAction define() {
+    NewAction action = new NewAction("send")
       .setDescription("Test email configuration by sending an email<br>" +
         "Requires 'Administer System' permission.")
       .setSince("6.1")

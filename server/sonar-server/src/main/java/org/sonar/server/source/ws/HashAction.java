@@ -28,7 +28,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -53,8 +52,8 @@ public class HashAction implements SourcesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("hash")
+  public NewAction define() {
+    NewAction action = new NewAction("hash")
       .setDescription("Show line line hashes for a given file. Require See Source Code permission on file's project<br/>")
       .setSince("5.0")
       .setInternal(true)

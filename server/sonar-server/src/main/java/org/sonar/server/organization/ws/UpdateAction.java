@@ -24,7 +24,6 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -61,8 +60,8 @@ public class UpdateAction implements OrganizationsWsAction {
   }
 
   @Override
-  public void define(NewController context) {
-    NewAction action = context.createAction(ACTION)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION)
       .setPost(true)
       .setDescription("Update an organization.<br/>" +
         "Require 'Administer System' permission. Organization support must be enabled.")

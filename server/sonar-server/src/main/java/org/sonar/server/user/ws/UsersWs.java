@@ -37,7 +37,7 @@ public class UsersWs implements WebService {
       .setDescription("Manage users.");
 
     for (UsersWsAction action : actions) {
-      action.define(controller);
+      action.define();
     }
 
     return controller;

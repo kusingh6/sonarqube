@@ -21,7 +21,6 @@ package org.sonar.server.qualityprofile.ws;
 
 import org.sonar.api.resources.Languages;
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.web.UserRole;
@@ -56,8 +55,8 @@ public class AddProjectAction implements QProfileWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction(ACTION_ADD_PROJECT)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_ADD_PROJECT)
       .setSince("5.2")
       .setDescription("Associate a project with a quality profile.")
       .setPost(true)

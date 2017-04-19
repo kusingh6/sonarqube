@@ -29,7 +29,6 @@ import java.util.SortedSet;
 import javax.annotation.Nullable;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Param;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
@@ -64,8 +63,8 @@ public class TagsAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("tags")
+  public NewAction define() {
+    NewAction action = new NewAction("tags")
       .setHandler(this)
       .setSince("5.1")
       .setDescription("List tags matching a given query")

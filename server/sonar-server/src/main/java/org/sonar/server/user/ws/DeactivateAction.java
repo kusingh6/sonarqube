@@ -26,7 +26,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.sonar.api.server.ws.NewAction;
-import org.sonar.api.server.ws.NewController;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.api.utils.text.JsonWriter;
@@ -65,8 +64,8 @@ public class DeactivateAction implements UsersWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    NewAction action = controller.createAction("deactivate")
+  public NewAction define() {
+    NewAction action = new NewAction("deactivate")
       .setDescription("Deactivate a user. Requires Administer System permission")
       .setSince("3.7")
       .setPost(true)

@@ -19,7 +19,7 @@
  */
 package org.sonar.server.rule.ws;
 
-import org.sonar.api.server.ws.NewController;
+import org.sonar.api.server.ws.NewAction;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
 import org.sonar.db.DbClient;
@@ -39,9 +39,8 @@ public class ListAction implements RulesWsAction {
   }
 
   @Override
-  public void define(NewController controller) {
-    controller
-      .createAction("list")
+  public NewAction define() {
+    new NewAction("list")
       .setDescription("List rules, excluding the manual rules and the rules with status REMOVED. JSON format is not supported for response.")
       .setSince("5.2")
       .setInternal(true)
