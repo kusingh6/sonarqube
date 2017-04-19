@@ -65,8 +65,8 @@ public class AddCommentAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction(IssuesWsParameters.ACTION_ADD_COMMENT)
+  public WebService.NewAction define() {
+    WebService.NewAction action = new WebService.NewAction(IssuesWsParameters.ACTION_ADD_COMMENT)
       .setDescription("Add a comment.<br/>" +
         "Requires authentication and the following permission: 'Browse' on the project of the specified issue.<br/>" +
         "Since 6.3, the response contains the issue with all details, not only the added comment")
@@ -83,6 +83,8 @@ public class AddCommentAction implements IssuesWsAction {
       .setDescription("Comment text")
       .setRequired(true)
       .setExampleValue("Won't fix because it doesn't apply to the context");
+
+    return action;
   }
 
   @Override

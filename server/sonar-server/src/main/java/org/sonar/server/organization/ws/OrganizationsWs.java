@@ -29,13 +29,10 @@ public class OrganizationsWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/organizations")
+  public NewController define() {
+    return new NewController("api/organizations")
       .setSince("6.2")
-      .setDescription("Manage organizations.");
-    for (OrganizationsWsAction action : actions) {
-      action.define(controller);
-    }
-    controller.done();
+      .setDescription("Manage organizations.")
+      .add(actions);
   }
 }

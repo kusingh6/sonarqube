@@ -39,16 +39,14 @@ public class ServerWs implements WebService, RequestHandler {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController("api/server");
+  public NewController define() {
+    return new NewController("api/server")
 
-    controller.createAction("version")
-      .setDescription("Version of SonarQube in plain text")
-      .setSince("2.10")
-      .setResponseExample(Resources.getResource(this.getClass(), "example-server-version.txt"))
-      .setHandler(this);
-
-    controller.done();
+      .add(new NewAction("version")
+        .setDescription("Version of SonarQube in plain text")
+        .setSince("2.10")
+        .setResponseExample(Resources.getResource(this.getClass(), "example-server-version.txt"))
+        .setHandler(this));
   }
 
   @Override

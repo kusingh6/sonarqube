@@ -28,7 +28,6 @@ import java.util.Map;
 import org.sonar.api.resources.Qualifiers;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.core.util.stream.MoreCollectors;
 import org.sonar.db.DbClient;
@@ -71,8 +70,8 @@ public class SuggestionsAction implements ComponentsWsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    NewAction action = context.createAction(ACTION_SUGGESTIONS)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_SUGGESTIONS)
       .setDescription("Internal WS for the top-right search engine")
       .setSince("4.2")
       .setInternal(true)
@@ -83,6 +82,8 @@ public class SuggestionsAction implements ComponentsWsAction {
       .setRequired(true)
       .setDescription("Substring of project key (minimum 2 characters)")
       .setExampleValue("sonar");
+
+    return action;
   }
 
   @Override

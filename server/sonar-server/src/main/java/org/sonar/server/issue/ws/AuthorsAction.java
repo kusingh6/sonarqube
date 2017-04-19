@@ -22,7 +22,6 @@ package org.sonar.server.issue.ws;
 import com.google.common.io.Resources;
 import org.sonar.api.server.ws.Request;
 import org.sonar.api.server.ws.Response;
-import org.sonar.api.server.ws.WebService;
 import org.sonar.api.server.ws.WebService.NewAction;
 import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.utils.text.JsonWriter;
@@ -57,8 +56,8 @@ public class AuthorsAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    NewAction action = controller.createAction(ACTION_AUTHORS)
+  public NewAction define() {
+    NewAction action = new NewAction(ACTION_AUTHORS)
       .setSince("5.1")
       .setDescription("Search SCM accounts which match a given query")
       .setResponseExample(Resources.getResource(this.getClass(), "authors-example.json"))
@@ -71,5 +70,7 @@ public class AuthorsAction implements IssuesWsAction {
       .setDescription("The size of the list to return")
       .setExampleValue("25")
       .setDefaultValue("10");
+
+    return action;
   }
 }

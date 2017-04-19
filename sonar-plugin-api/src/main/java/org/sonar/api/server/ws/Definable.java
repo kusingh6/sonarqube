@@ -21,5 +21,5 @@ package org.sonar.api.server.ws;
 
 public interface Definable<T> {
 
-  void define(T context);
+  T define();
 }

@@ -60,8 +60,8 @@ public class DoTransitionAction implements IssuesWsAction {
   }
 
   @Override
-  public void define(WebService.NewController controller) {
-    WebService.NewAction action = controller.createAction(ACTION_DO_TRANSITION)
+  public WebService.NewAction define() {
+    WebService.NewAction action = new WebService.NewAction(ACTION_DO_TRANSITION)
       .setDescription("Do workflow transition on an issue. Requires authentication and Browse permission on project.<br/>" +
         "The transitions '" + DefaultTransitions.WONT_FIX + "' and '" + DefaultTransitions.FALSE_POSITIVE + "' require the permission 'Administer Issues'.")
       .setSince("3.6")
@@ -77,6 +77,8 @@ public class DoTransitionAction implements IssuesWsAction {
       .setDescription("Transition")
       .setRequired(true)
       .setPossibleValues(DefaultTransitions.ALL);
+
+    return action;
   }
 
   @Override

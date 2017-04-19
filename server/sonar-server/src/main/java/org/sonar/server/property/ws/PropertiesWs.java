@@ -32,11 +32,10 @@ public class PropertiesWs implements WebService {
   }
 
   @Override
-  public void define(Context context) {
-    NewController controller = context.createController(CONTROLLER_PROPERTIES)
+  public NewController define() {
+    return new NewController(CONTROLLER_PROPERTIES)
       .setDescription("This web service is deprecated, please use api/settings instead.")
-      .setSince("2.6");
-    indexAction.define(controller);
-    controller.done();
+      .setSince("2.6")
+      .add(indexAction.define());
   }
 }

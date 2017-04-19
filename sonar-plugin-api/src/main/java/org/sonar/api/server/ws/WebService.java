@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -52,6 +51,7 @@ import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Strings.isNullOrEmpty;
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -97,24 +97,10 @@ import static java.util.Objects.requireNonNull;
  */
 @ServerSide
 @ExtensionPoint
-public interface WebService extends Definable<WebService.Context> {
+public interface WebService extends Definable<WebService.NewController> {
 
   class Context {
     private final Map<String, Controller> controllers = Maps.newHashMap();
-
-    /**
-     * Create a new controller.
-     * <br>
-     * Structure of request URL is <code>http://&lt;server&gt;/&lt;controller path&gt;/&lt;action path&gt;?&lt;parameters&gt;</code>.
-     *
-     * @param path the controller path must not start or end with "/". It is recommended to start with "api/"
-     *             and to use lower-case format with underscores, for example "api/coding_rules". Usual actions
-     *             are "search", "list", "show", "create" and "delete".
-     *             the plural form is recommended - ex: api/projects
-     */
-    public NewController createController(String path) {
-      return new NewController(this, path);
-    }
 
     private void register(NewController newController) {
       if (controllers.containsKey(newController.path)) {
@@ -135,29 +121,19 @@ public interface WebService extends Definable<WebService.Context> {
   }
 
   class NewController {
-    private final Context context;
     private final String path;
     private String description;
     private String since;
     private final Map<String, NewAction> actions = Maps.newHashMap();
 
-    private NewController(Context context, String path) {
+    public NewController(String path) {
       if (StringUtils.isBlank(path)) {
         throw new IllegalArgumentException("WS controller path must not be empty");
       }
       if (StringUtils.startsWith(path, "/") || StringUtils.endsWith(path, "/")) {
         throw new IllegalArgumentException("WS controller path must not start or end with slash: " + path);
       }
-      this.context = context;
       this.path = path;
-    }
-
-    /**
-     * Important - this method must be called in order to apply changes and make the
-     * controller available in {@link org.sonar.api.server.ws.WebService.Context#controllers()}
-     */
-    public void done() {
-      context.register(this);
     }
 
     /**
@@ -176,14 +152,19 @@ public interface WebService extends Definable<WebService.Context> {
       return this;
     }
 
-    public NewAction createAction(String actionKey) {
-      if (actions.containsKey(actionKey)) {
+    public NewController add(NewAction action) {
+      if (actions.containsKey(action.key)) {
         throw new IllegalStateException(
-          format("The action '%s' is defined multiple times in the web service '%s'", actionKey, path));
+          format("The action '%s' is defined multiple times in the web service '%s'", action.key, path));
       }
-      NewAction action = new NewAction(actionKey);
-      actions.put(actionKey, action);
-      return action;
+      actions.put(action.key, action);
+      return this;
+    }
+
+    @SafeVarargs
+    public final NewController add(Definable<NewAction>... actions) {
+      stream(actions).map(Definable::define).forEach(this::add);
+      return this;
     }
   }
 
@@ -258,7 +239,7 @@ public interface WebService extends Definable<WebService.Context> {
     private URL responseExample = null;
     private List<Change> changelog = new ArrayList<>();
 
-    private NewAction(String key) {
+    public NewAction(String key) {
       this.key = key;
     }
 
@@ -337,7 +318,7 @@ public interface WebService extends Definable<WebService.Context> {
      * @since 6.4
      */
     public NewAction setChangelog(Change... changes) {
-      this.changelog = Arrays.stream(requireNonNull(changes))
+      this.changelog = stream(requireNonNull(changes))
         .filter(Objects::nonNull)
         .collect(Collectors.toList());
 
@@ -930,6 +911,5 @@ public interface WebService extends Definable<WebService.Context> {
    * Executed once at server startup.
    */
   @Override
-  void define(Context context);
-
+  NewController define();
 }

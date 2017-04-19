@@ -73,8 +73,8 @@ public class IndexAction implements WsAction {
   }
 
   @Override
-  public void define(WebService.NewController context) {
-    WebService.NewAction action = context.createAction("index")
+  public WebService.NewAction define() {
+    WebService.NewAction action = new WebService.NewAction("index")
       .setDescription("This web service is deprecated, please use api/settings/values instead.")
       .setDeprecatedSince("6.3")
       .setResponseExample(getClass().getResource("index-example.json"))
@@ -89,6 +89,7 @@ public class IndexAction implements WsAction {
     action.createParam(PARAM_FORMAT)
       .setDescription("Only json response format is available")
       .setPossibleValues("json");
+    return action;
   }
 
   @Override

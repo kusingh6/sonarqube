@@ -27,6 +27,6 @@ import org.sonar.api.server.ws.WebService;
  * Since 5.2, this interface is the base for Web Service marker interfaces
  * Convention for naming implementations: <i>web_service_class_name</i>Action. ex: ProjectsWsAction, UsersWsAction
  */
-public interface WsAction extends RequestHandler, Definable<WebService.NewController> {
+public interface WsAction extends RequestHandler, Definable<WebService.NewAction> {
   // Marker interface
 }
