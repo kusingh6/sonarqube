@@ -175,9 +175,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <!-- can't minimize dependencies because of some classes of sonar-duplications
-              that required by sonar-batch -->
-              <minimizeJar>false</minimizeJar>
+              <minimizeJar>true</minimizeJar>
               <createDependencyReducedPom>true</createDependencyReducedPom>
               <artifactSet>
                 <excludes>
@@ -186,6 +184,15 @@
                   <exclude>org.codehaus.staxmate:staxmate</exclude>
                 </excludes>
               </artifactSet>
+              <filters>
+                <!-- sonar-duplications is needed by sonar-batch, so make sure nothing is minimized in it -->
+                <filter>
+                  <artifact>${project.groupId}:sonar-duplications</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+              </filters>
               <relocations>
                 <relocation>
                   <pattern>com.google</pattern>
